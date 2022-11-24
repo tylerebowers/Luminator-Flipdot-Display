@@ -1,0 +1,3585 @@
+838448446419868
+SN74AHC595N
+SN74AHC595N
+
+
+0
+16
+16
+TBD62381APG
+TBD62381APG
+
+
+0
+18
+18
+TBD62786APG
+TBD62786APG
+
+
+0
+18
+18
+w_conn_misc
+6p4c
+6p4c socket
+
+0
+4
+4
+w_conn_misc
+6p6c
+6p6c socket
+
+0
+6
+6
+w_conn_misc
+8p8c
+8p8c socket
+
+0
+8
+8
+w_conn_misc
+DIN64-A_C_90
+DIN64-A_C_90
+CONN DEV
+0
+64
+64
+w_conn_misc
+arduino_header
+Arduino Header
+Arduino
+0
+32
+32
+w_conn_misc
+arduino_mega_header
+Arduino Mega/Due Header
+Arduino
+0
+86
+86
+w_conn_misc
+arduino_mega_header_inverted
+Arduino Mega/Due Header
+Arduino
+0
+86
+86
+w_conn_misc
+arduino_nano_header
+Arduino Nano Header
+Arduino
+0
+30
+30
+w_conn_misc
+arduino_pin_socket_8
+Pin socket 8pin for Arduino exp. boards
+CONN DEV
+0
+8
+8
+w_conn_misc
+dc_socket
+Socket, DC power supply
+
+0
+3
+3
+w_conn_misc
+dc_socket_pj-002bh-smt-tr
+SMD Socket, DC power supply, CUI PJ-002BH-SMT-TR
+
+0
+4
+3
+w_conn_misc
+dc_socket_rh
+Socket, DC power supply, round holes
+
+0
+18
+3
+w_conn_misc
+microsd_socket
+MicroSD Card socket, Molex P/N 502774-0811
+
+0
+14
+10
+w_conn_misc
+molex_6p6c
+RJ11 6p6c socket, Molex P/N 95009-7667
+
+0
+6
+6
+w_conn_misc
+sd_socket
+SD Card socket, 4UCON P/N 19607
+
+0
+17
+12
+w_conn_misc
+stm32f0_discovery_header
+STM32 F0 Discovery Header
+STM32F0 Discovery
+0
+66
+66
+w_conn_misc
+stm32f3_discovery_header
+STM32 F3 Discovery Header
+STM32F3 Discovery
+0
+106
+100
+w_conn_misc
+stm32f4_discovery_header
+STM32 F4 Discovery Header
+STM32F4 Discovery
+0
+104
+100
+w_conn_misc
+stm32vl_discovery_header
+STM32 Value Line Discovery Header
+STM32VL Discovery
+0
+62
+62
+w_conn_misc
+wago_2060-451
+Wago 2060-451
+
+0
+2
+1
+w_conn_pt-1,5
+pt_1,5-2-3,5-h
+2-way 3.5mm pitch terminal block, Phoenix PT series
+
+0
+2
+2
+w_conn_pt-1,5
+pt_1,5-3-3,5-h
+3-way 3.5mm pitch terminal block, Phoenix PT series
+
+0
+3
+3
+w_conn_pt-1,5
+pt_1,5-4-3,5-h
+4-way 3.5mm pitch terminal block, Phoenix PT series
+
+0
+4
+4
+w_conn_pt-1,5
+pt_1,5-5-3,5-h
+5-way 3.5mm pitch terminal block, Phoenix PT series
+
+0
+5
+5
+w_conn_pt-1,5
+pt_1,5-6-3,5-h
+6-way 3.5mm pitch terminal block, Phoenix PT series
+
+0
+6
+6
+w_conn_pt-1,5
+pt_1,5-7-3,5-h
+7-way 3.5mm pitch terminal block, Phoenix PT series
+
+0
+7
+7
+w_conn_pt-1,5
+pt_1,5-8-3,5-h
+8-way 3.5mm pitch terminal block, Phoenix PT series
+
+0
+8
+8
+w_conn_pt-1,5
+pt_1,5-9-3,5-h
+9-way 3.5mm pitch terminal block, Phoenix PT series
+
+0
+9
+9
+w_conn_pt-1,5
+pt_1,5-10-3,5-h
+10-way 3.5mm pitch terminal block, Phoenix PT series
+
+0
+10
+10
+w_conn_pt-1,5
+pt_1,5-11-3,5-h
+11-way 3.5mm pitch terminal block, Phoenix PT series
+
+0
+11
+11
+w_conn_pt-1,5
+pt_1,5-12-3,5-h
+12-way 3.5mm pitch terminal block, Phoenix PT series
+
+0
+12
+12
+w_conn_pt-1,5
+pt_1,5-13-3,5-h
+13-way 3.5mm pitch terminal block, Phoenix PT series
+
+0
+13
+13
+w_conn_pt-1,5
+pt_1,5-14-3,5-h
+14-way 3.5mm pitch terminal block, Phoenix PT series
+
+0
+14
+14
+w_conn_pt-1,5
+pt_1,5-15-3,5-h
+15-way 3.5mm pitch terminal block, Phoenix PT series
+
+0
+15
+15
+w_conn_pt-1,5
+pt_1,5-16-3,5-h
+16-way 3.5mm pitch terminal block, Phoenix PT series
+
+0
+16
+16
+w_conn_strip
+vasch_strip_3x2
+Box header 3x2pin 2.54mm
+CONN DEV
+0
+6
+6
+w_conn_strip
+vasch_strip_3x2_90
+Box header 3x2pin 90° 2.54mm
+CONN DEV
+0
+6
+6
+w_conn_strip
+vasch_strip_4x2
+Box header 4x2pin 2.54mm
+CONN DEV
+0
+8
+8
+w_conn_strip
+vasch_strip_4x2_90
+Box header 4x2pin 90° 2.54mm
+CONN DEV
+0
+8
+8
+w_conn_strip
+vasch_strip_5x2
+Box header 5x2pin 2.54mm
+CONN DEV
+0
+10
+10
+w_conn_strip
+vasch_strip_5x2_90
+Box header 5x2pin 90° 2.54mm
+CONN DEV
+0
+10
+10
+w_conn_strip
+vasch_strip_6x2
+Box header 6x2pin 2.54mm
+CONN DEV
+0
+12
+12
+w_conn_strip
+vasch_strip_6x2_90
+Box header 6x2pin 90° 2.54mm
+CONN DEV
+0
+12
+12
+w_conn_strip
+vasch_strip_7x2
+Box header 7x2pin 2.54mm
+CONN DEV
+0
+14
+14
+w_conn_strip
+vasch_strip_7x2_90
+Box header 7x2pin 90° 2.54mm
+CONN DEV
+0
+14
+14
+w_conn_strip
+vasch_strip_8x2
+Box header 8x2pin 2.54mm
+CONN DEV
+0
+16
+16
+w_conn_strip
+vasch_strip_8x2_90
+Box header 8x2pin 90° 2.54mm
+CONN DEV
+0
+16
+16
+w_conn_strip
+vasch_strip_9x2
+Box header 9x2pin 2.54mm
+CONN DEV
+0
+18
+18
+w_conn_strip
+vasch_strip_9x2_90
+Box header 9x2pin 90° 2.54mm
+CONN DEV
+0
+18
+18
+w_conn_strip
+vasch_strip_10x2
+Box header 10x2pin 2.54mm
+CONN DEV
+0
+20
+20
+w_conn_strip
+vasch_strip_10x2_90
+Box header 10x2pin 90° 2.54mm
+CONN DEV
+0
+20
+20
+w_conn_strip
+vasch_strip_12x2
+Box header 12x2pin 2.54mm
+CONN DEV
+0
+24
+24
+w_conn_strip
+vasch_strip_12x2_90
+Box header 12x2pin 90° 2.54mm
+CONN DEV
+0
+24
+24
+w_conn_strip
+vasch_strip_13x2
+Box header 13x2pin 2.54mm
+CONN DEV
+0
+26
+26
+w_conn_strip
+vasch_strip_13x2_90
+Box header 13x2pin 90° 2.54mm
+CONN DEV
+0
+26
+26
+w_conn_strip
+vasch_strip_15x2
+Box header 15x2pin 2.54mm
+CONN DEV
+0
+30
+30
+w_conn_strip
+vasch_strip_15x2_90
+Box header 15x2pin 90° 2.54mm
+CONN DEV
+0
+30
+30
+w_conn_strip
+vasch_strip_16x2
+Box header 16x2pin 2.54mm
+CONN DEV
+0
+32
+32
+w_conn_strip
+vasch_strip_16x2_90
+Box header 16x2pin 90° 2.54mm
+CONN DEV
+0
+32
+32
+w_conn_strip
+vasch_strip_17x2
+Box header 17x2pin 2.54mm
+CONN DEV
+0
+34
+34
+w_conn_strip
+vasch_strip_17x2_90
+Box header 17x2pin 90° 2.54mm
+CONN DEV
+0
+34
+34
+w_conn_strip
+vasch_strip_18x2
+Box header 18x2pin 2.54mm
+CONN DEV
+0
+36
+36
+w_conn_strip
+vasch_strip_18x2_90
+Box header 18x2pin 90° 2.54mm
+CONN DEV
+0
+36
+36
+w_conn_strip
+vasch_strip_20x2
+Box header 20x2pin 2.54mm
+CONN DEV
+0
+40
+40
+w_conn_strip
+vasch_strip_20x2_90
+Box header 20x2pin 90° 2.54mm
+CONN DEV
+0
+40
+40
+w_conn_strip
+vasch_strip_25x2
+Box header 25x2pin 2.54mm
+CONN DEV
+0
+50
+50
+w_conn_strip
+vasch_strip_25x2_90
+Box header 25x2pin 90° 2.54mm
+CONN DEV
+0
+50
+50
+w_conn_strip
+vasch_strip_30x2
+Box header 30x2pin 2.54mm
+CONN DEV
+0
+60
+60
+w_conn_strip
+vasch_strip_30x2_90
+Box header 30x2pin 90° 2.54mm
+CONN DEV
+0
+60
+60
+w_conn_strip
+vasch_strip_32x2
+Box header 32x2pin 2.54mm
+CONN DEV
+0
+64
+64
+w_conn_strip
+vasch_strip_32x2_90
+Box header 32x2pin 90° 2.54mm
+CONN DEV
+0
+64
+64
+w_pin_strip_2mm00
+pin_socket_2mm_1
+Pin socket 2mm 1pin
+CONN DEV
+0
+1
+1
+w_pin_strip_2mm00
+pin_socket_2mm_2
+Pin socket 2mm 2pin
+CONN DEV
+0
+2
+2
+w_pin_strip_2mm00
+pin_socket_2mm_2x2
+Pin socket 2mm 2x2pin
+CONN DEV
+0
+4
+4
+w_pin_strip_2mm00
+pin_socket_2mm_3
+Pin socket 2mm 3pin
+CONN DEV
+0
+3
+3
+w_pin_strip_2mm00
+pin_socket_2mm_3x2
+Pin socket 2mm 3x2pin
+CONN DEV
+0
+6
+6
+w_pin_strip_2mm00
+pin_socket_2mm_4
+Pin socket 2mm 4pin
+CONN DEV
+0
+4
+4
+w_pin_strip_2mm00
+pin_socket_2mm_4x2
+Pin socket 2mm 4x2pin
+CONN DEV
+0
+8
+8
+w_pin_strip_2mm00
+pin_socket_2mm_5
+Pin socket 2mm 5pin
+CONN DEV
+0
+5
+5
+w_pin_strip_2mm00
+pin_socket_2mm_5x2
+Pin socket 2mm 5x2pin
+CONN DEV
+0
+10
+10
+w_pin_strip_2mm00
+pin_socket_2mm_6
+Pin socket 2mm 6pin
+CONN DEV
+0
+6
+6
+w_pin_strip_2mm00
+pin_socket_2mm_6x2
+Pin socket 2mm 6x2pin
+CONN DEV
+0
+12
+12
+w_pin_strip_2mm00
+pin_socket_2mm_7
+Pin socket 2mm 7pin
+CONN DEV
+0
+7
+7
+w_pin_strip_2mm00
+pin_socket_2mm_7x2
+Pin socket 2mm 7x2pin
+CONN DEV
+0
+14
+14
+w_pin_strip_2mm00
+pin_socket_2mm_8
+Pin socket 2mm 8pin
+CONN DEV
+0
+8
+8
+w_pin_strip_2mm00
+pin_socket_2mm_8x2
+Pin socket 2mm 8x2pin
+CONN DEV
+0
+16
+16
+w_pin_strip_2mm00
+pin_socket_2mm_9
+Pin socket 2mm 9pin
+CONN DEV
+0
+9
+9
+w_pin_strip_2mm00
+pin_socket_2mm_9x2
+Pin socket 2mm 9x2pin
+CONN DEV
+0
+18
+18
+w_pin_strip_2mm00
+pin_socket_2mm_10
+Pin socket 2mm 10pin
+CONN DEV
+0
+10
+10
+w_pin_strip_2mm00
+pin_socket_2mm_10x2
+Pin socket 2mm 10x2pin
+CONN DEV
+0
+20
+20
+w_pin_strip_2mm00
+pin_socket_2mm_11
+Pin socket 2mm 11pin
+CONN DEV
+0
+11
+11
+w_pin_strip_2mm00
+pin_socket_2mm_11x2
+Pin socket 2mm 11x2pin
+CONN DEV
+0
+22
+22
+w_pin_strip_2mm00
+pin_socket_2mm_12
+Pin socket 2mm 12pin
+CONN DEV
+0
+12
+12
+w_pin_strip_2mm00
+pin_socket_2mm_12x2
+Pin socket 2mm 12x2pin
+CONN DEV
+0
+24
+24
+w_pin_strip_2mm00
+pin_socket_2mm_13
+Pin socket 2mm 13pin
+CONN DEV
+0
+13
+13
+w_pin_strip_2mm00
+pin_socket_2mm_13x2
+Pin socket 2mm 13x2pin
+CONN DEV
+0
+26
+26
+w_pin_strip_2mm00
+pin_socket_2mm_14
+Pin socket 2mm 14pin
+CONN DEV
+0
+14
+14
+w_pin_strip_2mm00
+pin_socket_2mm_14x2
+Pin socket 2mm 14x2pin
+CONN DEV
+0
+28
+28
+w_pin_strip_2mm00
+pin_socket_2mm_15
+Pin socket 2mm 15pin
+CONN DEV
+0
+15
+15
+w_pin_strip_2mm00
+pin_socket_2mm_15x2
+Pin socket 2mm 15x2pin
+CONN DEV
+0
+30
+30
+w_pin_strip_2mm00
+pin_socket_2mm_16
+Pin socket 2mm 16pin
+CONN DEV
+0
+16
+16
+w_pin_strip_2mm00
+pin_socket_2mm_16x2
+Pin socket 2mm 16x2pin
+CONN DEV
+0
+32
+32
+w_pin_strip_2mm00
+pin_socket_2mm_17
+Pin socket 2mm 17pin
+CONN DEV
+0
+17
+17
+w_pin_strip_2mm00
+pin_socket_2mm_17x2
+Pin socket 2mm 17x2pin
+CONN DEV
+0
+34
+34
+w_pin_strip_2mm00
+pin_socket_2mm_18
+Pin socket 2mm 18pin
+CONN DEV
+0
+18
+18
+w_pin_strip_2mm00
+pin_socket_2mm_18x2
+Pin socket 2mm 18x2pin
+CONN DEV
+0
+36
+36
+w_pin_strip_2mm00
+pin_socket_2mm_19
+Pin socket 2mm 19pin
+CONN DEV
+0
+19
+19
+w_pin_strip_2mm00
+pin_socket_2mm_19x2
+Pin socket 2mm 19x2pin
+CONN DEV
+0
+38
+38
+w_pin_strip_2mm00
+pin_socket_2mm_20
+Pin socket 2mm 20pin
+CONN DEV
+0
+20
+20
+w_pin_strip_2mm00
+pin_socket_2mm_20x2
+Pin socket 2mm 20x2pin
+CONN DEV
+0
+40
+40
+w_pin_strip_2mm00
+pin_socket_2mm_21
+Pin socket 2mm 21pin
+CONN DEV
+0
+21
+21
+w_pin_strip_2mm00
+pin_socket_2mm_21x2
+Pin socket 2mm 21x2pin
+CONN DEV
+0
+42
+42
+w_pin_strip_2mm00
+pin_socket_2mm_22
+Pin socket 2mm 22pin
+CONN DEV
+0
+22
+22
+w_pin_strip_2mm00
+pin_socket_2mm_22x2
+Pin socket 2mm 22x2pin
+CONN DEV
+0
+44
+44
+w_pin_strip_2mm00
+pin_socket_2mm_23
+Pin socket 2mm 23pin
+CONN DEV
+0
+23
+23
+w_pin_strip_2mm00
+pin_socket_2mm_23x2
+Pin socket 2mm 23x2pin
+CONN DEV
+0
+46
+46
+w_pin_strip_2mm00
+pin_socket_2mm_24
+Pin socket 2mm 24pin
+CONN DEV
+0
+24
+24
+w_pin_strip_2mm00
+pin_socket_2mm_24x2
+Pin socket 2mm 24x2pin
+CONN DEV
+0
+48
+48
+w_pin_strip_2mm00
+pin_socket_2mm_25
+Pin socket 2mm 25pin
+CONN DEV
+0
+25
+25
+w_pin_strip_2mm00
+pin_socket_2mm_25x2
+Pin socket 2mm 25x2pin
+CONN DEV
+0
+50
+50
+w_pin_strip_2mm00
+pin_socket_2mm_26
+Pin socket 2mm 26pin
+CONN DEV
+0
+26
+26
+w_pin_strip_2mm00
+pin_socket_2mm_26x2
+Pin socket 2mm 26x2pin
+CONN DEV
+0
+52
+52
+w_pin_strip_2mm00
+pin_socket_2mm_27
+Pin socket 2mm 27pin
+CONN DEV
+0
+27
+27
+w_pin_strip_2mm00
+pin_socket_2mm_27x2
+Pin socket 2mm 27x2pin
+CONN DEV
+0
+54
+54
+w_pin_strip_2mm00
+pin_socket_2mm_28
+Pin socket 2mm 28pin
+CONN DEV
+0
+28
+28
+w_pin_strip_2mm00
+pin_socket_2mm_28x2
+Pin socket 2mm 28x2pin
+CONN DEV
+0
+56
+56
+w_pin_strip_2mm00
+pin_socket_2mm_29
+Pin socket 2mm 29pin
+CONN DEV
+0
+29
+29
+w_pin_strip_2mm00
+pin_socket_2mm_29x2
+Pin socket 2mm 29x2pin
+CONN DEV
+0
+58
+58
+w_pin_strip_2mm00
+pin_socket_2mm_30
+Pin socket 2mm 30pin
+CONN DEV
+0
+30
+30
+w_pin_strip_2mm00
+pin_socket_2mm_30x2
+Pin socket 2mm 30x2pin
+CONN DEV
+0
+60
+60
+w_pin_strip_2mm00
+pin_socket_2mm_31
+Pin socket 2mm 31pin
+CONN DEV
+0
+31
+31
+w_pin_strip_2mm00
+pin_socket_2mm_31x2
+Pin socket 2mm 31x2pin
+CONN DEV
+0
+62
+62
+w_pin_strip_2mm00
+pin_socket_2mm_32
+Pin socket 2mm 32pin
+CONN DEV
+0
+32
+32
+w_pin_strip_2mm00
+pin_socket_2mm_32x2
+Pin socket 2mm 32x2pin
+CONN DEV
+0
+64
+64
+w_pin_strip_2mm00
+pin_socket_2mm_33
+Pin socket 2mm 33pin
+CONN DEV
+0
+33
+33
+w_pin_strip_2mm00
+pin_socket_2mm_33x2
+Pin socket 2mm 33x2pin
+CONN DEV
+0
+66
+66
+w_pin_strip_2mm00
+pin_socket_2mm_34
+Pin socket 2mm 34pin
+CONN DEV
+0
+34
+34
+w_pin_strip_2mm00
+pin_socket_2mm_34x2
+Pin socket 2mm 34x2pin
+CONN DEV
+0
+68
+68
+w_pin_strip_2mm00
+pin_socket_2mm_35
+Pin socket 2mm 35pin
+CONN DEV
+0
+35
+35
+w_pin_strip_2mm00
+pin_socket_2mm_35x2
+Pin socket 2mm 35x2pin
+CONN DEV
+0
+70
+70
+w_pin_strip_2mm00
+pin_socket_2mm_36
+Pin socket 2mm 36pin
+CONN DEV
+0
+36
+36
+w_pin_strip_2mm00
+pin_socket_2mm_36x2
+Pin socket 2mm 36x2pin
+CONN DEV
+0
+72
+72
+w_pin_strip_2mm00
+pin_socket_2mm_37
+Pin socket 2mm 37pin
+CONN DEV
+0
+37
+37
+w_pin_strip_2mm00
+pin_socket_2mm_37x2
+Pin socket 2mm 37x2pin
+CONN DEV
+0
+74
+74
+w_pin_strip_2mm00
+pin_socket_2mm_38
+Pin socket 2mm 38pin
+CONN DEV
+0
+38
+38
+w_pin_strip_2mm00
+pin_socket_2mm_38x2
+Pin socket 2mm 38x2pin
+CONN DEV
+0
+76
+76
+w_pin_strip_2mm00
+pin_socket_2mm_39
+Pin socket 2mm 39pin
+CONN DEV
+0
+39
+39
+w_pin_strip_2mm00
+pin_socket_2mm_39x2
+Pin socket 2mm 39x2pin
+CONN DEV
+0
+78
+78
+w_pin_strip_2mm00
+pin_socket_2mm_40
+Pin socket 2mm 40pin
+CONN DEV
+0
+40
+40
+w_pin_strip_2mm00
+pin_socket_2mm_40x2
+Pin socket 2mm 40x2pin
+CONN DEV
+0
+80
+80
+w_pin_strip_2mm00
+pin_socket_2mm_41
+Pin socket 2mm 41pin
+CONN DEV
+0
+41
+41
+w_pin_strip_2mm00
+pin_socket_2mm_41x2
+Pin socket 2mm 41x2pin
+CONN DEV
+0
+82
+82
+w_pin_strip_2mm00
+pin_socket_2mm_42
+Pin socket 2mm 42pin
+CONN DEV
+0
+42
+42
+w_pin_strip_2mm00
+pin_socket_2mm_42x2
+Pin socket 2mm 42x2pin
+CONN DEV
+0
+84
+84
+w_pin_strip_2mm00
+pin_socket_2mm_43
+Pin socket 2mm 43pin
+CONN DEV
+0
+43
+43
+w_pin_strip_2mm00
+pin_socket_2mm_43x2
+Pin socket 2mm 43x2pin
+CONN DEV
+0
+86
+86
+w_pin_strip_2mm00
+pin_socket_2mm_44
+Pin socket 2mm 44pin
+CONN DEV
+0
+44
+44
+w_pin_strip_2mm00
+pin_socket_2mm_44x2
+Pin socket 2mm 44x2pin
+CONN DEV
+0
+88
+88
+w_pin_strip_2mm00
+pin_socket_2mm_45
+Pin socket 2mm 45pin
+CONN DEV
+0
+45
+45
+w_pin_strip_2mm00
+pin_socket_2mm_45x2
+Pin socket 2mm 45x2pin
+CONN DEV
+0
+90
+90
+w_pin_strip_2mm00
+pin_socket_2mm_46
+Pin socket 2mm 46pin
+CONN DEV
+0
+46
+46
+w_pin_strip_2mm00
+pin_socket_2mm_46x2
+Pin socket 2mm 46x2pin
+CONN DEV
+0
+92
+92
+w_pin_strip_2mm00
+pin_socket_2mm_47
+Pin socket 2mm 47pin
+CONN DEV
+0
+47
+47
+w_pin_strip_2mm00
+pin_socket_2mm_47x2
+Pin socket 2mm 47x2pin
+CONN DEV
+0
+94
+94
+w_pin_strip_2mm00
+pin_socket_2mm_48
+Pin socket 2mm 48pin
+CONN DEV
+0
+48
+48
+w_pin_strip_2mm00
+pin_socket_2mm_48x2
+Pin socket 2mm 48x2pin
+CONN DEV
+0
+96
+96
+w_pin_strip_2mm00
+pin_socket_2mm_49
+Pin socket 2mm 49pin
+CONN DEV
+0
+49
+49
+w_pin_strip_2mm00
+pin_socket_2mm_49x2
+Pin socket 2mm 49x2pin
+CONN DEV
+0
+98
+98
+w_pin_strip_2mm00
+pin_socket_2mm_50
+Pin socket 2mm 50pin
+CONN DEV
+0
+50
+50
+w_pin_strip_2mm00
+pin_socket_2mm_50x2
+Pin socket 2mm 50x2pin
+CONN DEV
+0
+100
+100
+w_pin_strip_2mm00
+pin_strip_2mm_1
+Pin strip 2mm 1pin
+CONN DEV
+0
+1
+1
+w_pin_strip_2mm00
+pin_strip_2mm_2
+Pin strip 2mm 2pin
+CONN DEV
+0
+2
+2
+w_pin_strip_2mm00
+pin_strip_2mm_2x2
+Pin strip 2mm 2x2pin
+CONN DEV
+0
+4
+4
+w_pin_strip_2mm00
+pin_strip_2mm_3
+Pin strip 2mm 3pin
+CONN DEV
+0
+3
+3
+w_pin_strip_2mm00
+pin_strip_2mm_3x2
+Pin strip 2mm 3x2pin
+CONN DEV
+0
+6
+6
+w_pin_strip_2mm00
+pin_strip_2mm_4
+Pin strip 2mm 4pin
+CONN DEV
+0
+4
+4
+w_pin_strip_2mm00
+pin_strip_2mm_4x2
+Pin strip 2mm 4x2pin
+CONN DEV
+0
+8
+8
+w_pin_strip_2mm00
+pin_strip_2mm_5
+Pin strip 2mm 5pin
+CONN DEV
+0
+5
+5
+w_pin_strip_2mm00
+pin_strip_2mm_5x2
+Pin strip 2mm 5x2pin
+CONN DEV
+0
+10
+10
+w_pin_strip_2mm00
+pin_strip_2mm_6
+Pin strip 2mm 6pin
+CONN DEV
+0
+6
+6
+w_pin_strip_2mm00
+pin_strip_2mm_6x2
+Pin strip 2mm 6x2pin
+CONN DEV
+0
+12
+12
+w_pin_strip_2mm00
+pin_strip_2mm_7
+Pin strip 2mm 7pin
+CONN DEV
+0
+7
+7
+w_pin_strip_2mm00
+pin_strip_2mm_7x2
+Pin strip 2mm 7x2pin
+CONN DEV
+0
+14
+14
+w_pin_strip_2mm00
+pin_strip_2mm_8
+Pin strip 2mm 8pin
+CONN DEV
+0
+8
+8
+w_pin_strip_2mm00
+pin_strip_2mm_8x2
+Pin strip 2mm 8x2pin
+CONN DEV
+0
+16
+16
+w_pin_strip_2mm00
+pin_strip_2mm_9
+Pin strip 2mm 9pin
+CONN DEV
+0
+9
+9
+w_pin_strip_2mm00
+pin_strip_2mm_9x2
+Pin strip 2mm 9x2pin
+CONN DEV
+0
+18
+18
+w_pin_strip_2mm00
+pin_strip_2mm_10
+Pin strip 2mm 10pin
+CONN DEV
+0
+10
+10
+w_pin_strip_2mm00
+pin_strip_2mm_10x2
+Pin strip 2mm 10x2pin
+CONN DEV
+0
+20
+20
+w_pin_strip_2mm00
+pin_strip_2mm_11
+Pin strip 2mm 11pin
+CONN DEV
+0
+11
+11
+w_pin_strip_2mm00
+pin_strip_2mm_11x2
+Pin strip 2mm 11x2pin
+CONN DEV
+0
+22
+22
+w_pin_strip_2mm00
+pin_strip_2mm_12
+Pin strip 2mm 12pin
+CONN DEV
+0
+12
+12
+w_pin_strip_2mm00
+pin_strip_2mm_12x2
+Pin strip 2mm 12x2pin
+CONN DEV
+0
+24
+24
+w_pin_strip_2mm00
+pin_strip_2mm_13
+Pin strip 2mm 13pin
+CONN DEV
+0
+13
+13
+w_pin_strip_2mm00
+pin_strip_2mm_13x2
+Pin strip 2mm 13x2pin
+CONN DEV
+0
+26
+26
+w_pin_strip_2mm00
+pin_strip_2mm_14
+Pin strip 2mm 14pin
+CONN DEV
+0
+14
+14
+w_pin_strip_2mm00
+pin_strip_2mm_14x2
+Pin strip 2mm 14x2pin
+CONN DEV
+0
+28
+28
+w_pin_strip_2mm00
+pin_strip_2mm_15
+Pin strip 2mm 15pin
+CONN DEV
+0
+15
+15
+w_pin_strip_2mm00
+pin_strip_2mm_15x2
+Pin strip 2mm 15x2pin
+CONN DEV
+0
+30
+30
+w_pin_strip_2mm00
+pin_strip_2mm_16
+Pin strip 2mm 16pin
+CONN DEV
+0
+16
+16
+w_pin_strip_2mm00
+pin_strip_2mm_16x2
+Pin strip 2mm 16x2pin
+CONN DEV
+0
+32
+32
+w_pin_strip_2mm00
+pin_strip_2mm_17
+Pin strip 2mm 17pin
+CONN DEV
+0
+17
+17
+w_pin_strip_2mm00
+pin_strip_2mm_17x2
+Pin strip 2mm 17x2pin
+CONN DEV
+0
+34
+34
+w_pin_strip_2mm00
+pin_strip_2mm_18
+Pin strip 2mm 18pin
+CONN DEV
+0
+18
+18
+w_pin_strip_2mm00
+pin_strip_2mm_18x2
+Pin strip 2mm 18x2pin
+CONN DEV
+0
+36
+36
+w_pin_strip_2mm00
+pin_strip_2mm_19
+Pin strip 2mm 19pin
+CONN DEV
+0
+19
+19
+w_pin_strip_2mm00
+pin_strip_2mm_19x2
+Pin strip 2mm 19x2pin
+CONN DEV
+0
+38
+38
+w_pin_strip_2mm00
+pin_strip_2mm_20
+Pin strip 2mm 20pin
+CONN DEV
+0
+20
+20
+w_pin_strip_2mm00
+pin_strip_2mm_20x2
+Pin strip 2mm 20x2pin
+CONN DEV
+0
+40
+40
+w_pin_strip_2mm00
+pin_strip_2mm_21
+Pin strip 2mm 21pin
+CONN DEV
+0
+21
+21
+w_pin_strip_2mm00
+pin_strip_2mm_21x2
+Pin strip 2mm 21x2pin
+CONN DEV
+0
+42
+42
+w_pin_strip_2mm00
+pin_strip_2mm_22
+Pin strip 2mm 22pin
+CONN DEV
+0
+22
+22
+w_pin_strip_2mm00
+pin_strip_2mm_22x2
+Pin strip 2mm 22x2pin
+CONN DEV
+0
+44
+44
+w_pin_strip_2mm00
+pin_strip_2mm_23
+Pin strip 2mm 23pin
+CONN DEV
+0
+23
+23
+w_pin_strip_2mm00
+pin_strip_2mm_23x2
+Pin strip 2mm 23x2pin
+CONN DEV
+0
+46
+46
+w_pin_strip_2mm00
+pin_strip_2mm_24
+Pin strip 2mm 24pin
+CONN DEV
+0
+24
+24
+w_pin_strip_2mm00
+pin_strip_2mm_24x2
+Pin strip 2mm 24x2pin
+CONN DEV
+0
+48
+48
+w_pin_strip_2mm00
+pin_strip_2mm_25
+Pin strip 2mm 25pin
+CONN DEV
+0
+25
+25
+w_pin_strip_2mm00
+pin_strip_2mm_25x2
+Pin strip 2mm 25x2pin
+CONN DEV
+0
+50
+50
+w_pin_strip_2mm00
+pin_strip_2mm_26
+Pin strip 2mm 26pin
+CONN DEV
+0
+26
+26
+w_pin_strip_2mm00
+pin_strip_2mm_26x2
+Pin strip 2mm 26x2pin
+CONN DEV
+0
+52
+52
+w_pin_strip_2mm00
+pin_strip_2mm_27
+Pin strip 2mm 27pin
+CONN DEV
+0
+27
+27
+w_pin_strip_2mm00
+pin_strip_2mm_27x2
+Pin strip 2mm 27x2pin
+CONN DEV
+0
+54
+54
+w_pin_strip_2mm00
+pin_strip_2mm_28
+Pin strip 2mm 28pin
+CONN DEV
+0
+28
+28
+w_pin_strip_2mm00
+pin_strip_2mm_28x2
+Pin strip 2mm 28x2pin
+CONN DEV
+0
+56
+56
+w_pin_strip_2mm00
+pin_strip_2mm_29
+Pin strip 2mm 29pin
+CONN DEV
+0
+29
+29
+w_pin_strip_2mm00
+pin_strip_2mm_29x2
+Pin strip 2mm 29x2pin
+CONN DEV
+0
+58
+58
+w_pin_strip_2mm00
+pin_strip_2mm_30
+Pin strip 2mm 30pin
+CONN DEV
+0
+30
+30
+w_pin_strip_2mm00
+pin_strip_2mm_30x2
+Pin strip 2mm 30x2pin
+CONN DEV
+0
+60
+60
+w_pin_strip_2mm00
+pin_strip_2mm_31
+Pin strip 2mm 31pin
+CONN DEV
+0
+31
+31
+w_pin_strip_2mm00
+pin_strip_2mm_31x2
+Pin strip 2mm 31x2pin
+CONN DEV
+0
+62
+62
+w_pin_strip_2mm00
+pin_strip_2mm_32
+Pin strip 2mm 32pin
+CONN DEV
+0
+32
+32
+w_pin_strip_2mm00
+pin_strip_2mm_32x2
+Pin strip 2mm 32x2pin
+CONN DEV
+0
+64
+64
+w_pin_strip_2mm00
+pin_strip_2mm_33
+Pin strip 2mm 33pin
+CONN DEV
+0
+33
+33
+w_pin_strip_2mm00
+pin_strip_2mm_33x2
+Pin strip 2mm 33x2pin
+CONN DEV
+0
+66
+66
+w_pin_strip_2mm00
+pin_strip_2mm_34
+Pin strip 2mm 34pin
+CONN DEV
+0
+34
+34
+w_pin_strip_2mm00
+pin_strip_2mm_34x2
+Pin strip 2mm 34x2pin
+CONN DEV
+0
+68
+68
+w_pin_strip_2mm00
+pin_strip_2mm_35
+Pin strip 2mm 35pin
+CONN DEV
+0
+35
+35
+w_pin_strip_2mm00
+pin_strip_2mm_35x2
+Pin strip 2mm 35x2pin
+CONN DEV
+0
+70
+70
+w_pin_strip_2mm00
+pin_strip_2mm_36
+Pin strip 2mm 36pin
+CONN DEV
+0
+36
+36
+w_pin_strip_2mm00
+pin_strip_2mm_36x2
+Pin strip 2mm 36x2pin
+CONN DEV
+0
+72
+72
+w_pin_strip_2mm00
+pin_strip_2mm_37
+Pin strip 2mm 37pin
+CONN DEV
+0
+37
+37
+w_pin_strip_2mm00
+pin_strip_2mm_37x2
+Pin strip 2mm 37x2pin
+CONN DEV
+0
+74
+74
+w_pin_strip_2mm00
+pin_strip_2mm_38
+Pin strip 2mm 38pin
+CONN DEV
+0
+38
+38
+w_pin_strip_2mm00
+pin_strip_2mm_38x2
+Pin strip 2mm 38x2pin
+CONN DEV
+0
+76
+76
+w_pin_strip_2mm00
+pin_strip_2mm_39
+Pin strip 2mm 39pin
+CONN DEV
+0
+39
+39
+w_pin_strip_2mm00
+pin_strip_2mm_39x2
+Pin strip 2mm 39x2pin
+CONN DEV
+0
+78
+78
+w_pin_strip_2mm00
+pin_strip_2mm_40
+Pin strip 2mm 40pin
+CONN DEV
+0
+40
+40
+w_pin_strip_2mm00
+pin_strip_2mm_40x2
+Pin strip 2mm 40x2pin
+CONN DEV
+0
+80
+80
+w_pin_strip_2mm00
+pin_strip_2mm_41
+Pin strip 2mm 41pin
+CONN DEV
+0
+41
+41
+w_pin_strip_2mm00
+pin_strip_2mm_41x2
+Pin strip 2mm 41x2pin
+CONN DEV
+0
+82
+82
+w_pin_strip_2mm00
+pin_strip_2mm_42
+Pin strip 2mm 42pin
+CONN DEV
+0
+42
+42
+w_pin_strip_2mm00
+pin_strip_2mm_42x2
+Pin strip 2mm 42x2pin
+CONN DEV
+0
+84
+84
+w_pin_strip_2mm00
+pin_strip_2mm_43
+Pin strip 2mm 43pin
+CONN DEV
+0
+43
+43
+w_pin_strip_2mm00
+pin_strip_2mm_43x2
+Pin strip 2mm 43x2pin
+CONN DEV
+0
+86
+86
+w_pin_strip_2mm00
+pin_strip_2mm_44
+Pin strip 2mm 44pin
+CONN DEV
+0
+44
+44
+w_pin_strip_2mm00
+pin_strip_2mm_44x2
+Pin strip 2mm 44x2pin
+CONN DEV
+0
+88
+88
+w_pin_strip_2mm00
+pin_strip_2mm_45
+Pin strip 2mm 45pin
+CONN DEV
+0
+45
+45
+w_pin_strip_2mm00
+pin_strip_2mm_45x2
+Pin strip 2mm 45x2pin
+CONN DEV
+0
+90
+90
+w_pin_strip_2mm00
+pin_strip_2mm_46
+Pin strip 2mm 46pin
+CONN DEV
+0
+46
+46
+w_pin_strip_2mm00
+pin_strip_2mm_46x2
+Pin strip 2mm 46x2pin
+CONN DEV
+0
+92
+92
+w_pin_strip_2mm00
+pin_strip_2mm_47
+Pin strip 2mm 47pin
+CONN DEV
+0
+47
+47
+w_pin_strip_2mm00
+pin_strip_2mm_47x2
+Pin strip 2mm 47x2pin
+CONN DEV
+0
+94
+94
+w_pin_strip_2mm00
+pin_strip_2mm_48
+Pin strip 2mm 48pin
+CONN DEV
+0
+48
+48
+w_pin_strip_2mm00
+pin_strip_2mm_48x2
+Pin strip 2mm 48x2pin
+CONN DEV
+0
+96
+96
+w_pin_strip_2mm00
+pin_strip_2mm_49
+Pin strip 2mm 49pin
+CONN DEV
+0
+49
+49
+w_pin_strip_2mm00
+pin_strip_2mm_49x2
+Pin strip 2mm 49x2pin
+CONN DEV
+0
+98
+98
+w_pin_strip_2mm00
+pin_strip_2mm_50
+Pin strip 2mm 50pin
+CONN DEV
+0
+50
+50
+w_pin_strip_2mm00
+pin_strip_2mm_50x2
+Pin strip 2mm 50x2pin
+CONN DEV
+0
+100
+100
+w_pin_strip_2mm54
+pin_socket_1
+Pin socket 1pin
+CONN DEV
+0
+1
+1
+w_pin_strip_2mm54
+pin_socket_1-90
+Pin socket 1pin 90
+CONN DEV
+0
+1
+1
+w_pin_strip_2mm54
+pin_socket_1x2
+Pin socket 1x2pin
+CONN DEV
+0
+2
+2
+w_pin_strip_2mm54
+pin_socket_1x2-90
+Pin socket 1x2pin 90
+CONN DEV
+0
+2
+2
+w_pin_strip_2mm54
+pin_socket_2
+Pin socket 2pin
+CONN DEV
+0
+2
+2
+w_pin_strip_2mm54
+pin_socket_2-90
+Pin socket 2pin 90
+CONN DEV
+0
+2
+2
+w_pin_strip_2mm54
+pin_socket_2x2
+Pin socket 2x2pin
+CONN DEV
+0
+4
+4
+w_pin_strip_2mm54
+pin_socket_2x2-90
+Pin socket 2x2pin 90
+CONN DEV
+0
+4
+4
+w_pin_strip_2mm54
+pin_socket_3
+Pin socket 3pin
+CONN DEV
+0
+3
+3
+w_pin_strip_2mm54
+pin_socket_3-90
+Pin socket 3pin 90
+CONN DEV
+0
+3
+3
+w_pin_strip_2mm54
+pin_socket_3x2
+Pin socket 3x2pin
+CONN DEV
+0
+6
+6
+w_pin_strip_2mm54
+pin_socket_3x2-90
+Pin socket 3x2pin 90
+CONN DEV
+0
+6
+6
+w_pin_strip_2mm54
+pin_socket_4
+Pin socket 4pin
+CONN DEV
+0
+4
+4
+w_pin_strip_2mm54
+pin_socket_4-90
+Pin socket 4pin 90
+CONN DEV
+0
+4
+4
+w_pin_strip_2mm54
+pin_socket_4x2
+Pin socket 4x2pin
+CONN DEV
+0
+8
+8
+w_pin_strip_2mm54
+pin_socket_4x2-90
+Pin socket 4x2pin 90
+CONN DEV
+0
+8
+8
+w_pin_strip_2mm54
+pin_socket_5
+Pin socket 5pin
+CONN DEV
+0
+5
+5
+w_pin_strip_2mm54
+pin_socket_5-90
+Pin socket 5pin 90
+CONN DEV
+0
+5
+5
+w_pin_strip_2mm54
+pin_socket_5x2
+Pin socket 5x2pin
+CONN DEV
+0
+10
+10
+w_pin_strip_2mm54
+pin_socket_5x2-90
+Pin socket 5x2pin 90
+CONN DEV
+0
+10
+10
+w_pin_strip_2mm54
+pin_socket_6
+Pin socket 6pin
+CONN DEV
+0
+6
+6
+w_pin_strip_2mm54
+pin_socket_6-90
+Pin socket 6pin 90
+CONN DEV
+0
+6
+6
+w_pin_strip_2mm54
+pin_socket_6x2
+Pin socket 6x2pin
+CONN DEV
+0
+12
+12
+w_pin_strip_2mm54
+pin_socket_6x2-90
+Pin socket 6x2pin 90
+CONN DEV
+0
+12
+12
+w_pin_strip_2mm54
+pin_socket_7
+Pin socket 7pin
+CONN DEV
+0
+7
+7
+w_pin_strip_2mm54
+pin_socket_7-90
+Pin socket 7pin 90
+CONN DEV
+0
+7
+7
+w_pin_strip_2mm54
+pin_socket_7x2
+Pin socket 7x2pin
+CONN DEV
+0
+14
+14
+w_pin_strip_2mm54
+pin_socket_7x2-90
+Pin socket 7x2pin 90
+CONN DEV
+0
+14
+14
+w_pin_strip_2mm54
+pin_socket_8
+Pin socket 8pin
+CONN DEV
+0
+8
+8
+w_pin_strip_2mm54
+pin_socket_8-90
+Pin socket 8pin 90
+CONN DEV
+0
+8
+8
+w_pin_strip_2mm54
+pin_socket_8x2
+Pin socket 8x2pin
+CONN DEV
+0
+16
+16
+w_pin_strip_2mm54
+pin_socket_8x2-90
+Pin socket 8x2pin 90
+CONN DEV
+0
+16
+16
+w_pin_strip_2mm54
+pin_socket_9
+Pin socket 9pin
+CONN DEV
+0
+9
+9
+w_pin_strip_2mm54
+pin_socket_9-90
+Pin socket 9pin 90
+CONN DEV
+0
+9
+9
+w_pin_strip_2mm54
+pin_socket_9x2
+Pin socket 9x2pin
+CONN DEV
+0
+18
+18
+w_pin_strip_2mm54
+pin_socket_9x2-90
+Pin socket 9x2pin 90
+CONN DEV
+0
+18
+18
+w_pin_strip_2mm54
+pin_socket_10
+Pin socket 10pin
+CONN DEV
+0
+10
+10
+w_pin_strip_2mm54
+pin_socket_10-90
+Pin socket 10pin 90
+CONN DEV
+0
+10
+10
+w_pin_strip_2mm54
+pin_socket_10x2
+Pin socket 10x2pin
+CONN DEV
+0
+20
+20
+w_pin_strip_2mm54
+pin_socket_10x2-90
+Pin socket 10x2pin 90
+CONN DEV
+0
+20
+20
+w_pin_strip_2mm54
+pin_socket_11
+Pin socket 11pin
+CONN DEV
+0
+11
+11
+w_pin_strip_2mm54
+pin_socket_11-90
+Pin socket 11pin 90
+CONN DEV
+0
+11
+11
+w_pin_strip_2mm54
+pin_socket_11x2
+Pin socket 11x2pin
+CONN DEV
+0
+22
+22
+w_pin_strip_2mm54
+pin_socket_11x2-90
+Pin socket 11x2pin 90
+CONN DEV
+0
+22
+22
+w_pin_strip_2mm54
+pin_socket_12
+Pin socket 12pin
+CONN DEV
+0
+12
+12
+w_pin_strip_2mm54
+pin_socket_12-90
+Pin socket 12pin 90
+CONN DEV
+0
+12
+12
+w_pin_strip_2mm54
+pin_socket_12x2
+Pin socket 12x2pin
+CONN DEV
+0
+24
+24
+w_pin_strip_2mm54
+pin_socket_12x2-90
+Pin socket 12x2pin 90
+CONN DEV
+0
+24
+24
+w_pin_strip_2mm54
+pin_socket_13
+Pin socket 13pin
+CONN DEV
+0
+13
+13
+w_pin_strip_2mm54
+pin_socket_13-90
+Pin socket 13pin 90
+CONN DEV
+0
+13
+13
+w_pin_strip_2mm54
+pin_socket_13x2
+Pin socket 13x2pin
+CONN DEV
+0
+26
+26
+w_pin_strip_2mm54
+pin_socket_13x2-90
+Pin socket 13x2pin 90
+CONN DEV
+0
+26
+26
+w_pin_strip_2mm54
+pin_socket_14
+Pin socket 14pin
+CONN DEV
+0
+14
+14
+w_pin_strip_2mm54
+pin_socket_14-90
+Pin socket 14pin 90
+CONN DEV
+0
+14
+14
+w_pin_strip_2mm54
+pin_socket_14x2
+Pin socket 14x2pin
+CONN DEV
+0
+28
+28
+w_pin_strip_2mm54
+pin_socket_14x2-90
+Pin socket 14x2pin 90
+CONN DEV
+0
+28
+28
+w_pin_strip_2mm54
+pin_socket_15
+Pin socket 15pin
+CONN DEV
+0
+15
+15
+w_pin_strip_2mm54
+pin_socket_15-90
+Pin socket 15pin 90
+CONN DEV
+0
+15
+15
+w_pin_strip_2mm54
+pin_socket_15x2
+Pin socket 15x2pin
+CONN DEV
+0
+30
+30
+w_pin_strip_2mm54
+pin_socket_15x2-90
+Pin socket 15x2pin 90
+CONN DEV
+0
+30
+30
+w_pin_strip_2mm54
+pin_socket_16
+Pin socket 16pin
+CONN DEV
+0
+16
+16
+w_pin_strip_2mm54
+pin_socket_16-90
+Pin socket 16pin 90
+CONN DEV
+0
+16
+16
+w_pin_strip_2mm54
+pin_socket_16x2
+Pin socket 16x2pin
+CONN DEV
+0
+32
+32
+w_pin_strip_2mm54
+pin_socket_16x2-90
+Pin socket 16x2pin 90
+CONN DEV
+0
+32
+32
+w_pin_strip_2mm54
+pin_socket_17
+Pin socket 17pin
+CONN DEV
+0
+17
+17
+w_pin_strip_2mm54
+pin_socket_17-90
+Pin socket 17pin 90
+CONN DEV
+0
+17
+17
+w_pin_strip_2mm54
+pin_socket_17x2
+Pin socket 17x2pin
+CONN DEV
+0
+34
+34
+w_pin_strip_2mm54
+pin_socket_17x2-90
+Pin socket 17x2pin 90
+CONN DEV
+0
+34
+34
+w_pin_strip_2mm54
+pin_socket_18
+Pin socket 18pin
+CONN DEV
+0
+18
+18
+w_pin_strip_2mm54
+pin_socket_18-90
+Pin socket 18pin 90
+CONN DEV
+0
+18
+18
+w_pin_strip_2mm54
+pin_socket_18x2
+Pin socket 18x2pin
+CONN DEV
+0
+36
+36
+w_pin_strip_2mm54
+pin_socket_18x2-90
+Pin socket 18x2pin 90
+CONN DEV
+0
+36
+36
+w_pin_strip_2mm54
+pin_socket_19
+Pin socket 19pin
+CONN DEV
+0
+19
+19
+w_pin_strip_2mm54
+pin_socket_19-90
+Pin socket 19pin 90
+CONN DEV
+0
+19
+19
+w_pin_strip_2mm54
+pin_socket_19x2
+Pin socket 19x2pin
+CONN DEV
+0
+38
+38
+w_pin_strip_2mm54
+pin_socket_19x2-90
+Pin socket 19x2pin 90
+CONN DEV
+0
+38
+38
+w_pin_strip_2mm54
+pin_socket_20
+Pin socket 20pin
+CONN DEV
+0
+20
+20
+w_pin_strip_2mm54
+pin_socket_20-90
+Pin socket 20pin 90
+CONN DEV
+0
+20
+20
+w_pin_strip_2mm54
+pin_socket_20x2
+Pin socket 20x2pin
+CONN DEV
+0
+40
+40
+w_pin_strip_2mm54
+pin_socket_20x2-90
+Pin socket 20x2pin 90
+CONN DEV
+0
+40
+40
+w_pin_strip_2mm54
+pin_socket_21
+Pin socket 21pin
+CONN DEV
+0
+21
+21
+w_pin_strip_2mm54
+pin_socket_21-90
+Pin socket 21pin 90
+CONN DEV
+0
+21
+21
+w_pin_strip_2mm54
+pin_socket_22
+Pin socket 22pin
+CONN DEV
+0
+22
+22
+w_pin_strip_2mm54
+pin_socket_22-90
+Pin socket 22pin 90
+CONN DEV
+0
+22
+22
+w_pin_strip_2mm54
+pin_socket_23
+Pin socket 23pin
+CONN DEV
+0
+23
+23
+w_pin_strip_2mm54
+pin_socket_23-90
+Pin socket 23pin 90
+CONN DEV
+0
+23
+23
+w_pin_strip_2mm54
+pin_socket_24
+Pin socket 24pin
+CONN DEV
+0
+24
+24
+w_pin_strip_2mm54
+pin_socket_24-90
+Pin socket 24pin 90
+CONN DEV
+0
+24
+24
+w_pin_strip_2mm54
+pin_socket_25
+Pin socket 25pin
+CONN DEV
+0
+25
+25
+w_pin_strip_2mm54
+pin_socket_25-90
+Pin socket 25pin 90
+CONN DEV
+0
+25
+25
+w_pin_strip_2mm54
+pin_socket_26
+Pin socket 26pin
+CONN DEV
+0
+26
+26
+w_pin_strip_2mm54
+pin_socket_26-90
+Pin socket 26pin 90
+CONN DEV
+0
+26
+26
+w_pin_strip_2mm54
+pin_socket_27
+Pin socket 27pin
+CONN DEV
+0
+27
+27
+w_pin_strip_2mm54
+pin_socket_27-90
+Pin socket 27pin 90
+CONN DEV
+0
+27
+27
+w_pin_strip_2mm54
+pin_socket_28
+Pin socket 28pin
+CONN DEV
+0
+28
+28
+w_pin_strip_2mm54
+pin_socket_28-90
+Pin socket 28pin 90
+CONN DEV
+0
+28
+28
+w_pin_strip_2mm54
+pin_socket_29
+Pin socket 29pin
+CONN DEV
+0
+29
+29
+w_pin_strip_2mm54
+pin_socket_29-90
+Pin socket 29pin 90
+CONN DEV
+0
+29
+29
+w_pin_strip_2mm54
+pin_socket_30
+Pin socket 30pin
+CONN DEV
+0
+30
+30
+w_pin_strip_2mm54
+pin_socket_30-90
+Pin socket 30pin 90
+CONN DEV
+0
+30
+30
+w_pin_strip_2mm54
+pin_socket_31
+Pin socket 31pin
+CONN DEV
+0
+31
+31
+w_pin_strip_2mm54
+pin_socket_31-90
+Pin socket 31pin 90
+CONN DEV
+0
+31
+31
+w_pin_strip_2mm54
+pin_socket_32
+Pin socket 32pin
+CONN DEV
+0
+32
+32
+w_pin_strip_2mm54
+pin_socket_32-90
+Pin socket 32pin 90
+CONN DEV
+0
+32
+32
+w_pin_strip_2mm54
+pin_socket_33
+Pin socket 33pin
+CONN DEV
+0
+33
+33
+w_pin_strip_2mm54
+pin_socket_33-90
+Pin socket 33pin 90
+CONN DEV
+0
+33
+33
+w_pin_strip_2mm54
+pin_socket_34
+Pin socket 34pin
+CONN DEV
+0
+34
+34
+w_pin_strip_2mm54
+pin_socket_34-90
+Pin socket 34pin 90
+CONN DEV
+0
+34
+34
+w_pin_strip_2mm54
+pin_socket_35
+Pin socket 35pin
+CONN DEV
+0
+35
+35
+w_pin_strip_2mm54
+pin_socket_35-90
+Pin socket 35pin 90
+CONN DEV
+0
+35
+35
+w_pin_strip_2mm54
+pin_socket_36
+Pin socket 36pin
+CONN DEV
+0
+36
+36
+w_pin_strip_2mm54
+pin_socket_36-90
+Pin socket 36pin 90
+CONN DEV
+0
+36
+36
+w_pin_strip_2mm54
+pin_socket_37
+Pin socket 37pin
+CONN DEV
+0
+37
+37
+w_pin_strip_2mm54
+pin_socket_37-90
+Pin socket 37pin 90
+CONN DEV
+0
+37
+37
+w_pin_strip_2mm54
+pin_socket_38
+Pin socket 38pin
+CONN DEV
+0
+38
+38
+w_pin_strip_2mm54
+pin_socket_38-90
+Pin socket 38pin 90
+CONN DEV
+0
+38
+38
+w_pin_strip_2mm54
+pin_socket_39
+Pin socket 39pin
+CONN DEV
+0
+39
+39
+w_pin_strip_2mm54
+pin_socket_39-90
+Pin socket 39pin 90
+CONN DEV
+0
+39
+39
+w_pin_strip_2mm54
+pin_socket_40
+Pin socket 40pin
+CONN DEV
+0
+40
+40
+w_pin_strip_2mm54
+pin_socket_40-90
+Pin socket 40pin 90
+CONN DEV
+0
+40
+40
+w_pin_strip_2mm54
+pin_strip_1
+Pin strip 1pin
+CONN DEV
+0
+1
+1
+w_pin_strip_2mm54
+pin_strip_1-90
+Pin strip 1pin 90
+CONN DEV
+0
+1
+1
+w_pin_strip_2mm54
+pin_strip_1x2
+Pin strip 1x2pin
+CONN DEV
+0
+2
+2
+w_pin_strip_2mm54
+pin_strip_1x2-90
+Pin strip 1x2pin 90
+CONN DEV
+0
+2
+2
+w_pin_strip_2mm54
+pin_strip_2
+Pin strip 2pin
+CONN DEV
+0
+2
+2
+w_pin_strip_2mm54
+pin_strip_2-90
+Pin strip 2pin 90
+CONN DEV
+0
+2
+2
+w_pin_strip_2mm54
+pin_strip_2x2
+Pin strip 2x2pin
+CONN DEV
+0
+4
+4
+w_pin_strip_2mm54
+pin_strip_2x2-90
+Pin strip 2x2pin 90
+CONN DEV
+0
+4
+4
+w_pin_strip_2mm54
+pin_strip_3
+Pin strip 3pin
+CONN DEV
+0
+3
+3
+w_pin_strip_2mm54
+pin_strip_3-90
+Pin strip 3pin 90
+CONN DEV
+0
+3
+3
+w_pin_strip_2mm54
+pin_strip_3x2
+Pin strip 3x2pin
+CONN DEV
+0
+6
+6
+w_pin_strip_2mm54
+pin_strip_3x2-90
+Pin strip 3x2pin 90
+CONN DEV
+0
+6
+6
+w_pin_strip_2mm54
+pin_strip_4
+Pin strip 4pin
+CONN DEV
+0
+4
+4
+w_pin_strip_2mm54
+pin_strip_4-90
+Pin strip 4pin 90
+CONN DEV
+0
+4
+4
+w_pin_strip_2mm54
+pin_strip_4x2
+Pin strip 4x2pin
+CONN DEV
+0
+8
+8
+w_pin_strip_2mm54
+pin_strip_4x2-90
+Pin strip 4x2pin 90
+CONN DEV
+0
+8
+8
+w_pin_strip_2mm54
+pin_strip_5
+Pin strip 5pin
+CONN DEV
+0
+5
+5
+w_pin_strip_2mm54
+pin_strip_5-90
+Pin strip 5pin 90
+CONN DEV
+0
+5
+5
+w_pin_strip_2mm54
+pin_strip_5x2
+Pin strip 5x2pin
+CONN DEV
+0
+10
+10
+w_pin_strip_2mm54
+pin_strip_5x2-90
+Pin strip 5x2pin 90
+CONN DEV
+0
+10
+10
+w_pin_strip_2mm54
+pin_strip_6
+Pin strip 6pin
+CONN DEV
+0
+6
+6
+w_pin_strip_2mm54
+pin_strip_6-90
+Pin strip 6pin 90
+CONN DEV
+0
+6
+6
+w_pin_strip_2mm54
+pin_strip_6x2
+Pin strip 6x2pin
+CONN DEV
+0
+12
+12
+w_pin_strip_2mm54
+pin_strip_6x2-90
+Pin strip 6x2pin 90
+CONN DEV
+0
+12
+12
+w_pin_strip_2mm54
+pin_strip_7
+Pin strip 7pin
+CONN DEV
+0
+7
+7
+w_pin_strip_2mm54
+pin_strip_7-90
+Pin strip 7pin 90
+CONN DEV
+0
+7
+7
+w_pin_strip_2mm54
+pin_strip_7x2
+Pin strip 7x2pin
+CONN DEV
+0
+14
+14
+w_pin_strip_2mm54
+pin_strip_7x2-90
+Pin strip 7x2pin 90
+CONN DEV
+0
+14
+14
+w_pin_strip_2mm54
+pin_strip_8
+Pin strip 8pin
+CONN DEV
+0
+8
+8
+w_pin_strip_2mm54
+pin_strip_8-90
+Pin strip 8pin 90
+CONN DEV
+0
+8
+8
+w_pin_strip_2mm54
+pin_strip_8x2
+Pin strip 8x2pin
+CONN DEV
+0
+16
+16
+w_pin_strip_2mm54
+pin_strip_8x2-90
+Pin strip 8x2pin 90
+CONN DEV
+0
+16
+16
+w_pin_strip_2mm54
+pin_strip_9
+Pin strip 9pin
+CONN DEV
+0
+9
+9
+w_pin_strip_2mm54
+pin_strip_9-90
+Pin strip 9pin 90
+CONN DEV
+0
+9
+9
+w_pin_strip_2mm54
+pin_strip_9x2
+Pin strip 9x2pin
+CONN DEV
+0
+18
+18
+w_pin_strip_2mm54
+pin_strip_9x2-90
+Pin strip 9x2pin 90
+CONN DEV
+0
+18
+18
+w_pin_strip_2mm54
+pin_strip_10
+Pin strip 10pin
+CONN DEV
+0
+10
+10
+w_pin_strip_2mm54
+pin_strip_10-90
+Pin strip 10pin 90
+CONN DEV
+0
+10
+10
+w_pin_strip_2mm54
+pin_strip_10x2
+Pin strip 10x2pin
+CONN DEV
+0
+20
+20
+w_pin_strip_2mm54
+pin_strip_10x2-90
+Pin strip 10x2pin 90
+CONN DEV
+0
+20
+20
+w_pin_strip_2mm54
+pin_strip_11
+Pin strip 11pin
+CONN DEV
+0
+11
+11
+w_pin_strip_2mm54
+pin_strip_11-90
+Pin strip 11pin 90
+CONN DEV
+0
+11
+11
+w_pin_strip_2mm54
+pin_strip_11x2
+Pin strip 11x2pin
+CONN DEV
+0
+22
+22
+w_pin_strip_2mm54
+pin_strip_11x2-90
+Pin strip 11x2pin 90
+CONN DEV
+0
+22
+22
+w_pin_strip_2mm54
+pin_strip_12
+Pin strip 12pin
+CONN DEV
+0
+12
+12
+w_pin_strip_2mm54
+pin_strip_12-90
+Pin strip 12pin 90
+CONN DEV
+0
+12
+12
+w_pin_strip_2mm54
+pin_strip_12x2
+Pin strip 12x2pin
+CONN DEV
+0
+24
+24
+w_pin_strip_2mm54
+pin_strip_12x2-90
+Pin strip 12x2pin 90
+CONN DEV
+0
+24
+24
+w_pin_strip_2mm54
+pin_strip_13
+Pin strip 13pin
+CONN DEV
+0
+13
+13
+w_pin_strip_2mm54
+pin_strip_13-90
+Pin strip 13pin 90
+CONN DEV
+0
+13
+13
+w_pin_strip_2mm54
+pin_strip_13x2
+Pin strip 13x2pin
+CONN DEV
+0
+26
+26
+w_pin_strip_2mm54
+pin_strip_13x2-90
+Pin strip 13x2pin 90
+CONN DEV
+0
+26
+26
+w_pin_strip_2mm54
+pin_strip_14
+Pin strip 14pin
+CONN DEV
+0
+14
+14
+w_pin_strip_2mm54
+pin_strip_14-90
+Pin strip 14pin 90
+CONN DEV
+0
+14
+14
+w_pin_strip_2mm54
+pin_strip_14x2
+Pin strip 14x2pin
+CONN DEV
+0
+28
+28
+w_pin_strip_2mm54
+pin_strip_14x2-90
+Pin strip 14x2pin 90
+CONN DEV
+0
+28
+28
+w_pin_strip_2mm54
+pin_strip_15
+Pin strip 15pin
+CONN DEV
+0
+15
+15
+w_pin_strip_2mm54
+pin_strip_15-90
+Pin strip 15pin 90
+CONN DEV
+0
+15
+15
+w_pin_strip_2mm54
+pin_strip_15x2
+Pin strip 15x2pin
+CONN DEV
+0
+30
+30
+w_pin_strip_2mm54
+pin_strip_15x2-90
+Pin strip 15x2pin 90
+CONN DEV
+0
+30
+30
+w_pin_strip_2mm54
+pin_strip_16
+Pin strip 16pin
+CONN DEV
+0
+16
+16
+w_pin_strip_2mm54
+pin_strip_16-90
+Pin strip 16pin 90
+CONN DEV
+0
+16
+16
+w_pin_strip_2mm54
+pin_strip_16x2
+Pin strip 16x2pin
+CONN DEV
+0
+32
+32
+w_pin_strip_2mm54
+pin_strip_16x2-90
+Pin strip 16x2pin 90
+CONN DEV
+0
+32
+32
+w_pin_strip_2mm54
+pin_strip_17
+Pin strip 17pin
+CONN DEV
+0
+17
+17
+w_pin_strip_2mm54
+pin_strip_17-90
+Pin strip 17pin 90
+CONN DEV
+0
+17
+17
+w_pin_strip_2mm54
+pin_strip_17x2
+Pin strip 17x2pin
+CONN DEV
+0
+34
+34
+w_pin_strip_2mm54
+pin_strip_17x2-90
+Pin strip 17x2pin 90
+CONN DEV
+0
+34
+34
+w_pin_strip_2mm54
+pin_strip_18
+Pin strip 18pin
+CONN DEV
+0
+18
+18
+w_pin_strip_2mm54
+pin_strip_18-90
+Pin strip 18pin 90
+CONN DEV
+0
+18
+18
+w_pin_strip_2mm54
+pin_strip_18x2
+Pin strip 18x2pin
+CONN DEV
+0
+36
+36
+w_pin_strip_2mm54
+pin_strip_18x2-90
+Pin strip 18x2pin 90
+CONN DEV
+0
+36
+36
+w_pin_strip_2mm54
+pin_strip_19
+Pin strip 19pin
+CONN DEV
+0
+19
+19
+w_pin_strip_2mm54
+pin_strip_19-90
+Pin strip 19pin 90
+CONN DEV
+0
+19
+19
+w_pin_strip_2mm54
+pin_strip_19x2
+Pin strip 19x2pin
+CONN DEV
+0
+38
+38
+w_pin_strip_2mm54
+pin_strip_19x2-90
+Pin strip 19x2pin 90
+CONN DEV
+0
+38
+38
+w_pin_strip_2mm54
+pin_strip_20
+Pin strip 20pin
+CONN DEV
+0
+20
+20
+w_pin_strip_2mm54
+pin_strip_20-90
+Pin strip 20pin 90
+CONN DEV
+0
+20
+20
+w_pin_strip_2mm54
+pin_strip_20x2
+Pin strip 20x2pin
+CONN DEV
+0
+40
+40
+w_pin_strip_2mm54
+pin_strip_20x2-90
+Pin strip 20x2pin 90
+CONN DEV
+0
+40
+40
+w_pin_strip_2mm54
+pin_strip_21
+Pin strip 21pin
+CONN DEV
+0
+21
+21
+w_pin_strip_2mm54
+pin_strip_21-90
+Pin strip 21pin 90
+CONN DEV
+0
+21
+21
+w_pin_strip_2mm54
+pin_strip_22
+Pin strip 22pin
+CONN DEV
+0
+22
+22
+w_pin_strip_2mm54
+pin_strip_22-90
+Pin strip 22pin 90
+CONN DEV
+0
+22
+22
+w_pin_strip_2mm54
+pin_strip_23
+Pin strip 23pin
+CONN DEV
+0
+23
+23
+w_pin_strip_2mm54
+pin_strip_23-90
+Pin strip 23pin 90
+CONN DEV
+0
+23
+23
+w_pin_strip_2mm54
+pin_strip_24
+Pin strip 24pin
+CONN DEV
+0
+24
+24
+w_pin_strip_2mm54
+pin_strip_24-90
+Pin strip 24pin 90
+CONN DEV
+0
+24
+24
+w_pin_strip_2mm54
+pin_strip_25
+Pin strip 25pin
+CONN DEV
+0
+25
+25
+w_pin_strip_2mm54
+pin_strip_25-90
+Pin strip 25pin 90
+CONN DEV
+0
+25
+25
+w_pin_strip_2mm54
+pin_strip_26
+Pin strip 26pin
+CONN DEV
+0
+26
+26
+w_pin_strip_2mm54
+pin_strip_26-90
+Pin strip 26pin 90
+CONN DEV
+0
+26
+26
+w_pin_strip_2mm54
+pin_strip_27
+Pin strip 27pin
+CONN DEV
+0
+27
+27
+w_pin_strip_2mm54
+pin_strip_27-90
+Pin strip 27pin 90
+CONN DEV
+0
+27
+27
+w_pin_strip_2mm54
+pin_strip_28
+Pin strip 28pin
+CONN DEV
+0
+28
+28
+w_pin_strip_2mm54
+pin_strip_28-90
+Pin strip 28pin 90
+CONN DEV
+0
+28
+28
+w_pin_strip_2mm54
+pin_strip_29
+Pin strip 29pin
+CONN DEV
+0
+29
+29
+w_pin_strip_2mm54
+pin_strip_29-90
+Pin strip 29pin 90
+CONN DEV
+0
+29
+29
+w_pin_strip_2mm54
+pin_strip_30
+Pin strip 30pin
+CONN DEV
+0
+30
+30
+w_pin_strip_2mm54
+pin_strip_30-90
+Pin strip 30pin 90
+CONN DEV
+0
+30
+30
+w_pin_strip_2mm54
+pin_strip_31
+Pin strip 31pin
+CONN DEV
+0
+31
+31
+w_pin_strip_2mm54
+pin_strip_31-90
+Pin strip 31pin 90
+CONN DEV
+0
+31
+31
+w_pin_strip_2mm54
+pin_strip_32
+Pin strip 32pin
+CONN DEV
+0
+32
+32
+w_pin_strip_2mm54
+pin_strip_32-90
+Pin strip 32pin 90
+CONN DEV
+0
+32
+32
+w_pin_strip_2mm54
+pin_strip_33
+Pin strip 33pin
+CONN DEV
+0
+33
+33
+w_pin_strip_2mm54
+pin_strip_33-90
+Pin strip 33pin 90
+CONN DEV
+0
+33
+33
+w_pin_strip_2mm54
+pin_strip_34
+Pin strip 34pin
+CONN DEV
+0
+34
+34
+w_pin_strip_2mm54
+pin_strip_34-90
+Pin strip 34pin 90
+CONN DEV
+0
+34
+34
+w_pin_strip_2mm54
+pin_strip_35
+Pin strip 35pin
+CONN DEV
+0
+35
+35
+w_pin_strip_2mm54
+pin_strip_35-90
+Pin strip 35pin 90
+CONN DEV
+0
+35
+35
+w_pin_strip_2mm54
+pin_strip_36
+Pin strip 36pin
+CONN DEV
+0
+36
+36
+w_pin_strip_2mm54
+pin_strip_36-90
+Pin strip 36pin 90
+CONN DEV
+0
+36
+36
+w_pin_strip_2mm54
+pin_strip_37
+Pin strip 37pin
+CONN DEV
+0
+37
+37
+w_pin_strip_2mm54
+pin_strip_37-90
+Pin strip 37pin 90
+CONN DEV
+0
+37
+37
+w_pin_strip_2mm54
+pin_strip_38
+Pin strip 38pin
+CONN DEV
+0
+38
+38
+w_pin_strip_2mm54
+pin_strip_38-90
+Pin strip 38pin 90
+CONN DEV
+0
+38
+38
+w_pin_strip_2mm54
+pin_strip_39
+Pin strip 39pin
+CONN DEV
+0
+39
+39
+w_pin_strip_2mm54
+pin_strip_39-90
+Pin strip 39pin 90
+CONN DEV
+0
+39
+39
+w_pin_strip_2mm54
+pin_strip_40
+Pin strip 40pin
+CONN DEV
+0
+40
+40
+w_pin_strip_2mm54
+pin_strip_40-90
+Pin strip 40pin 90
+CONN DEV
+0
+40
+40
