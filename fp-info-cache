@@ -1,4 +1,4 @@
-1139296705775678
+1144311799426693
 Capacitor_THT
 CP_Axial_L10.0mm_D4.5mm_P15.00mm_Horizontal
 CP, Axial series, Axial, Horizontal, pin pitch=15mm, , length*diameter=10*4.5mm^2, Electrolytic Capacitor, , http://www.vishay.com/docs/28325/021asm.pdf
@@ -3996,6 +3996,27 @@ Diode DO-41_SOD81 series Axial Horizontal pin pitch 10.16mm  length 5.2mm diamet
 0
 2
 2
+Luminator
+1x3 pads
+
+
+0
+3
+3
+Luminator
+1x10 pads
+
+
+0
+10
+10
+Luminator
+8x10 R Array
+
+
+0
+9
+9
 Luminator
 Arduino_Mega2560_Shield
 https://docs.arduino.cc/hardware/mega-2560
