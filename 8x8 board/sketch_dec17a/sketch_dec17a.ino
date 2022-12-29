@@ -7,10 +7,10 @@ struct shiftRegister{
 } col, row;
 
 void writeRegister(struct shiftRegister sr, int array[8]){
-  digitalWrite(sr.outputEnable, HIGH);
-  digitalWrite(sr.clear, LOW);
-  digitalWrite(sr.clear, HIGH);
-  for(int i = 0; i < 8; i++){
+  digitalWrite(sr.clear, LOW); // clear
+  digitalWrite(sr.clear, HIGH); // clear
+  digitalWrite(sr.outputEnable, HIGH); // disable
+  for(int i = 7; i >= 0; i--){
     digitalWrite(sr.serial, array[i]);
     digitalWrite(sr.SRCLK, HIGH);
     digitalWrite(sr.SRCLK, LOW);
@@ -18,7 +18,7 @@ void writeRegister(struct shiftRegister sr, int array[8]){
     digitalWrite(sr.RCLK, LOW);
   }
   digitalWrite(sr.serial, LOW);
-  digitalWrite(sr.outputEnable, LOW);
+  digitalWrite(sr.outputEnable, LOW); // enable
 }
 
 void clearRegister(struct shiftRegister sr){
@@ -40,6 +40,59 @@ void inverseArray(int *array[8]){
   }
 }
 
+void writeDisplay(int array[8][8]){
+  int rowon[16];
+  int rowoff[16];
+  int done[16] = {0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1};
+  int invdone[16] = {1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0};
+  int colon[16];
+  int coloff[16];
+  
+  for(int j = 0; j < 8; j++){
+      rowon[j] = 0;
+      rowoff[j+8] = 1;
+      colon[j+8] = 1;
+      coloff[j] = 0;
+  }
+  for(int i = 0; i < 8; i++){
+    for(int j = 0; j < 8; j++){
+      rowoff[j] = array[j][i];
+      if (array[j][i]){
+        rowon[j+8] = 0;
+      } else {
+        rowon[j+8] = 1;
+      }
+      colon[j] = 0;
+      coloff[j+8] = 1;
+    }
+    colon[i] = 1;
+    coloff[i+8] = 0;
+
+    writeRegister(col, colon);
+    writeRegister(row, rowon);
+    delay(100);
+    writeRegister(col, coloff);
+    writeRegister(row, rowoff);
+    delay(100);
+    writeRegister(col, done);
+    writeRegister(row, done);
+
+    Serial.print("\nCOLUMN: ");
+    Serial.print(i);    
+    Serial.print(" WROTE:\nCOLON: ");
+    for(int i = 0; i < 16; i++){Serial.print(colon[i]);}
+    Serial.print("\nROWON: ");
+    for(int i = 0; i < 16; i++){Serial.print(rowon[i]);}
+    Serial.print("\nCOLOFF:");
+    for(int i = 0; i < 16; i++){Serial.print(coloff[i]);}
+    Serial.print("\nROWOFF:");
+    for(int i = 0; i < 16; i++){Serial.print(rowoff[i]);}
+    Serial.print("\nDONE:  ");
+    for(int i = 0; i < 16; i++){Serial.print(done[i]);}
+    Serial.print("\nEND WRITE");
+  }
+}
+
 
 void setup() {
   Serial.begin(9600);
@@ -56,6 +109,19 @@ void setup() {
   digitalWrite(col.outputEnable, LOW);
   digitalWrite(col.clear, HIGH);
   digitalWrite(col.clear, LOW);
+  row.serial = 7;
+  row.RCLK = 8;
+  row.SRCLK = 9;
+  row.outputEnable = 10;
+  row.clear = 11;
+  pinMode(row.serial, OUTPUT);
+  pinMode(row.outputEnable, OUTPUT);
+  pinMode(row.RCLK, OUTPUT);
+  pinMode(row.SRCLK, OUTPUT);
+  pinMode(row.clear, OUTPUT);
+  digitalWrite(row.outputEnable, HIGH); //not enabled
+  digitalWrite(row.clear, LOW); //clear
+  digitalWrite(row.clear, HIGH); //normal
 }
 
 void loop() {
@@ -74,13 +140,13 @@ void loop() {
   int colt1[8] = {0,0,0,0,0,1,0,0};
   int colt2[8] = {1,1,1,1,1,0,0,0};
 
-  writeRegister(col, coloff);
+  writeRegister(row, coloff);
   delay(1000);
-  writeRegister(col, colon);
+  writeRegister(row, colon);
   delay(1000);
-  writeRegister(col, colt1);
+  writeRegister(row, colt1);
   delay(1000);
-  writeRegister(col, colt2);
+  writeRegister(row, colt2);
   delay(1000);
   /*
   int circle[8][8] = {{0,0,0,0,0,0,0,0},{0,0,0,1,1,0,0,0},{0,0,1,0,0,1,0,0},{0,1,0,0,0,0,1,0},{0,1,0,0,0,0,1,0},{0,0,1,0,0,1,0,0},{0,0,0,1,1,0,0,0},{0,0,0,0,0,0,0,0}};
