@@ -1,3 +1,7 @@
+#define NUMROWS 8
+#define NUMCOLS 8
+
+
 struct shiftRegister{
   int serial;
   int outputEnable;
@@ -6,11 +10,11 @@ struct shiftRegister{
   int clear;
 } col, row;
 
-void writeRegister(struct shiftRegister sr, int array[8]){
+void writeRegisters(struct shiftRegister sr, int * array, int n){  //deprecated 
   digitalWrite(sr.clear, LOW); // clear
   digitalWrite(sr.clear, HIGH); // clear
   digitalWrite(sr.outputEnable, HIGH); // disable
-  for(int i = 7; i >= 0; i--){
+  for(int i = n-1; i >= 0; i--){
     digitalWrite(sr.serial, array[i]);
     digitalWrite(sr.SRCLK, HIGH);
     digitalWrite(sr.SRCLK, LOW);
@@ -30,8 +34,8 @@ void clearRegister(struct shiftRegister sr){
 }
 
 
-void inverseArray(int *array[8]){
-  for(int i = 0; i < 8; i++){
+void inverseArray(int * array, int n){
+  for(int i = 0; i < n; i++){
     if (array[i]){
       array[i] = 0;
     } else {
@@ -40,6 +44,46 @@ void inverseArray(int *array[8]){
   }
 }
 
+void writeArray(struct shiftRegister sr, int * array, int n, int state){
+  digitalWrite(sr.clear, LOW); // clear
+  digitalWrite(sr.clear, HIGH); // clear
+  digitalWrite(sr.outputEnable, HIGH); // disable
+  for(int i = n/8; i > 0; i--){
+    for(int j = 1; j <= 8; j++){ // writes +POS (83)
+      //Serial.print("i:");Serial.print(i);Serial.print(", j:");Serial.print(j);Serial.print(", array:");Serial.print(array[(8*i)-j]);Serial.print("\n");
+      if(state == 1 && array[(8*i)-j] == 1){
+        //Serial.print(" ^ +H WROTE\n");
+        digitalWrite(sr.serial, HIGH);
+      }
+      else{
+        digitalWrite(sr.serial, LOW);
+        Serial.print(" ^ +L WROTE\n");
+      }
+      digitalWrite(sr.SRCLK, HIGH);
+      digitalWrite(sr.SRCLK, LOW);
+      digitalWrite(sr.RCLK, HIGH);
+      digitalWrite(sr.RCLK, LOW);
+    }
+    for(int k = 1; k <= 8; k++){ // writes -GND (81)
+      //Serial.print("i:");Serial.print(i);Serial.print("k:");Serial.print(k);Serial.print("array:");Serial.print(array[(8*i)-k]);Serial.print("\n");
+      if(state == 0 && array[(8*i)-k] == 0){
+        //Serial.print(" ^ GH WROTE\n");
+        digitalWrite(sr.serial, HIGH);
+      }
+      else{
+        digitalWrite(sr.serial, LOW);
+        Serial.print(" ^ GL WROTE\n");
+      }
+      digitalWrite(sr.SRCLK, HIGH);
+      digitalWrite(sr.SRCLK, LOW);
+      digitalWrite(sr.RCLK, HIGH);
+      digitalWrite(sr.RCLK, LOW);
+    }
+  }
+  digitalWrite(sr.serial, LOW);
+  digitalWrite(sr.outputEnable, LOW); // enable
+}
+/*
 void writeDisplay(int array[8][8]){
   int rowon[16];
   int rowoff[16];
@@ -92,8 +136,7 @@ void writeDisplay(int array[8][8]){
     Serial.print("\nEND WRITE");
   }
 }
-
-
+*/
 void setup() {
   Serial.begin(9600);
   col.serial = 2;
@@ -122,9 +165,12 @@ void setup() {
   digitalWrite(row.outputEnable, HIGH); //not enabled
   digitalWrite(row.clear, LOW); //clear
   digitalWrite(row.clear, HIGH); //normal
+  //int testarr[8] = {1,0,0,0,0,0,0,0};
+  //writeArray(col, testarr, 8, 1);// REMOVE 
 }
 
 void loop() {
+  delay(1000);
   /*
   int testarr[16] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
   int testarr2[16] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
@@ -134,19 +180,19 @@ void loop() {
   writeRegister(col, testarr);
   writeRegister(row, testarr);
   delay(1000);
-  */
+  
   int coloff[8] = {0,0,0,0,0,0,0,1};
   int colon[8] = {1,1,1,1,0,0,1,0};
   int colt1[8] = {0,0,0,0,0,1,0,0};
   int colt2[8] = {1,1,1,1,1,0,0,0};
 
-  writeRegister(row, coloff);
+  writeRegister(row, coloff, NUMROWS);
   delay(1000);
-  writeRegister(row, colon);
+  writeRegister(row, colon, NUMROWS);
   delay(1000);
-  writeRegister(row, colt1);
+  writeRegister(row, colt1, NUMROWS);
   delay(1000);
-  writeRegister(row, colt2);
+  writeRegister(row, colt2, NUMROWS);
   delay(1000);
   /*
   int circle[8][8] = {{0,0,0,0,0,0,0,0},{0,0,0,1,1,0,0,0},{0,0,1,0,0,1,0,0},{0,1,0,0,0,0,1,0},{0,1,0,0,0,0,1,0},{0,0,1,0,0,1,0,0},{0,0,0,1,1,0,0,0},{0,0,0,0,0,0,0,0}};
