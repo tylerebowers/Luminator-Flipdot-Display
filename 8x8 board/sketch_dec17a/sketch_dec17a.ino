@@ -1,6 +1,7 @@
 #define NUMROWS 8
 #define NUMCOLS 8
-#define debug 1
+#define FLASHTIME 50   //in milliseconds
+#define DEBUG 1
 
 
 struct shiftRegister{
@@ -20,19 +21,18 @@ struct shiftRegister{
     digitalWrite(SRCLR, LOW); // clear
     digitalWrite(SRCLR, HIGH); // clear
   }
-  void SRIncrement(){
+  void incrementSR(){
     digitalWrite(SRCLK, HIGH);
     digitalWrite(SRCLK, LOW);
   }
-  void RIncrement(){
+  void incrementR(){
     digitalWrite(RCLK, HIGH);
     digitalWrite(RCLK, LOW);
   }
-  void SetIdle(){
+  void setIdle(){
     digitalWrite(serial, LOW);
   }
 } col, row;
-
 
 void inverseArray(short * array, short n){
   for(short i = 0; i < n; i++){
@@ -44,10 +44,10 @@ void inverseArray(short * array, short n){
   }
 }
 
-void writeColumnArray(short * array, short n, short state){
+void writeColumnArray(short * array, short state){
   col.disable();
   col.clear();
-  for(short i = n/8; i > 0; i--){
+  for(short i = NUMCOLS/8; i > 0; i--){
     for(short j = 1; j <= 8; j++){ // writes +POS (83) (ON)
       if(state == 1 && array[(8*i)-j] == 1){
         digitalWrite(col.serial, HIGH);
@@ -55,27 +55,55 @@ void writeColumnArray(short * array, short n, short state){
       else{
         digitalWrite(col.serial, LOW);
       }
-      col.SRIncrement();
-      col.RIncrement();
+      col.incrementSR();
+      col.incrementR();
     }
     for(short k = 1; k <= 8; k++){ // writes -GND (81) (OFF)
-      if(state == 0 && array[(8*i)-k] == 1){
+      if(state == 0 && array[(8*i)-k] == 0){
         digitalWrite(col.serial, HIGH);
       }
       else{
         digitalWrite(col.serial, LOW);
       }
-      col.SRIncrement();
-      col.RIncrement();
+      col.incrementSR();
+      col.incrementR();
     }
   }
-  col.SetIdle();
+  col.setIdle();
 }
 
-void writeRowArray(struct shiftRegister sr, short * array, short n, short state){
+void writeColumnSingle(short index, short state){
+  col.disable();
+  col.clear();
+  for(short i = NUMCOLS/8; i > 0; i--){
+    for(short j = 1; j <= 8; j++){ // writes +POS (83) (ON)
+      if((state == 1) && ((8*i)-j == (index-1))){
+        digitalWrite(col.serial, HIGH);
+      }
+      else{
+        digitalWrite(col.serial, LOW);
+      }
+      col.incrementSR();
+      col.incrementR();
+    }
+    for(short k = 1; k <= 8; k++){ // writes -GND (81) (OFF)
+      if((state == 0) && ((8*i)-k == (index-1))){
+        digitalWrite(col.serial, HIGH);
+      }
+      else{
+        digitalWrite(col.serial, LOW);
+      }
+      col.incrementSR();
+      col.incrementR();
+    }
+  }
+  col.setIdle();
+}
+
+void writeRowArray(short * array, short state){
   row.disable();
   row.clear();
-  for(short i = n/8; i > 0; i--){
+  for(short i = NUMROWS/8; i > 0; i--){
     for(short j = 1; j <= 8; j++){ // writes +POS (83) (OFF)
       if(state == 0 && array[(8*i)-j] == 0){
         digitalWrite(row.serial, HIGH);
@@ -83,8 +111,8 @@ void writeRowArray(struct shiftRegister sr, short * array, short n, short state)
       else{
         digitalWrite(row.serial, LOW);
       }
-      row.SRIncrement();
-      row.RIncrement();
+      row.incrementSR();
+      row.incrementR();
     }
     for(short k = 1; k <= 8; k++){ // writes -GND (81) (ON)
       if(state == 1 && array[(8*i)-k] == 1){
@@ -93,20 +121,64 @@ void writeRowArray(struct shiftRegister sr, short * array, short n, short state)
       else{
         digitalWrite(row.serial, LOW);
       }
-      row.SRIncrement();
-      row.RIncrement();
+      row.incrementSR();
+      row.incrementR();
     }
   }
-  row.SetIdle();
+  row.setIdle();
+}
+
+void writeRowSingle(short index, short state){
+  row.disable();
+  row.clear();
+  for(short i = NUMROWS/8; i > 0; i--){
+    for(short j = 1; j <= 8; j++){ // writes +POS (83) (OFF)
+      if(state == 0 && (8*i)-j == (index-1)){
+        digitalWrite(row.serial, HIGH);
+      }
+      else{
+        digitalWrite(row.serial, LOW);
+      }
+      row.incrementSR();
+      row.incrementR();
+    }
+    for(short k = 1; k <= 8; k++){ // writes -GND (81) (ON)
+      if(state == 1 && (8*i)-k == (index-1)){
+        digitalWrite(row.serial, HIGH);
+      }
+      else{
+        digitalWrite(row.serial, LOW);
+      }
+      row.incrementSR();
+      row.incrementR();
+    }
+  }
+  row.setIdle();
+}
+
+void flashDisplay(){
+  row.enable();
+  col.enable();
+  delay(FLASHTIME);
+  col.disable();
+  row.disable();
 }
 
 void writeDisplay(short array[NUMROWS][NUMCOLS]){
-  short colToWrite[NUMROWS] = {0};
-  short rowToWrite[NUMCOLS] = {0};
+  short rowsToWrite[NUMROWS] = {0};
   for(short i = 0; i < NUMCOLS; i++){
     for(short j = 0; j < NUMROWS; j++){
-      array[j][i];
+      rowsToWrite[j] = 0;
     }
+    for(short j = 0; j < NUMROWS; j++){
+      rowsToWrite[j] = array[j][i];
+    }
+    writeRowArray(rowsToWrite, 1);
+    writeColumnSingle(i, 1);
+    flashDisplay();    
+    writeRowArray(rowsToWrite, 0);
+    writeColumnSingle(i, 0);
+    flashDisplay();
   }
 }
 
@@ -138,22 +210,22 @@ void setup() {
   pinMode(row.SRCLR, OUTPUT);
   row.disable();
   row.clear();
-  short testarr[8] = {1,1,1,0,1,0,0,0};
-  writeRowArray(row, testarr, 8, 0);// REMOVE 
+  writeColumnSingle(4, 1);
+  col.enable();
 }
 
 void loop() {
   short circle[8][8] = {{0,0,0,0,0,0,0,0},{0,0,0,1,1,0,0,0},{0,0,1,0,0,1,0,0},{0,1,0,0,0,0,1,0},{0,1,0,0,0,0,1,0},{0,0,1,0,0,1,0,0},{0,0,0,1,1,0,0,0},{0,0,0,0,0,0,0,0}};
   short blank[8][8] = {{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0}};
   short full[8][8] = {{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1}};
+  delay(1000);
   /*
-  delay(1000);
   writeDisplay(blank);
-  delay(1000);
+  delay(3000);
   writeDisplay(circle);
-  delay(1000);
+  delay(3000);
   writeDisplay(full);
-  delay(1000);
+  delay(3000);
   */
-
+  
 }
