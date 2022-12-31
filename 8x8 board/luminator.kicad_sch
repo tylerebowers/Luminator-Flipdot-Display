@@ -2604,6 +2604,22 @@
     (pin "VIN" (uuid 7216969d-23a3-4906-b489-631179b4a51c))
   )
 
+  (symbol (lib_id "power:+5V") (at 165.1 67.945 0) (unit 1)
+    (in_bom yes) (on_board yes) (fields_autoplaced)
+    (uuid 49d23c97-da0c-4eaa-9def-a844ba4e55f3)
+    (property "Reference" "#PWR?" (id 0) (at 165.1 71.755 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "+5V" (id 1) (at 165.1 62.23 0))
+    (property "Footprint" "" (id 2) (at 165.1 67.945 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (id 3) (at 165.1 67.945 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 3bd06d3d-22dc-433b-ab29-8c9c2c3eae82))
+  )
+
   (symbol (lib_id "power:+5V") (at 89.535 31.115 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 4fce0ccf-6613-4faa-814a-a63dcf151455)
@@ -2717,22 +2733,6 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid cf233a34-a1ec-4a77-a26f-30253f45729a))
-  )
-
-  (symbol (lib_id "Luminator:+12V-24V") (at 165.1 67.945 0) (unit 1)
-    (in_bom yes) (on_board yes) (fields_autoplaced)
-    (uuid 7aa09a2f-5955-437b-8095-3453dabe0979)
-    (property "Reference" "#PWR?" (id 0) (at 165.1 71.755 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "+12V-24V" (id 1) (at 165.1 62.23 0))
-    (property "Footprint" "" (id 2) (at 165.1 67.945 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (id 3) (at 165.1 67.945 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid c2a83e1e-2cab-414d-b344-c69d27d204de))
   )
 
   (symbol (lib_id "power:+5V") (at 89.535 83.82 0) (unit 1)
@@ -2864,6 +2864,22 @@
     (pin "1" (uuid cf6e2236-0df9-4d8a-abc3-8d3f1814856a))
   )
 
+  (symbol (lib_id "power:+5V") (at 165.1 182.245 0) (unit 1)
+    (in_bom yes) (on_board yes)
+    (uuid a13c7b45-de76-46dc-a885-70bd68734900)
+    (property "Reference" "#PWR?" (id 0) (at 165.1 186.055 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "+5V" (id 1) (at 165.1 178.689 0))
+    (property "Footprint" "" (id 2) (at 165.1 182.245 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (id 3) (at 165.1 182.245 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 9ab11052-f868-4749-9c47-d8027fd18383))
+  )
+
   (symbol (lib_id "power:GND") (at 83.185 189.23 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid a1fd5f95-d840-42fc-ad4d-367ba3a36e1e)
@@ -2923,22 +2939,6 @@
     (pin "7" (uuid 5b249eda-9fe3-408c-be2a-433f2c5652ca))
     (pin "8" (uuid 244d6d99-c58d-4fd4-9d17-ef163846f925))
     (pin "9" (uuid 57e5ba01-b649-486d-9c82-365759b00ea7))
-  )
-
-  (symbol (lib_id "Luminator:+12V-24V") (at 165.1 182.245 0) (unit 1)
-    (in_bom yes) (on_board yes) (fields_autoplaced)
-    (uuid c79ee8da-49f9-41b5-a156-e26a48a2ca05)
-    (property "Reference" "#PWR?" (id 0) (at 165.1 186.055 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "+12V-24V" (id 1) (at 165.1 176.53 0))
-    (property "Footprint" "" (id 2) (at 165.1 182.245 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (id 3) (at 165.1 182.245 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid c09a4cf8-18da-41e6-ac78-c4a2cc452c22))
   )
 
   (symbol (lib_id "power:GND") (at 135.255 13.97 0) (unit 1)
@@ -3142,6 +3142,9 @@
     (path "/3ddf1463-2295-4c01-88f9-b2c73295c5e0"
       (reference "#PWR?") (unit 1) (value "GND") (footprint "")
     )
+    (path "/49d23c97-da0c-4eaa-9def-a844ba4e55f3"
+      (reference "#PWR?") (unit 1) (value "+5V") (footprint "")
+    )
     (path "/4fce0ccf-6613-4faa-814a-a63dcf151455"
       (reference "#PWR?") (unit 1) (value "+5V") (footprint "")
     )
@@ -3159,9 +3162,6 @@
     )
     (path "/7667b078-22d0-452d-a1c0-4ea878cc0bcc"
       (reference "#PWR?") (unit 1) (value "+5V") (footprint "")
-    )
-    (path "/7aa09a2f-5955-437b-8095-3453dabe0979"
-      (reference "#PWR?") (unit 1) (value "+12V-24V") (footprint "")
     )
     (path "/865f7c83-fa5f-4d4d-b26e-f82385cfbdfb"
       (reference "#PWR?") (unit 1) (value "+5V") (footprint "")
@@ -3181,11 +3181,11 @@
     (path "/9fe1d565-ca1b-4eb5-a2ca-06d98e4b6c32"
       (reference "#PWR?") (unit 1) (value "GND") (footprint "")
     )
+    (path "/a13c7b45-de76-46dc-a885-70bd68734900"
+      (reference "#PWR?") (unit 1) (value "+5V") (footprint "")
+    )
     (path "/a1fd5f95-d840-42fc-ad4d-367ba3a36e1e"
       (reference "#PWR?") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/c79ee8da-49f9-41b5-a156-e26a48a2ca05"
-      (reference "#PWR?") (unit 1) (value "+12V-24V") (footprint "")
     )
     (path "/d7df971b-ad0d-4bd8-809c-7741dfb9f827"
       (reference "#PWR?") (unit 1) (value "GND") (footprint "")
