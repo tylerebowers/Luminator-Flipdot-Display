@@ -1,6 +1,9 @@
+//this program opperates based on matrix values
+//it is memory inefficient the bitwize version uses ~8x less ram.
+
 #define NUMROWS 8
 #define NUMCOLS 8
-#define FLASHTIME 50   //in milliseconds
+#define FLASHTIME 60   //in milliseconds
 #define DEBUG 1
 
 
@@ -44,12 +47,12 @@ void inverseArray(short * array, short n){
   }
 }
 
-void writeColumnArray(short * array, short state){
+void writeColumnArray(unsigned short bitwize, short state){
   col.disable();
   col.clear();
-  for(short i = NUMCOLS/8; i > 0; i--){
-    for(short j = 1; j <= 8; j++){ // writes +POS (83) (ON)
-      if(state == 1 && array[(8*i)-j] == 1){
+  for(short i = 1; i <= NUMCOLS/8; i++){
+    for(short j = 8; j > 0; j--){ // writes +POS (83) (ON)
+      if(state == 1 && bitwize >> array[(8*i)-j] == 1){
         digitalWrite(col.serial, HIGH);
       }
       else{
@@ -58,7 +61,7 @@ void writeColumnArray(short * array, short state){
       col.incrementSR();
       col.incrementR();
     }
-    for(short k = 1; k <= 8; k++){ // writes -GND (81) (OFF)
+    for(short k = 8; k > 0; k--){ // writes -GND (81) (OFF)
       if(state == 0 && array[(8*i)-k] == 0){
         digitalWrite(col.serial, HIGH);
       }
@@ -75,9 +78,9 @@ void writeColumnArray(short * array, short state){
 void writeColumnSingle(short index, short state){
   col.disable();
   col.clear();
-  for(short i = NUMCOLS/8; i > 0; i--){
-    for(short j = 1; j <= 8; j++){ // writes +POS (83) (ON)
-      if((state == 1) && ((8*i)-j == (index-1))){
+  for(short i = 1; i <= NUMCOLS/8; i++){
+    for(short j = 8; j > 0; j--){ // writes +POS (83) (ON)
+      if((state == 1) && ((8*i)-j == index)){
         digitalWrite(col.serial, HIGH);
       }
       else{
@@ -86,8 +89,8 @@ void writeColumnSingle(short index, short state){
       col.incrementSR();
       col.incrementR();
     }
-    for(short k = 1; k <= 8; k++){ // writes -GND (81) (OFF)
-      if((state == 0) && ((8*i)-k == (index-1))){
+    for(short k = 8; k > 0; k--){ // writes -GND (81) (OFF)
+      if((state == 0) && ((8*i)-k == index)){
         digitalWrite(col.serial, HIGH);
       }
       else{
@@ -103,8 +106,8 @@ void writeColumnSingle(short index, short state){
 void writeRowArray(short * array, short state){
   row.disable();
   row.clear();
-  for(short i = NUMROWS/8; i > 0; i--){
-    for(short j = 1; j <= 8; j++){ // writes +POS (83) (OFF)
+  for(short i = 1; i <= NUMCOLS/8; i++){
+    for(short j = 8; j > 0; j--){ // writes +POS (83) (OFF)
       if(state == 0 && array[(8*i)-j] == 0){
         digitalWrite(row.serial, HIGH);
       }
@@ -114,7 +117,7 @@ void writeRowArray(short * array, short state){
       row.incrementSR();
       row.incrementR();
     }
-    for(short k = 1; k <= 8; k++){ // writes -GND (81) (ON)
+    for(short k = 8; k > 0; k--){ // writes -GND (81) (ON)
       if(state == 1 && array[(8*i)-k] == 1){
         digitalWrite(row.serial, HIGH);
       }
@@ -131,9 +134,9 @@ void writeRowArray(short * array, short state){
 void writeRowSingle(short index, short state){
   row.disable();
   row.clear();
-  for(short i = NUMROWS/8; i > 0; i--){
-    for(short j = 1; j <= 8; j++){ // writes +POS (83) (OFF)
-      if(state == 0 && (8*i)-j == (index-1)){
+  for(short i = 1; i <= NUMCOLS/8; i++){
+    for(short j = 8; j > 0; j--){ // writes +POS (83) (OFF)
+      if(state == 0 && (8*i)-j == index){
         digitalWrite(row.serial, HIGH);
       }
       else{
@@ -142,8 +145,8 @@ void writeRowSingle(short index, short state){
       row.incrementSR();
       row.incrementR();
     }
-    for(short k = 1; k <= 8; k++){ // writes -GND (81) (ON)
-      if(state == 1 && (8*i)-k == (index-1)){
+    for(short k = 8; k > 0; k--){ // writes -GND (81) (ON)
+      if(state == 1 && (8*i)-k == index){
         digitalWrite(row.serial, HIGH);
       }
       else{
@@ -164,19 +167,13 @@ void flashDisplay(){
   row.disable();
 }
 
-void writeDisplay(short array[NUMROWS][NUMCOLS]){
-  short rowsToWrite[NUMROWS] = {0};
+void writeDisplay(short array[NUMROWS]){
+  short toWrite = 0;
   for(short i = 0; i < NUMCOLS; i++){
-    for(short j = 0; j < NUMROWS; j++){
-      rowsToWrite[j] = 0;
-    }
-    for(short j = 0; j < NUMROWS; j++){
-      rowsToWrite[j] = array[j][i];
-    }
-    writeRowArray(rowsToWrite, 1);
+    writeRowArray(array[i], 1);
     writeColumnSingle(i, 1);
     flashDisplay();    
-    writeRowArray(rowsToWrite, 0);
+    writeRowArray(array[i], 0);
     writeColumnSingle(i, 0);
     flashDisplay();
   }
@@ -210,22 +207,32 @@ void setup() {
   pinMode(row.SRCLR, OUTPUT);
   row.disable();
   row.clear();
-  writeColumnSingle(4, 1);
-  col.enable();
 }
 
 void loop() {
-  short circle[8][8] = {{0,0,0,0,0,0,0,0},{0,0,0,1,1,0,0,0},{0,0,1,0,0,1,0,0},{0,1,0,0,0,0,1,0},{0,1,0,0,0,0,1,0},{0,0,1,0,0,1,0,0},{0,0,0,1,1,0,0,0},{0,0,0,0,0,0,0,0}};
-  short blank[8][8] = {{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0}};
-  short full[8][8] = {{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1}};
-  delay(1000);
+  delay(3000);
   /*
+  for(int i = 0; i < 8; i++){
+    for(int j = 0; j < 8; j++){
+      delay(500);
+      writeRowSingle(i, 1);
+      writeColumnSingle(j, 1);
+      flashDisplay(); 
+      delay(500);
+      writeRowSingle(i, 0);
+      writeColumnSingle(j, 0);
+      flashDisplayLong();
+    }
+  }
+  */
+  short circle[8] = {0,24,36,66,66,36,24,0};  // each number representa a column for 8 rows it is 1 byte (char), 16 rows 2 bytes (short), etc
+  short blank[8][8] = {0,0,0,0,0,0,0,0};
+  short full[8][8] = {255,255,255,255,255,255,255,255};
+  //delay(1000);
   writeDisplay(blank);
   delay(3000);
   writeDisplay(circle);
   delay(3000);
   writeDisplay(full);
   delay(3000);
-  */
-  
 }
