@@ -50,9 +50,9 @@ void inverseArray(short * array, short n){
 void writeColumnArray(unsigned short bitwize, short state){
   col.disable();
   col.clear();
-  for(short i = 1; i <= NUMCOLS/8; i++){
+  for(short i = 1; i <= NUMROWS/8; i++){
     for(short j = 8; j > 0; j--){ // writes +POS (83) (ON)
-      if(state == 1 && bitwize >> array[(8*i)-j] == 1){
+      if(state == 1 && (bitwize >> ((8*i)-j) & 1)){    //array[(8*i)-j] == 1 
         digitalWrite(col.serial, HIGH);
       }
       else{
@@ -62,7 +62,7 @@ void writeColumnArray(unsigned short bitwize, short state){
       col.incrementR();
     }
     for(short k = 8; k > 0; k--){ // writes -GND (81) (OFF)
-      if(state == 0 && array[(8*i)-k] == 0){
+      if(state == 0 && (bitwize >> ((8*i)-k) & 0)){     //array[(8*i)-k] == 0
         digitalWrite(col.serial, HIGH);
       }
       else{
@@ -103,12 +103,12 @@ void writeColumnSingle(short index, short state){
   col.setIdle();
 }
 
-void writeRowArray(short * array, short state){
+void writeRowArray(unsigned short bitwize, short state){
   row.disable();
   row.clear();
   for(short i = 1; i <= NUMCOLS/8; i++){
     for(short j = 8; j > 0; j--){ // writes +POS (83) (OFF)
-      if(state == 0 && array[(8*i)-j] == 0){
+      if(state == 0 && (bitwize >> ((8*i)-j) & 0)){
         digitalWrite(row.serial, HIGH);
       }
       else{
@@ -118,7 +118,7 @@ void writeRowArray(short * array, short state){
       row.incrementR();
     }
     for(short k = 8; k > 0; k--){ // writes -GND (81) (ON)
-      if(state == 1 && array[(8*i)-k] == 1){
+      if(state == 1 && (bitwize >> ((8*i)-k) & 1)){
         digitalWrite(row.serial, HIGH);
       }
       else{
@@ -167,8 +167,7 @@ void flashDisplay(){
   row.disable();
 }
 
-void writeDisplay(short array[NUMROWS]){
-  short toWrite = 0;
+void writeDisplay(short array[NUMCOLS]){
   for(short i = 0; i < NUMCOLS; i++){
     writeRowArray(array[i], 1);
     writeColumnSingle(i, 1);
@@ -210,7 +209,7 @@ void setup() {
 }
 
 void loop() {
-  delay(3000);
+  delay(1000);
   /*
   for(int i = 0; i < 8; i++){
     for(int j = 0; j < 8; j++){
@@ -225,9 +224,9 @@ void loop() {
     }
   }
   */
-  short circle[8] = {0,24,36,66,66,36,24,0};  // each number representa a column for 8 rows it is 1 byte (char), 16 rows 2 bytes (short), etc
-  short blank[8][8] = {0,0,0,0,0,0,0,0};
-  short full[8][8] = {255,255,255,255,255,255,255,255};
+  unsigned short circle[8] = {0,24,36,66,66,36,24,0};  // each number representa a column for 8 rows it is 1 byte (char), 16 rows 2 bytes (short), etc
+  unsigned short blank[8] = {0,0,0,0,0,0,0,0};
+  unsigned short full[8] = {255,255,255,255,255,255,255,255};
   //delay(1000);
   writeDisplay(blank);
   delay(3000);
