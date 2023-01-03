@@ -3,7 +3,7 @@
 
 #define NUMROWS 8
 #define NUMCOLS 8
-#define FLASHTIME 60   //in milliseconds
+#define FLASHTIME 1   //in milliseconds
 #define DEBUG 1
 
 
@@ -170,7 +170,7 @@ void flashDisplay(){
 void flashDisplayLong(){
   row.enable();
   col.enable();
-  delay(FLASHTIME);
+  delay(200);
   col.disable();
   row.disable();
 }
@@ -178,18 +178,14 @@ void flashDisplayLong(){
 void writeDisplay(short array[NUMROWS][NUMCOLS]){
   short rowsToWrite[NUMROWS] = {0};
   for(short i = 0; i < NUMCOLS; i++){
-    for(short j = 0; j < NUMROWS; j++){
-      rowsToWrite[j] = 0;
-    }
-    for(short j = 0; j < NUMROWS; j++){
-      rowsToWrite[j] = array[j][i];
-    }
-    writeRowArray(rowsToWrite, 1);
+    writeRowArray(array[i], 1);
     writeColumnSingle(i, 1);
-    flashDisplay();    
-    writeRowArray(rowsToWrite, 0);
+    flashDisplay(); 
+    delay(2*FLASHTIME);   
+    writeRowArray(array[i], 0);
     writeColumnSingle(i, 0);
     flashDisplayLong();
+    delay(2*FLASHTIME);  
   }
 }
 
@@ -221,28 +217,46 @@ void setup() {
   pinMode(row.SRCLR, OUTPUT);
   row.disable();
   row.clear();
-  // REMOVE REMOVE REMOVE REMOVE REMOVE REMOVE REMOVE REMOVE REMOVE REMOVE REMOVE REMOVE REMOVE REMOVE REMOVE REMOVE REMOVE REMOVE 
 }
 
 void loop() {
-  delay(3000);
   /*
+  short rowsOFF[8] = {0,0,0,0,1,1,1,1};
+  short rowsON[8] = {1,1,1,1,0,0,0,0};
+  for(int i = 0; i < 8; i++){
+    writeRowArray(rowsON, 1);
+    writeColumnSingle(i, 1);
+    flashDisplay();
+    delay(2000);
+    writeRowArray(rowsOFF, 0);
+    writeColumnSingle(i, 0);
+    flashDisplay();
+    delay(500);
+  }
+  delay(1000);
+  */
+  
   for(int i = 0; i < 8; i++){
     for(int j = 0; j < 8; j++){
-      delay(500);
+      //delay(500);
       writeRowSingle(i, 1);
       writeColumnSingle(j, 1);
       flashDisplay(); 
-      delay(500);
-      writeRowSingle(i, 0);
-      writeColumnSingle(j, 0);
-      flashDisplayLong();
     }
   }
-  */
-  short circle[8][8] = {{0,0,0,0,0,0,0,0},{0,0,0,1,1,0,0,0},{0,0,1,0,0,1,0,0},{0,1,0,0,0,0,1,0},{0,1,0,0,0,0,1,0},{0,0,1,0,0,1,0,0},{0,0,0,1,1,0,0,0},{0,0,0,0,0,0,0,0}};
-  short blank[8][8] = {{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0}};
-  short full[8][8] = {{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1}};
+  for(int i = 0; i < 8; i++){
+    for(int j = 0; j < 8; j++){
+      //delay(500);
+      writeRowSingle(i, 0);
+      writeColumnSingle(j, 0);
+      flashDisplay(); 
+    }
+  }
+  
+  /*
+  short circle[NUMCOLS][NUMROWS] = {{0,0,0,0,0,0,0,0},{0,0,0,1,1,0,0,0},{0,0,1,0,0,1,0,0},{0,1,0,0,0,0,1,0},{0,1,0,0,0,0,1,0},{0,0,1,0,0,1,0,0},{0,0,0,1,1,0,0,0},{0,0,0,0,0,0,0,0}};
+  short blank[NUMCOLS][NUMROWS] = {{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0}};
+  short full[NUMCOLS][NUMROWS] = {{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1},{1,1,1,1,1,1,1,1}};
   //delay(1000);
   writeDisplay(blank);
   delay(3000);
@@ -250,4 +264,5 @@ void loop() {
   delay(3000);
   writeDisplay(full);
   delay(3000);
+  */
 }
