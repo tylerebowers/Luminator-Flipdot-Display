@@ -237,7 +237,7 @@ void loop() {
       flashDisplay(); 
     }
   }
-  delay(500);
+  //delay(500);
   for(int i = 0; i < 8; i++){
     for(int j = 0; j < 8; j++){
       //delay(500);
@@ -246,7 +246,7 @@ void loop() {
       flashDisplay(); 
     }
   }
-  delay(500);
+  //delay(500);
   */
   /*
   for(int i = 0; i < 8; i++){
@@ -266,15 +266,21 @@ void loop() {
   unsigned short circle[NUMCOLS] = {0,24,36,66,66,36,24,0};  // each number representa a column for 8 rows it is 1 byte (char), 16 rows 2 bytes (short), etc
   unsigned short blank[NUMCOLS] = {0,0,0,0,0,0,0,0};
   unsigned short full[NUMCOLS] = {255,255,255,255,255,255,255,255};
-  unsigned short north[NUMCOLS] = {}
-  unsigned short south[NUMCOLS] = {}
-  unsigned short east[NUMCOLS] = {}
-  unsigned short west[NUMCOLS] = {}
+  unsigned short north[NUMCOLS] = {1.0, 1.0, 125.0, 9.0, 17.0, 125.0, 1.0, 1.0};
+  unsigned short south[NUMCOLS] = {128.0, 128.0, 174.0, 170.0, 170.0, 186.0, 128.0, 128.0};
+  unsigned short east[NUMCOLS] = {0, 0, 62.0, 42.0, 42.0, 0, 0, 255.0};
+  unsigned short west[NUMCOLS] = {255.0, 0, 28.0, 16.0, 28.0, 16.0, 28.0, 0};
   //delay(1000);
-  writeDisplay(blank);
-  delay(3000);
+  writeDisplay(north);
+  delay(1000);
+  writeDisplay(south);
+  delay(1000);
+  writeDisplay(east);
+  delay(1000);
+  writeDisplay(west);
+  delay(1000);
   writeDisplay(circle);
-  delay(3000);
-  writeDisplay(full);
-  delay(3000);
+  delay(500);
+  writeDisplay(blank);
+  delay(500);
 }
