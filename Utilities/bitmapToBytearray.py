@@ -1,5 +1,4 @@
 import math
-import numpy as np
 
 #numberOfColumns = int(input("Number of Columns: "))
 numberOfColumns = 8
@@ -13,7 +12,7 @@ for i in range(0,numberOfRows):
         if(len(row) == numberOfColumns): break
         else: print("Please enter a row such as 00100100")
     toConvert[i] = list(row)
-print(toConvert)
+#print(toConvert)
 for i in range(0,numberOfColumns):
     sum = 0
     for j in range(0,numberOfRows):
