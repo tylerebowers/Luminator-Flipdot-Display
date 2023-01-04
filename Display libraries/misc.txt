@@ -1,0 +1,7 @@
+unsigned short north[NUMCOLS] = {128, 128, 190, 144, 136, 190, 128, 128};
+unsigned short south[NUMCOLS] = {1, 1, 117, 85, 85, 93, 1, 1};
+unsigned short east[NUMCOLS] = {0, 0, 124, 84, 84, 0, 0, 255};
+unsigned short west[NUMCOLS] = {255, 0, 56, 8, 56, 8, 56, 0};
+
+unsigned short confetti[NUMCOLS] = {170, 85, 170, 85, 170, 85, 170, 85};
+unsigned short confetti2[NUMCOLS] = {85, 170, 85, 170, 85, 170, 85, 170};

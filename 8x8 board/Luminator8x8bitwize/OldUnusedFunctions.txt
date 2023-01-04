@@ -1,0 +1,109 @@
+/*
+void writeColumnBits(unsigned short bitwize, short state){
+  col.disable();
+  col.clear();
+  for(short i = 1; i <= NUMROWS/8; i++){
+    for(short j = 8; j > 0; j--){ // writes +POS (83) (ON)
+      if(state == 1 && (bitwize >> ((8*i)-j) & 1)){    //array[(8*i)-j] == 1 
+        digitalWrite(col.serial, HIGH);
+      }
+      else{
+        digitalWrite(col.serial, LOW);
+      }
+      col.incrementSR();
+      col.incrementR();
+    }
+    for(short k = 8; k > 0; k--){ // writes -GND (81) (OFF)
+      if(state == 0 && (bitwize >> ((8*i)-k) & 0)){     //array[(8*i)-k] == 0
+        digitalWrite(col.serial, HIGH);
+      }
+      else{
+        digitalWrite(col.serial, LOW);
+      }
+      col.incrementSR();
+      col.incrementR();
+    }
+  }
+  col.setIdle();
+}
+*/
+
+/*
+void writeRowBits(unsigned short bitwize, short state){ // dont use (this version is bad for the drivers)
+  row.disable();
+  row.clear();
+  for(short i = 1; i <= NUMCOLS/8; i++){
+    for(short j = 8; j > 0; j--){ // writes +POS (83) (OFF)
+      if(state == 0 && (bitwize >> ((8*i)-j) & 0)){
+        digitalWrite(row.serial, HIGH);
+      }
+      else{
+        digitalWrite(row.serial, LOW);
+      }
+      row.incrementSR();
+      row.incrementR();
+    }
+    for(short k = 8; k > 0; k--){ // writes -GND (81) (ON)
+      if(state == 1 && (bitwize >> ((8*i)-k) & 1)){
+        digitalWrite(row.serial, HIGH);
+      }
+      else{
+        digitalWrite(row.serial, LOW);
+      }
+      row.incrementSR();
+      row.incrementR();
+    }
+  }
+  row.setIdle();
+}
+*/
+
+/*
+void writeDisplay(short array[NUMCOLS]){ // dont use (this version is bad for the drivers)
+  for(short i = 0; i < NUMCOLS; i++){
+    writeRowBits(array[i], 1);
+    writeColumnSingle(i, 1);
+    flashDisplay();  
+    delay(FLASHTIME);  
+    writeRowBits(array[i], 0);
+    writeColumnSingle(i, 0);
+    flashDisplayLong();
+  }
+}
+*/
+
+// write one bit at a time
+/*
+for(int i = 0; i < 8; i++){
+	for(int j = 0; j < 8; j++){
+	  delay(500);
+	  writeRowSingle(i, 1);
+	  writeColumnSingle(j, 1);
+	  flashDisplay(); 
+	  delay(500);
+	  writeRowSingle(i, 0);
+	  writeColumnSingle(j, 0);
+	  flashDisplay();
+	}
+}
+*/
+
+//All on then all off
+/*
+for(int i = 0; i < 8; i++){
+	for(int j = 0; j < 8; j++){
+	  writeRowSingle(i, 1);
+	  writeColumnSingle(j, 1);
+	  flashDisplay(); 
+	}
+}
+delay(1000);
+for(int i = 0; i < 8; i++){
+	for(int j = 0; j < 8; j++){
+	  writeRowSingle(i, 0);
+	  writeColumnSingle(j, 0);
+	  flashDisplay(); 
+	}
+}
+delay(1000);
+*/
