@@ -162,14 +162,18 @@ def launchMenu():
     numCols = tk.IntVar()
     numRows = tk.IntVar()
     importVal = tk.StringVar()
-    emptyLabel = tk.Label(menu)
-    rowLabel = tk.Label(menu, text='Number Of Rows', anchor="e", justify="left")
+    presetsLabel = tk.Label(menu, height=1, text="Quick Buttons:", anchor="w", justify="left")
+    noteLabel = tk.Label(menu, height=1, text="*Quick buttons include imported array.", anchor="e", justify="left")
+    emptyLabel1 = tk.Label(menu, height=1)
+    emptyLabel2 = tk.Label(menu, height=1)
+    emptyLabel3 = tk.Label(menu, height=1)
+    rowLabel = tk.Label(menu, text='Number Of Rows:        ', anchor="w", justify="left")
     numRowBox = tk.Entry(menu, textvariable=numRows, width=16, justify="right")
     numRows.set(16)
-    colLabel = tk.Label(menu, text='Number Of Columns', anchor="e", justify="left")
+    colLabel = tk.Label(menu, text='Number Of Columns:  ', anchor="w", justify="left")
     numColBox = tk.Entry(menu, textvariable=numCols, width=16, justify="right")
     numCols.set(112)
-    importLabel = tk.Label(menu, text='Import Array (optional)', anchor="e", justify="left")
+    importLabel = tk.Label(menu, text='Import Array (optional):', anchor="w", justify="left")
     importBox = tk.Entry(menu, textvariable=importVal, width=16, justify="right")
     importVal.set("None")
     quickButton = tk.Button(menu, width=16, height=1, text="Launch 8R x 8C", bg='grey', command=lambda: [menu.destroy, dotEditor(8,8, importVal.get().replace(
@@ -190,6 +194,24 @@ def launchMenu():
                                                                                                          "").replace(
                                                                                                          " ", "").split(
                                                                                                          ","))])
+    quickButton3 = tk.Button(menu, width=16, height=1, text="Launch 7R x 90C", bg='grey', command=lambda: [menu.destroy, dotEditor(7, 90, importVal.get().replace(
+                                 "{",
+                                 "").replace(
+                                 "}",
+                                 "").replace(
+                                 ";",
+                                 "").replace(
+                                 " ", "").split(
+                                 ","))])
+    quickButton4 = tk.Button(menu, width=16, height=1, text="Launch 7R x 30C", bg='grey', command=lambda: [menu.destroy, dotEditor(7, 30, importVal.get().replace(
+                                 "{",
+                                 "").replace(
+                                 "}",
+                                 "").replace(
+                                 ";",
+                                 "").replace(
+                                 " ", "").split(
+                                 ","))])
     launch = tk.Button(menu, width=16, height=1, text="Launch", bg='grey', command=lambda: [menu.destroy,
                                                                                            dotEditor(numRows.get(),
                                                                                                      numCols.get(),
@@ -202,6 +224,7 @@ def launchMenu():
                                                                                                          "").replace(
                                                                                                          " ", "").split(
                                                                                                          ","))])
+    creatorLabel = tk.Label(menu, text='Flip-dot Designer    Version 1.1\nProgrammed by:  Tyler Bowers\nTylerebowers.com', anchor="e", justify="center")
 
     rowLabel.grid(row=0, column=0)
     numRowBox.grid(row=0, column=1)
@@ -210,9 +233,16 @@ def launchMenu():
     importLabel.grid(row=2, column=0)
     importBox.grid(row=2, column=1)
     launch.grid(row=3, column=1)
-    emptyLabel.grid(row=4)
-    quickButton.grid(row=5, column=0)
-    quickButton2.grid(row=5, column=1)
+    emptyLabel1.grid(row=4, column=0)
+    presetsLabel.grid(row=5, column=0)
+    quickButton.grid(row=6, column=0)
+    quickButton2.grid(row=6, column=1)
+    quickButton3.grid(row=7, column=0)
+    quickButton4.grid(row=7, column=1)
+    noteLabel.grid(row=8, column=0, columnspan=2)
+    emptyLabel2.grid(row=9)
+    emptyLabel3.grid(row=10)
+    creatorLabel.grid(row=11, column=0, columnspan=2, rowspan=4)
 
     screen_width = menu.winfo_screenwidth()
     screen_height = menu.winfo_screenheight()
