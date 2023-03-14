@@ -238,7 +238,7 @@ void loop() {
   
   for(int i = 0; i < 8; i++){
     for(int j = 0; j < 8; j++){
-      //delay(500);
+      delay(30);
       writeRowSingle(i, 1);
       writeColumnSingle(j, 1);
       flashDisplay(); 
@@ -246,7 +246,7 @@ void loop() {
   }
   for(int i = 0; i < 8; i++){
     for(int j = 0; j < 8; j++){
-      //delay(500);
+      delay(30);
       writeRowSingle(i, 0);
       writeColumnSingle(j, 0);
       flashDisplay(); 

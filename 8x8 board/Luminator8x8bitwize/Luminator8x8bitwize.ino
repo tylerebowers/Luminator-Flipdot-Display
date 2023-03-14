@@ -133,6 +133,18 @@ void writeDisplay(byte * array, int x, int y){ // one dot at a time
   }
 }
 
+void writeDot(char x, char y, bool state){ // one dot at a time
+  if(state){
+    writeColumnSingle(x, 1);
+    writeRowSingle(NUMROWS-y+1, 1);
+    flashDisplay();
+  } else{
+    writeColumnSingle(x, 0);
+    writeRowSingle(NUMROWS-y+1, 0);
+    flashDisplay();
+  }
+}
+
 void setup() {
   Serial.begin(9600);
   col.serial = 2;
@@ -174,7 +186,7 @@ void loop() {
   delay(1000);
   writeDisplayFull(blank);
   delay(500);
-  for(int i = 0; i < 10; i++){
+  for(int i = 0; i < 4; i++){
     writeDisplayFull(confetti);
     delay(200);
     writeDisplayFull(confetti2);
@@ -182,13 +194,24 @@ void loop() {
   }
   writeDisplayFull(blank);
   delay(500);
-  unsigned char animation[12][8] = {{0, 0, 0, 192, 192, 0, 0, 0}, {0, 0, 0, 96, 96, 0, 0, 0}, {0, 0, 0, 48, 48, 0, 0, 0}, {0, 0, 0, 24, 24, 0, 0, 0}, {0, 0, 0, 12, 12, 0, 0, 0}, {0, 0, 0, 6, 6, 0, 0, 0}, {0, 0, 0, 3, 3, 0, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 5, 0, 0, 5, 0, 0}, {0, 9, 0, 0, 0, 0, 9, 0}, {5, 0, 0, 0, 0, 0, 0, 5}, {0, 0, 0, 0, 0, 0, 0, 0}};
-  unsigned char aniSteps[27] = {1, 2, 3, 4, 5, 6, 7, 8, 7, 6, 5, 4, 3, 4, 5, 6, 7, 8, 7, 6, 5, 6, 7, 9, 10, 11, 12};
+  //unsigned char animation[12][8] = {{0, 0, 0, 192, 192, 0, 0, 0}, {0, 0, 0, 96, 96, 0, 0, 0}, {0, 0, 0, 48, 48, 0, 0, 0}, {0, 0, 0, 24, 24, 0, 0, 0}, {0, 0, 0, 12, 12, 0, 0, 0}, {0, 0, 0, 6, 6, 0, 0, 0}, {0, 0, 0, 3, 3, 0, 0, 0}, {0, 0, 0, 1, 1, 0, 0, 0}, {0, 0, 5, 0, 0, 5, 0, 0}, {0, 9, 0, 0, 0, 0, 9, 0}, {5, 0, 0, 0, 0, 0, 0, 5}, {0, 0, 0, 0, 0, 0, 0, 0}};
+  //unsigned char aniSteps[27] = {1, 2, 3, 4, 5, 6, 7, 8, 7, 6, 5, 4, 3, 4, 5, 6, 7, 8, 7, 6, 5, 6, 7, 9, 10, 11, 12};
+  //for(int i = 0; i < 10; i++){
+    //for(int i = 0; i < 27; i++){
+      //writeDisplayFull(animation[aniSteps[i]-1]);
+      //delay(5);
+    //}
+  //}
+  /*
   for(int i = 0; i < 10; i++){
-    for(int i = 0; i < 27; i++){
-      writeDisplayFull(animation[aniSteps[i]-1]);
-      delay(5);
-    }
+    writeDisplayFull(confetti);
+    delay(200);
+    write
+    delay(200);
   }
+  */
+  writeDot(1,3,1);
+  delay(1000);
+
 
 }
