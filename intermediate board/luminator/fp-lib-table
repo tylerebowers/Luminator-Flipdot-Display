@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "Luminator")(type "KiCad")(uri "C:/Users/Tyler/Desktop/luminator/Luminator.pretty")(options "")(descr ""))
+)
