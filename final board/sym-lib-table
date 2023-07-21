@@ -1,6 +1,0 @@
-(sym_lib_table
-  (version 7)
-  (lib (name "Luminator")(type "KiCad")(uri "C:/Users/Tyler/Desktop/luminator/Luminator.sym/Luminator.kicad_sym")(options "")(descr ""))
-  (lib (name "w_connectors")(type "KiCad")(uri "C:/Users/Tyler/Desktop/luminator/Luminator.sym/w_connectors.kicad_sym")(options "")(descr "")(disabled))
-  (lib (name "MPQ6628")(type "KiCad")(uri "C:/Users/Tyler/Desktop/luminator/Luminator.sym/MPQ6628.kicad_sym")(options "")(descr ""))
-)
