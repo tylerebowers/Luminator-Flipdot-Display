@@ -2,14 +2,12 @@ struct {
   short serial = D8;
   short CLK = D7;
   short CS = D6;
-  short OE = D5;
+  short EN = D5;
   void disable() {
-    digitalWrite(OE, LOW); // disable
+    digitalWrite(EN, LOW); // disable
   }
   void enable(){
-    digitalWrite(OE, HIGH); // enable
-  }
-  void clear(){
+    digitalWrite(EN, HIGH); // enable
   }
   void incrementCLK(){
     digitalWrite(CLK, HIGH);
@@ -21,23 +19,34 @@ void setup() {
   pinMode(SR.serial, OUTPUT);
   pinMode(SR.CLK, OUTPUT);
   pinMode(SR.CS, OUTPUT);
-  pinMode(SR.OE, OUTPUT);
-  SR.disable();
-  //SR.clear();
+  pinMode(SR.EN, OUTPUT);
+  SR.enable();
   Serial.begin(9600); 
 }
 
-void flashDisplay(){
-  SR.enable();
-  delay(2);
-  SR.disable();
+void writeSerial(short toWrite){
+  digitalWrite(SR.CS, LOW);
+  for(short i = 15; i >=0 ; i--){
+    if(toWrite & (1UL<<i)){
+      digitalWrite(SR.serial, HIGH);
+      SR.incrementCLK();
+    } else {
+      digitalWrite(SR.serial, LOW);
+      SR.incrementCLK();
+    }
+  }
+  digitalWrite(SR.CS, HIGH);
+}
+
+void clear(){
+  writeSerial(0);
+  writeSerial(16384);
 }
 
 
-
 void writeOutput(char location, bool state){ 
-  //SR.disable(); 
-  //SR.clear();
+  digitalWrite(SR.CLK, LOW);
+  digitalWrite(SR.serial, LOW);
   short toWrite = 0;
   if(location <=5) {
     toWrite |= 1UL << location+7;
@@ -52,7 +61,8 @@ void writeOutput(char location, bool state){
     }
   }
   Serial.printf("WROTE (%d:%d): \n",location,state);
-  for(short i = 0; i < 16; i++){
+  digitalWrite(SR.CS, LOW);
+  for(short i = 15; i >=0 ; i--){
     if(toWrite & (1UL<<i)){
       Serial.print("1");
       digitalWrite(SR.serial, HIGH);
@@ -63,21 +73,20 @@ void writeOutput(char location, bool state){
       SR.incrementCLK();
     }
   }
+  digitalWrite(SR.CS, HIGH);
   Serial.println();
   return;
 }
 
 void loop() {
-  digitalWrite(SR.CS, LOW);
-  SR.enable();
-  Serial.println("start");
+  //Serial.println("start");
   for(int i = 0; i < 2; i++){
     for(int j = 0; j < 8; j++){
+      clear();
       writeOutput(j, i);
-      //SR.enable();
-      delay(1000);
+      delay(4000);
     }
   }
-  Serial.println("end");
+  //Serial.println("end");
   delay(1000);
 }
