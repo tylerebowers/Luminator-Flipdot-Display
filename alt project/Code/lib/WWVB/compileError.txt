@@ -1,0 +1,250 @@
+Arduino: 1.6.9 (Windows 7), Board: "Arduino/Genuino Uno"
+
+In file included from C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:12:0:
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.h:18:18: error: expected ')' before 'pin'
+
+     WWVB(uint8_t pin);
+
+                  ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.h:24:5: error: 'uint8_t' does not name a type
+
+     uint8_t getMinute();
+
+     ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.h:25:5: error: 'uint8_t' does not name a type
+
+     uint8_t getHour();
+
+     ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.h:26:5: error: 'uint8_t' does not name a type
+
+     uint8_t getDay();
+
+     ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.h:27:5: error: 'uint8_t' does not name a type
+
+     uint8_t getYear();
+
+     ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.h:31:5: error: 'uint8_t' does not name a type
+
+     uint8_t wwvbInPin;
+
+     ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.h:35:17: error: 'uint8_t' has not been declared
+
+     void buffer(uint8_t bit);
+
+                 ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:39:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+
+ };
+
+ ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:39:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:39:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:39:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:39:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:39:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:39:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:39:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:39:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:39:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:39:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:39:1: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:58:1: warning: narrowing conversion of '273' from 'int' to 'uint8_t {aka unsigned char}' inside { } [-Wnarrowing]
+
+ };
+
+ ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:58:1: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:58:1: warning: narrowing conversion of '274' from 'int' to 'uint8_t {aka unsigned char}' inside { } [-Wnarrowing]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:58:1: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:58:1: warning: narrowing conversion of '304' from 'int' to 'uint8_t {aka unsigned char}' inside { } [-Wnarrowing]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:58:1: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:58:1: warning: narrowing conversion of '305' from 'int' to 'uint8_t {aka unsigned char}' inside { } [-Wnarrowing]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:58:1: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:58:1: warning: narrowing conversion of '334' from 'int' to 'uint8_t {aka unsigned char}' inside { } [-Wnarrowing]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:58:1: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:58:1: warning: narrowing conversion of '335' from 'int' to 'uint8_t {aka unsigned char}' inside { } [-Wnarrowing]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:58:1: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:58:1: warning: narrowing conversion of '365' from 'int' to 'uint8_t {aka unsigned char}' inside { } [-Wnarrowing]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:58:1: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:58:1: warning: narrowing conversion of '366' from 'int' to 'uint8_t {aka unsigned char}' inside { } [-Wnarrowing]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:58:1: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:58:1: warning: narrowing conversion of '366' from 'int' to 'uint8_t {aka unsigned char}' inside { } [-Wnarrowing]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:58:1: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:58:1: warning: narrowing conversion of '367' from 'int' to 'uint8_t {aka unsigned char}' inside { } [-Wnarrowing]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:58:1: warning: large integer implicitly truncated to unsigned type [-Woverflow]
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:120:11: error: expected constructor, destructor, or type conversion before '(' token
+
+ WWVB::WWVB(uint_t pin)
+
+           ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp: In member function 'void WWVB::begin()':
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:128:40: error: cannot convert 'WWVB::wwvbChange' from type 'void (WWVB::)()' to type 'void (*)()'
+
+   attachInterrupt(0, wwvbChange, CHANGE);
+
+                                        ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp: In member function 'void WWVB::debug(bool)':
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:140:11: error: invalid use of member function (did you forget the '()' ?)
+
+     debug = true;
+
+           ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:144:11: error: invalid use of member function (did you forget the '()' ?)
+
+     debug = false;
+
+           ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp: At global scope:
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:225:25: error: no 'uint8_t WWVB::getMinute()' member function declared in class 'WWVB'
+
+ uint8_t WWVB::getMinute()
+
+                         ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:241:23: error: no 'uint8_t WWVB::getHour()' member function declared in class 'WWVB'
+
+ uint8_t WWVB::getHour()
+
+                       ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:257:22: error: no 'uint8_t WWVB::getDay()' member function declared in class 'WWVB'
+
+ uint8_t WWVB::getDay()
+
+                      ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:274:23: error: no 'uint8_t WWVB::getYear()' member function declared in class 'WWVB'
+
+ uint8_t WWVB::getYear()
+
+                       ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp: In member function 'void WWVB::processBit()':
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:293:3: error: 'bitReceived' was not declared in this scope
+
+   bitReceived = false;
+
+   ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:296:20: error: expected initializer before 'pulseWidth'
+
+   unsigned uint8_t pulseWidth = pulseEndTime - pulseStartTime;
+
+                    ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:302:7: error: 'pulseWidth' was not declared in this scope
+
+   if (pulseWidth < 100) {
+
+       ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:326:12: error: cannot convert 'WWVB::debug' from type 'void (WWVB::)(bool)' to type 'bool'
+
+   if (debug) { Serial.print("*"); }
+
+            ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:339:14: error: cannot convert 'WWVB::debug' from type 'void (WWVB::)(bool)' to type 'bool'
+
+     if (debug) {
+
+              ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:340:30: error: 'debugPrintFrame' was not declared in this scope
+
+              debugPrintFrame();
+
+                              ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:375:18: error: cannot convert 'WWVB::debug' from type 'void (WWVB::)(bool)' to type 'bool'
+
+         if (debug) { Serial.print("  Frame Error\n"); }
+
+                  ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp: At global scope:
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:417:30: error: no 'uint8_t WWVB::sumFrameErrors()' member function declared in class 'WWVB'
+
+ uint8_t WWVB::sumFrameErrors() {
+
+                              ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:435:28: error: no 'void WWVB::debugPrintFrame()' member function declared in class 'WWVB'
+
+ void WWVB::debugPrintFrame() {
+
+                            ^
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:468:6: error: prototype for 'void WWVB::buffer(uint8_t)' does not match any in class 'WWVB'
+
+ void WWVB::buffer(uint8_t bit) {
+
+      ^
+
+In file included from C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.cpp:12:0:
+
+C:\Users\User\Documents\Arduino\libraries\WWVB\WWVB.h:35:10: error: candidate is: void WWVB::buffer(int)
+
+     void buffer(uint8_t bit);
+
+          ^
+
+exit status 1
+Error compiling for board Arduino/Genuino Uno.
+
+This report would have more information with
+"Show verbose output during compilation"
+option enabled in File -> Preferences.
