@@ -1,8 +1,8 @@
 struct {
-  short serial = D8;
-  short CLK = D7;
-  short CS = D6;
-  short EN = D5;
+  short DI = 23;
+  short CLK = 21;
+  short CS = 19;
+  short EN = 22;
   void disable() {
     digitalWrite(EN, LOW); // disable
   }
@@ -16,7 +16,7 @@ struct {
 } SR;
 
 void setup() {
-  pinMode(SR.serial, OUTPUT);
+  pinMode(SR.DI, OUTPUT);
   pinMode(SR.CLK, OUTPUT);
   pinMode(SR.CS, OUTPUT);
   pinMode(SR.EN, OUTPUT);
@@ -28,10 +28,10 @@ void writeSerial(short toWrite){
   digitalWrite(SR.CS, LOW);
   for(short i = 15; i >=0 ; i--){
     if(toWrite & (1UL<<i)){
-      digitalWrite(SR.serial, HIGH);
+      digitalWrite(SR.DI, HIGH);
       SR.incrementCLK();
     } else {
-      digitalWrite(SR.serial, LOW);
+      digitalWrite(SR.DI, LOW);
       SR.incrementCLK();
     }
   }
@@ -46,7 +46,7 @@ void clear(){
 
 void writeOutput(char location, bool state){ 
   digitalWrite(SR.CLK, LOW);
-  digitalWrite(SR.serial, LOW);
+  digitalWrite(SR.DI, LOW);
   short toWrite = 0;
   if(location <=5) {
     toWrite |= 1UL << location+7;
@@ -65,11 +65,11 @@ void writeOutput(char location, bool state){
   for(short i = 15; i >=0 ; i--){
     if(toWrite & (1UL<<i)){
       Serial.print("1");
-      digitalWrite(SR.serial, HIGH);
+      digitalWrite(SR.DI, HIGH);
       SR.incrementCLK();
     } else {
       Serial.print("0");
-      digitalWrite(SR.serial, LOW);
+      digitalWrite(SR.DI, LOW);
       SR.incrementCLK();
     }
   }
