@@ -1,4 +1,4 @@
-657067924583245
+662177199970491
 Capacitor_THT
 CP_Axial_L10.0mm_D4.5mm_P15.00mm_Horizontal
 CP, Axial series, Axial, Horizontal, pin pitch=15mm, , length*diameter=10*4.5mm^2, Electrolytic Capacitor, , http://www.vishay.com/docs/28325/021asm.pdf
@@ -2688,6 +2688,13 @@ Luminator
 9
 9
 Luminator
+CAP_YX_12P5X20_RUB
+
+35ZLH1000MEFCG412.5X20 
+0
+2
+2
+Luminator
 CONV_PXO7805-500-M-TR
 
 
@@ -2722,6 +2729,20 @@ LED diameter 3.0mm 2 pins
 0
 2
 2
+Luminator
+PHOENIX_1729128
+
+
+0
+2
+2
+Luminator
+R78K5020
+R-78K5.0-2.0-2
+Power Supply
+0
+3
+3
 Luminator
 SN74AHC595N
 
