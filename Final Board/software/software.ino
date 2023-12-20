@@ -60,26 +60,27 @@ void writeOutput(char location, bool state){
       toWrite |= 1UL << location-5;
     }
   }
-  Serial.printf("WROTE (%d:%d): \n",location,state);
+  //Serial.printf("WROTE (%d:%d): \n",location,state);
   digitalWrite(SR.CS, LOW);
   for(short i = 15; i >=0 ; i--){
     if(toWrite & (1UL<<i)){
-      Serial.print("1");
+      //Serial.print("1");
       digitalWrite(SR.DI, HIGH);
       SR.incrementCLK();
     } else {
-      Serial.print("0");
+      //Serial.print("0");
       digitalWrite(SR.DI, LOW);
       SR.incrementCLK();
     }
   }
   digitalWrite(SR.CS, HIGH);
-  Serial.println();
+  //Serial.println();
   return;
 }
 
 void loop() {
   //Serial.println("start");
+  /*
   for(int i = 0; i < 2; i++){
     for(int j = 0; j < 8; j++){
       clear();
@@ -90,4 +91,9 @@ void loop() {
   }
   //Serial.println("end");
   delay(1000);
+  */
+  writeOutput(0,1);
+  delayMicroseconds(120);
+  writeOutput(0,0);
+  delayMicroseconds(120);
 }
