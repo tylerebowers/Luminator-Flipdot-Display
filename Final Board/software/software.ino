@@ -1,8 +1,8 @@
 struct {
-  short DI = 23;
-  short CLK = 21;
-  short CS = 19;
-  short EN = 22;
+  short DI = 19;
+  short CLK = 23;
+  short EN = 5;
+  short DO = 18;
   void disable() {
     digitalWrite(EN, LOW); // disable
   }
@@ -13,17 +13,37 @@ struct {
     digitalWrite(CLK, HIGH);
     digitalWrite(CLK, LOW);
   }
-} SR;
+} PSR;
+
+struct {
+  //short SEL = ;
+  //short OE = ;
+  //short RCLK = ;
+  //short SRCLK = ;
+  //short SRCLR = ;
+  
+  short COL = 17;
+  short ROW = 16;
+  void select(char rc){
+    if (rc == 'r'){digitalWrite(ROW, LOW);digitalWrite(COL, HIGH);}
+    else if (rc == 'c'){digitalWrite(ROW, HIGH);digitalWrite(COL, LOW);}
+    else {digitalWrite(ROW, HIGH);digitalWrite(COL, HIGH);}
+  }
+
+} SEL;
 
 void setup() {
-  pinMode(SR.DI, OUTPUT);
-  pinMode(SR.CLK, OUTPUT);
-  pinMode(SR.CS, OUTPUT);
-  pinMode(SR.EN, OUTPUT);
-  SR.enable();
+  pinMode(PSR.DI, OUTPUT);
+  pinMode(PSR.CLK, OUTPUT);
+  pinMode(PSR.EN, OUTPUT);
+  PSR.enable();
+
+  pinMode(SEL.COL, OUTPUT);
+  pinMode(SEL.ROW, OUTPUT);
   Serial.begin(9600); 
 }
 
+/*
 void writeSerial(short toWrite){
   digitalWrite(SR.CS, LOW);
   for(short i = 15; i >=0 ; i--){
@@ -42,58 +62,84 @@ void clear(){
   writeSerial(0);
   writeSerial(16384);
 }
+*/
 
-
-void writeOutput(char location, bool state){ 
-  digitalWrite(SR.CLK, LOW);
-  digitalWrite(SR.DI, LOW);
+void changeOutput(char location, char state){ // state: 'h' high, 'l' low, 'o' open
+  digitalWrite(PSR.CLK, LOW);
+  digitalWrite(PSR.DI, LOW);
   short toWrite = 0;
   if(location <=5) {
-    toWrite |= 1UL << location+7;
-    if(state){
+    if((state == 'h') | (state == 'l')){
+      toWrite |= 1UL << location+7;
+    }
+    if((state == 'h')){
       toWrite |= 1UL << location+1;
     }
   } else if(location >= 6) {
     toWrite |= 1UL << 14;
-    toWrite |= 1UL << location+1;
-    if(state){
+    if((state == 'h') | (state == 'l')){
+      toWrite |= 1UL << location+1;
+    }
+    if(state == 'h'){
       toWrite |= 1UL << location-5;
     }
   }
-  //Serial.printf("WROTE (%d:%d): \n",location,state);
-  digitalWrite(SR.CS, LOW);
+  Serial.printf("WROTE (%d:%c): \n",location,state);
   for(short i = 15; i >=0 ; i--){
     if(toWrite & (1UL<<i)){
-      //Serial.print("1");
-      digitalWrite(SR.DI, HIGH);
-      SR.incrementCLK();
+      Serial.print("1");
+      digitalWrite(PSR.DI, HIGH);
+      PSR.incrementCLK();
     } else {
-      //Serial.print("0");
-      digitalWrite(SR.DI, LOW);
-      SR.incrementCLK();
+      Serial.print("0");
+      digitalWrite(PSR.DI, LOW);
+      PSR.incrementCLK();
     }
   }
-  digitalWrite(SR.CS, HIGH);
-  //Serial.println();
+  Serial.println();
   return;
 }
 
-void loop() {
-  //Serial.println("start");
-  /*
-  for(int i = 0; i < 2; i++){
-    for(int j = 0; j < 8; j++){
-      clear();
-      delay(1000);
-      writeOutput(j, i);
-      delay(1000);
-    }
+void changeDot(char row, char col, bool state){
+  if (state){
+    //row on
+    SEL.select('r');
+    changeOutput(row, 'l');
+    //col on
+    SEL.select('c');
+    changeOutput(col, 'h');
+    //delay
+    delayMicroseconds(1000);
+    //col off
+    SEL.select('c');//unnessesary
+    changeOutput(col, 'o');
+    //row off
+    SEL.select('r');
+    changeOutput(row, 'o');
+    SEL.select('n');
+  } else {
+    //row on
+    SEL.select('r');
+    changeOutput(row, 'h');
+    //col on
+    SEL.select('c');
+    changeOutput(row, 'l');
+    //delay
+    delayMicroseconds(1000);
+    //col off
+    SEL.select('c');//unnessesary
+    changeOutput(row, 'o');
+    //row off
+    SEL.select('r');
+    changeOutput(row, 'o');
+    SEL.select('n');
   }
-  //Serial.println("end");
-  delay(1000);
-  */
-  writeOutput(0,1);
-  delayMicroseconds(120);
-  writeOutput(0,0);
-  delayMicroseconds(120);
+}
+
+void loop() {
+  //for (int i = 0, i<8, i++){}
+  changeDot(0,0,1);
+  delay(2500);
+  changeDot(0,0,0);
+  delay(2500);
 }
