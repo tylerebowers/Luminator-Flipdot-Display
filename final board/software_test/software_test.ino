@@ -1,8 +1,12 @@
 #define FLASHTIME 200   //in microseconds
-#define numRows 16
-#define numCols 84    // numCols = numBoards * numColsPerBoard
-#define numBoards 3
-#define numColsPerBoard 28
+
+struct Display{
+  uint8_t numRows = 16;
+  uint8_t numCols = 84;    // numCols = numBoards * numColsPerBoard
+  uint8_t numBoards = 3;
+  uint8_t numColsPerBoard = 28;
+  uint16_t shown[84];    // datatype is uint16_t because numRows = 16 
+} display;
 
 struct Rows{
   uint8_t SER = 32;
@@ -62,12 +66,10 @@ struct Columns{
   }
 } cols;
 
-uint16_t currentDisplay[numCols];    // datatype is uint16_t because numRows = 16 (short is 16 bits)
-
 void toggleColumn(short c, bool state){
   cols.disable();
   cols.clear();
-  c = c%numColsPerBoard;
+  c = c%display.numColsPerBoard;
   for(int8_t i = 3; i >=0; i--){
     short c_offset = i*8;
     for(int8_t j = 7; j >= 0; j--){ // writes +POS (83) (ON)
@@ -96,7 +98,7 @@ void toggleColumn(short c, bool state){
 void toggleRow(short r, short c, short state){
   rows.disable();
   rows.clear();
-  int8_t board = c/numColsPerBoard;
+  int8_t board = c/display.numColsPerBoard;
   for(int8_t b = board; b>=0; b--){
     for(int8_t i = 1; i >=0; i--){
       short r_offset = i*8;
@@ -124,10 +126,10 @@ void toggleRow(short r, short c, short state){
   rows.setIdle();
 }
 
-void flashDisplay(){    // turn on rows and colums for FLASHTIME microseconds 
+void flashDisplay(short delayTime = FLASHTIME){    // turn on rows and colums for FLASHTIME microseconds 
   rows.enable();
   cols.enable();
-  delayMicroseconds(FLASHTIME);
+  delayMicroseconds(delayTime);
   cols.disable();
   rows.disable();
 }
@@ -136,21 +138,65 @@ void writeDot(uint8_t r, uint8_t c, bool state){ // one dot at a time
   toggleRow(r, c, state);
   toggleColumn(c, state);
   flashDisplay();
-  currentDisplay[c] = (currentDisplay[c] & (~(1 << r))) | (state << r);
+  display.shown[c] = (display.shown[c] & (~(1 << r))) | (state << r);
 }
 
-void writeDisplay(short * array, uint8_t x, uint8_t y){ // one dot at a time
-  for(short c = x; c < numCols; c++){ // For each column
-    for(short r = y; r < numRows; r++){ // do each row 
-      //if((array[c] >> r) != (currentDisplay[c] >> r)){}
-      writeDot(r, c, ((array[c] >> r) & 1)); //need to optimize (compare to current display)
+void writeAllOff(short delayTime = 10){
+  for(uint8_t i = 0; i<display.numRows; i++){
+    for(uint8_t j = 0; j<display.numCols; j++){
+      writeDot(i,j,0);
+      delay(delayTime);
+    } 
+  }
+  for(uint8_t i = 0; i<display.numCols; i++){
+    display.shown[i] = 0;
+  }
+}
+
+void writeAllOn(short delayTime = 10){
+  for(uint8_t i = 0; i<display.numRows; i++){
+    for(uint8_t j = 0; j<display.numCols; j++){
+      writeDot(i,j,1);
+      delay(delayTime);
+    } 
+  }
+  for(uint8_t i = 0; i<display.numCols; i++){
+    display.shown[i] = 65535;
+  }
+}
+
+void writeDisplay(uint16_t * array, uint8_t x = 0, uint8_t y = 0){ // one dot at a time
+  for(short c = x; c < display.numCols; c++){ // For each column
+    Serial.printf("current:%d, changeto:%d\n",display.shown[c],array[c]);
+    for(short r = y; r < display.numRows; r++){ // do each row 
+      if(((array[c] >> r) & 1) != ((display.shown[c] >> r) & 1)){
+        writeDot(r, c, ((array[c] >> r) & 1));
+      }
     }
   }
 }
 
 
+void userSerialConnection(){
+  String userInput  = Serial.readStringUntil('\n');
+  if (userInput.length() > 10){
+      uint16_t newDisplay[display.numCols] = {0};
+    userInput = userInput.substring(userInput.indexOf('{')+1, userInput.indexOf('}'));
+    char *ptr = strtok ((char *)userInput.c_str(), ", ");         // get first token
+    uint16_t loc = 0;
+    while (ptr != NULL && loc < display.numCols){
+      Serial.println(ptr);
+      newDisplay[loc++] = atoi(ptr);
+      ptr = strtok(NULL, ", ");
+    }  
+    writeDisplay(newDisplay);
+  }
+}
+
+
+
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   pinMode(cols.SER, OUTPUT);
   pinMode(cols.OE, OUTPUT);
   pinMode(cols.RCLK, OUTPUT);
@@ -165,24 +211,10 @@ void setup() {
   pinMode(rows.SRCLR, OUTPUT);
   rows.disable();
   rows.clear();
+  writeAllOff();
 }
 
 
 void loop() {
   
-  for(uint8_t i = 0; i<16; i++){
-    for(uint8_t j = 0; j<84; j++){
-      writeDot(i,j,1);
-      delay(5);
-    } 
-  }
-  delay(5000);
-  for(uint8_t i = 0; i<16; i++){
-    for(uint8_t j = 0; j<84; j++){
-      writeDot(i,j,0);
-      delay(5);
-    } 
-  }
-  delay(5000);
-
 }
