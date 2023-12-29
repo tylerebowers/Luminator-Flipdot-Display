@@ -1,11 +1,12 @@
+#include <string.h>
 #define FLASHTIME 200   //in microseconds
 
 struct Display{
   uint8_t numRows = 16;
-  uint8_t numCols = 84;    // numCols = numBoards * numColsPerBoard
-  uint8_t numBoards = 3;
+  uint8_t numCols = 112;    // numCols = numBoards * numColsPerBoard
+  uint8_t numBoards = 4;
   uint8_t numColsPerBoard = 28;
-  uint16_t shown[84];    // datatype is uint16_t because numRows = 16 
+  uint16_t shown[112];    // datatype is uint16_t because numRows = 16 
 } display;
 
 struct Rows{
@@ -167,10 +168,10 @@ void writeAllOn(short delayTime = 10){
 
 void writeDisplay(uint16_t * array, uint8_t x = 0, uint8_t y = 0){ // one dot at a time
   for(short c = x; c < display.numCols; c++){ // For each column
-    Serial.printf("current:%d, changeto:%d\n",display.shown[c],array[c]);
+    //Serial.printf("current:%d, changeto:%d\n",display.shown[c],array[c]);
     for(short r = y; r < display.numRows; r++){ // do each row 
       if(((array[c] >> r) & 1) != ((display.shown[c] >> r) & 1)){
-        writeDot(r, c, ((array[c] >> r) & 1));
+        writeDot(r, c, ((array[c] >> r) & 1)); //optimization needed here (dupe instruction)
       }
     }
   }
@@ -179,17 +180,34 @@ void writeDisplay(uint16_t * array, uint8_t x = 0, uint8_t y = 0){ // one dot at
 
 void userSerialConnection(){
   String userInput  = Serial.readStringUntil('\n');
-  if (userInput.length() > 10){
+  if (userInput.length() > 4){
+    if(userInput.charAt(0) == '{'){
       uint16_t newDisplay[display.numCols] = {0};
-    userInput = userInput.substring(userInput.indexOf('{')+1, userInput.indexOf('}'));
-    char *ptr = strtok ((char *)userInput.c_str(), ", ");         // get first token
-    uint16_t loc = 0;
-    while (ptr != NULL && loc < display.numCols){
-      Serial.println(ptr);
-      newDisplay[loc++] = atoi(ptr);
-      ptr = strtok(NULL, ", ");
-    }  
-    writeDisplay(newDisplay);
+      userInput = userInput.substring(userInput.indexOf('{')+1, userInput.indexOf('}'));
+      char *ptr = strtok ((char *)userInput.c_str(), ",");         // get first token
+      uint16_t loc = 0;
+      while (ptr != NULL && loc < display.numCols){
+        Serial.printf("%s,",ptr);
+        newDisplay[loc++] = atoi(ptr);
+        ptr = strtok(NULL, ",");
+      }  
+      Serial.println();
+      writeDisplay(newDisplay);
+    } else if(userInput.charAt(0) == '('){
+      uint8_t dot[3] = {0};
+      userInput = userInput.substring(userInput.indexOf('(')+1, userInput.indexOf(')'));
+      char *ptr = strtok ((char *)userInput.c_str(), ",");         // get first token
+      uint16_t loc = 0;
+      while (ptr != NULL && loc < 3){
+        Serial.printf("%s,",ptr);
+        dot[loc++] = atoi(ptr);
+        ptr = strtok(NULL, ",");
+      } 
+      Serial.println();
+      if(loc == 3){writeDot(dot[0], dot[1], dot[2]);} 
+    } else {
+        Serial.println("Recieved incorrectly formatted string.");
+    }
   }
 }
 
@@ -216,5 +234,5 @@ void setup() {
 
 
 void loop() {
-  
+  userSerialConnection();
 }
