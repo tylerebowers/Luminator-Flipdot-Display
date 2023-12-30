@@ -212,6 +212,20 @@ void userSerialConnection(){
 }
 
 
+void serialPrintDisplay(){
+  for(uint8_t r = 0; r<display.numRows; r++){
+    for(uint16_t c = 0; c<display.numCols; c++){
+      if((display.shown[c] >> r) & 1){
+        Serial.print('@');
+      } else {
+        Serial.print('O');
+      }
+    }
+    Serial.println();
+  }
+}
+
+
 
 void setup() {
   Serial.begin(115200);
@@ -234,5 +248,5 @@ void setup() {
 
 
 void loop() {
-  userSerialConnection();
+  //userSerialConnection();
 }
