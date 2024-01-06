@@ -150,37 +150,36 @@ struct Display{
     rows.disable();
   }
 
-  void writeDot(uint8_t r, uint8_t c, bool state){ // one dot at a time
+  void writeDot(uint8_t c, uint8_t r, bool state){ // one dot at a time
     toggleRow(r, c, state);
     toggleColumn(c, state);
     flash();
     shown[c] = (shown[c] & (~(1 << r))) | (state << r);
   }
-
-  void writeCol(uint16_t col, uint8_t c){
-    for(short r = 0; r < numRows; r++){ // do each row 
-      bool newDot = ((col >> r) & 1);
-      if(newDot != ((shown[c] >> r) & 1)){
-        writeDot(r, c, newDot);
+/*
+  void writeCol(uint16_t col, uint8_t x, uint8_t yS, uint8_t yF){ 
+    for(uint8_t r = yS; r < min(numRows, yF); r++){ // do each row 
+      bool newDot = ((col >> r-yS) & 1);
+      if(newDot != ((shown[x] >> r) & 1)){
+        writeDot(x, r, newDot);
       }
     }
   }
-
-  void write(uint16_t * array, uint8_t x = 0, uint8_t y = 0){ // one dot at a time
-    for(short c = x; c < numCols; c++){ // For each column
-      //Serial.printf("current:%d, changeto:%d\n",shown[c],array[c]);
-      for(short r = y; r < numRows; r++){ // do each row 
-        bool newDot = ((array[c] >> r) & 1);
+*/
+  void write(uint16_t * array, uint8_t xLim, uint8_t x = 0, uint8_t y = 0, uint8_t yLim = 32){ 
+    for(uint8_t c = x; c < numCols && c-x < xLim; c++){ // For each column
+      for(uint8_t r = y; r < numRows && r-y < yLim; r++){ // do each row 
+        bool newDot = ((array[c-x] >> r-y) & 1);
         if(newDot != ((shown[c] >> r) & 1)){
-          writeDot(r, c, newDot);
+          writeDot(c, r, newDot);
         }
       }
     }
   }
 
   void allOff(bool full = true, uint16_t delayTime = 5){
-    for(uint8_t i = 0; i<numRows; i++){
-      for(uint8_t j = 0; j<numCols; j++){
+    for(uint8_t j = 0; j<numRows; j++){
+      for(uint8_t i = 0; i<numCols; i++){
         if(((shown[j] >> i) & 1) || full){
           writeDot(i,j,0);
           delay(delayTime);
@@ -193,8 +192,8 @@ struct Display{
   }
 
   void allOn(bool full = true, uint16_t delayTime = 5){
-    for(uint8_t i = 0; i<numRows; i++){
-      for(uint8_t j = 0; j<numCols; j++){
+    for(uint8_t j = 0; j<numRows; j++){
+      for(uint8_t i = 0; i<numCols; i++){
         if(((shown[j] >> i) & 0) || full){
           writeDot(i,j,1);
           delay(delayTime);
@@ -206,14 +205,31 @@ struct Display{
     }
   }
 
+  void allInvert(uint16_t delayTime = 5){
+    for(uint8_t j = 0; j<numRows; j++){
+      for(uint8_t i = 0; i<numCols; i++){
+        if(((shown[j] >> i) & 1)){
+          writeDot(i,j,0);
+        } else {
+          writeDot(i,j,1);
+        }
+        delay(delayTime);
+      } 
+    }
+    for(uint8_t i = 0; i<numCols; i++){
+      shown[i] = 65535 - shown[i];
+    }
+  }
+
 } display;
 
-struct Cursor{
-  char line1[18];
-  char line2[18];
-  char bigline[10];
 
-  uint8_t ascii57[95][5] = {	//7r x 5c
+struct UI{
+
+
+  uint16_t space[1] = {0};
+
+  uint16_t ascii57[95][5] = {	//7r x 5c
     {0,0,0,0,0},      //" "
     {0,0,95,0,0},		  //!
     {0,3,0,3,0},		  //"
@@ -293,7 +309,7 @@ struct Cursor{
     {0,63,64,0,0},		//l
     {112,8,112,8,112},//m
     {0,112,8,112,0},	//n
-    {0,48,72,72,48},	//o
+    {48,72,72,48,0},	//o
     {0,124,36,24,0},	//p
     {0,28,20,124,64},	//q
     {0,112,8,8,0},		//r
@@ -311,73 +327,67 @@ struct Cursor{
     {8,4,8,16,8},		  //~
   };
 
+  uint16_t largeTime[13][10] = {		                            //14r x 10c
+    {4092,8190,14343,12291,12291,12291,12291,14343,8190,4092},	//0
+    {0,12300,12302,12303,16383,16383,12288,12288,12288,0},	  	//1
+    {0,14342,15367,15875,14083,13187,12739,12543,12414,0},	  	//2
+    {0,6150,14343,12291,12483,12483,12483,14535,8190,3900},	  	//3
+    {127,255,192,192,192,192,192,16383,16383,192},			        //4
+    {12415,12415,12387,12387,12387,12387,12387,14563,8131,3971},//5
+    {4094,8191,14563,12387,12387,12387,12387,14563,8135,3974},	//6
+    {3,3,3,3,14339,16131,1987,243,63,15},					             	//7
+    {3868,8190,14823,12483,12483,12483,12483,14823,8190,3900},	//8
+    {60,6270,14567,12483,12483,12483,12483,14567,8190,4092},	  //9
+    {0,0,0,0,1560,1560,0,0,0,0},						                		//:
+    {0,3584,2560,1536,0,3584,512,3584,512,3584},			        	//am
+    {0,15872,2560,3584,0,3584,512,3584,512,3584},		        		//pm
+  };
 
-
-  void writeText(char * toWrite, uint8_t c = 0, uint8_t y = 0, bool alignLeft = true){
-    if(alignLeft){
-      for(int16_t i = 0; i<strlen(toWrite); i++){
-        int8_t adjChar = toWrite[i]-32;
-        if((adjChar >= 0) && (adjChar < 95)){
-          for(uint8_t j = 0; j < 5; j++){
-            display.writeCol(ascii57[adjChar][j], c++);
-          }
-          display.writeCol(0, c++);
-        }
+  void writeLine(char * text, bool line = 0){
+    uint8_t c = 0;
+    uint8_t yLow = line*8;
+    uint8_t yHigh = line*8+8;
+    for(int16_t i = 0; i<strlen(text) && i<18; i++){
+      int8_t charI = text[i]-32;
+      if((charI >= 0) && (charI < 95)){
+        display.write(ascii57[charI], 5, c, yLow, yHigh);
+        c+=5;
+        display.write(space, 1, c++, yLow, yHigh);
       }
-    } /*else {
-      c = display.numCols-c;
-      for(int16_t i = strlen(toWrite); i >= 0; i--){
-        int8_t adjChar = toWrite[i]-33;
-        if((adjChar >= 0) && (adjChar < 94)){
-          for(uint8_t j = 4; j >= 0; j--){
-            display.writeCol(ascii57[adjChar][j], c--);
-          }
-          display.writeCol(0, c--);
-        }
-      }
-    }*/
+    }
   }
 
-} cursor;
-
-/*
-uint16_t largeTime[13][10] = {		                            //14r x 10c
-  {4092,8190,14343,12291,12291,12291,12291,14343,8190,4092},	//0
-  {0,12300,12302,12303,16383,16383,12288,12288,12288,0},	  	//1
-  {0,14342,15367,15875,14083,13187,12739,12543,12414,0},	  	//2
-  {0,6150,14343,12291,12483,12483,12483,14535,8190,3900},	  	//3
-  {127,255,192,192,192,192,192,16383,16383,192},			        //4
-  {12415,12415,12387,12387,12387,12387,12387,14563,8131,3971},//5
-  {4094,8191,14563,12387,12387,12387,12387,14563,8135,3974},	//6
-  {3,3,3,3,14339,16131,1987,243,63,15},					             	//7
-  {3868,8190,14823,12483,12483,12483,12483,14823,8190,3900},	//8
-  {60,6270,14567,12483,12483,12483,12483,14567,8190,4092},	  //9
-  {0,0,0,0,1560,1560,0,0,0,0},						                		//:
-  {0,3584,2560,1536,0,3584,512,3584,512,3584},			        	//am
-  {0,15872,2560,3584,0,3584,512,3584,512,3584},		        		//pm
-};
-
-void writeTime(uint8_t hour, uint8_t minute, uint8_t c = 0, bool mt = false){
+  void writeTime(uint8_t hour, uint8_t minute, uint8_t c = 0, bool alignLeft = true, bool mt = false){
     uint8_t t[6] = {hour / 10, hour % 10, 10, minute / 10, minute % 10, 11+(hour>=12)};
-    uint8_t d = 0;
+    int8_t s = 0;
     if(!mt){
       if(hour > 12){t[0]-=1;t[1]-=2;} 
       else if(hour == 0){t[0]=1;t[1]+=2;}
-      if(t[0] == 0){d = 1;}
+      if(t[0] == 0){s = 1;}
     }
-    for(d; d < 6-mt; d++){
-        for(uint8_t i = 0; i < 10; i++){
-            if(largeTime[t[d]][i] != 0){
-              display.writeCol(largeTime[t[d]][i], c++);
-            }
-        }
-        display.writeCol(0, c++);
+    if(alignLeft){
+      c+=10;
+      for(int8_t d = 5-mt; d >= s; d--){
+        display.write(largeTime[t[d]], 10, display.numCols-c, 1, 15);
+        c+=10;
+        display.write(space, 1, display.numCols-c++, 0, 16);
+      }
+    } else {
+      for(int8_t d = s; d <= 5-mt; d++){
+        display.write(largeTime[t[d]], 10, c, 1, 15);
+        c+=10;
+        display.write(space, 1, c++, 0, 16);
+      }
     }
+  }
 
-    
-}
+  void clearLine(bool line = 0, bool largeLetters = 0){
+    Serial.println("TODO");
+  }
 
+} ui;
 
+/*
 struct tm localTime;
 void syncRTC(){
   if(WiFi.status() == WL_CONNECTED && getLocalTime(&localTime)){
@@ -388,8 +398,10 @@ void syncRTC(){
   }
 }
 */
+
 void serialPrintDisplay(uint16_t * array = display.shown){
   for(uint8_t r = 0; r<16; r++){
+    Serial.print('|');
     for(uint16_t c = 0; c<112; c++){
       if((array[c] >> r) & 1){
         Serial.print('#');
@@ -397,7 +409,7 @@ void serialPrintDisplay(uint16_t * array = display.shown){
         Serial.print(' ');
       }
     }
-    Serial.println();
+    Serial.println('|');
   }
 }
 
@@ -416,7 +428,7 @@ void userSerialConnection(){
           ptr = strtok(NULL, ",");
         }  
         Serial.println();
-        display.write(newDisplay);
+        display.write(newDisplay, loc);
       } else if(userInput.charAt(0) == '('){
         uint8_t dot[3] = {0};
         userInput = userInput.substring(userInput.indexOf('(')+1, userInput.indexOf(')'));
@@ -482,13 +494,23 @@ void setup() {
 
 
 void loop() {
-
-  cursor.writeText("Hello World");
+  
+  ui.writeLine("Hello World");
   serialPrintDisplay();
+  Serial.println();
   delay(5000);
 
-  cursor.writeText("ABCDEFGHIJ");
+  ui.writeLine("ABCDEFGHIJKLMNOPQR", 0);
+  ui.writeLine("STUVWXYZ1234567890", 1);
   serialPrintDisplay();
+  Serial.println();
+  delay(5000);
+
+
+  display.allOff();
+  ui.writeTime(13, 24);
+  serialPrintDisplay();
+  Serial.println();
   delay(5000);
   
   /*
