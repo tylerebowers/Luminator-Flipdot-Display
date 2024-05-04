@@ -10,6 +10,7 @@ struct Display{
   uint8_t numColsPerBoard = 28;
   uint16_t shown[112];    // datatype is uint16_t because numRows = 16 
 
+  //object for rows
   struct Rows{
     uint8_t SER = 32;
     uint8_t OE = 33;
@@ -39,6 +40,7 @@ struct Display{
     }
   } rows;
 
+  //object for columns
   struct Columns{
     uint8_t SER = 23;
     uint8_t OE = 19;
@@ -68,6 +70,7 @@ struct Display{
     }
   } cols;
 
+  //toggle a specific column
   void toggleColumn(short c, bool state){
     cols.disable();
     cols.clear();
@@ -97,6 +100,7 @@ struct Display{
     cols.setIdle();
   }
 
+  //toggle a specific row
   void toggleRow(short r, short c, short state){
     rows.disable();
     rows.clear();
@@ -127,21 +131,24 @@ struct Display{
     rows.incrementR();
     rows.setIdle();
   }
-
-  void flash(short delayTime = FLASHTIME){    // turn on rows and colums for FLASHTIME microseconds 
+  
+  //turn on/off register outputs quickly
+  void flash(uint8_t flashtime = FLASHTIME){    // turn on rows and colums for FLASHTIME microseconds 
     rows.enable();
     cols.enable();
-    delayMicroseconds(delayTime);
+    delayMicroseconds(flashtime);
     cols.disable();
     rows.disable();
   }
 
+  //write a single dot to the display
   void writeDot(uint8_t c, uint8_t r, bool state){ // one dot at a time
     toggleRow(r, c, state);
     toggleColumn(c, state);
     flash();
     shown[c] = (shown[c] & (~(1 << r))) | (state << r);
   }
+  
 /*
   void writeByCol(uint16_t col, uint8_t x, uint8_t yS, uint8_t yF){ 
     for(uint8_t r = yS; r < min(numRows, yF); r++){ // do each row 
@@ -152,6 +159,8 @@ struct Display{
     }
   }
 */
+
+  //write an array to the display
   void write(uint16_t * array, uint8_t xLim, uint8_t x = 0, uint8_t y = 0, uint8_t yLim = 32){ 
     for(uint8_t c = x; c < numCols && c-x < xLim; c++){ // For each column
       for(uint8_t r = y; r < numRows && r-y < yLim; r++){ // do each row 
@@ -162,7 +171,8 @@ struct Display{
       }
     }
   }
-
+  
+  //turn all dots off
   void allOff(bool full = true, uint16_t delayTime = 5){
     for(uint8_t j = 0; j<numRows; j++){
       for(uint8_t i = 0; i<numCols; i++){
@@ -177,6 +187,7 @@ struct Display{
     }
   }
 
+  //turn all dots on
   void allOn(bool full = true, uint16_t delayTime = 5){
     for(uint8_t j = 0; j<numRows; j++){
       for(uint8_t i = 0; i<numCols; i++){
@@ -191,6 +202,7 @@ struct Display{
     }
   }
 
+  //invert all dots
   void allInvert(uint16_t delayTime = 5){
     for(uint8_t j = 0; j<numRows; j++){
       for(uint8_t i = 0; i<numCols; i++){
@@ -210,6 +222,7 @@ struct Display{
 } display;
 
 
+//output shown[] display to the serial terminal
 void serialPrintDisplay(uint16_t * array = display.shown){
   for(uint8_t r = 0; r<16; r++){
     Serial.print('|');
@@ -224,6 +237,7 @@ void serialPrintDisplay(uint16_t * array = display.shown){
   }
 }
 
+//begin serial communication
 void userSerialConnection(){
   while(true){
     String userInput  = Serial.readStringUntil('\n');
