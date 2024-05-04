@@ -188,7 +188,7 @@ struct Display{
   }
   
   //turn all dots off
-  void allOff(bool full = true, uint16_t delayTime = 2, bool byCol = true){
+  void allOff(bool full = true, uint16_t delayTime = 2, bool byCol = false){
     if (byCol){
       for(uint8_t i = 0; i<numCols; i++){
         for(uint8_t j = 0; j<numRows; j++){
@@ -214,7 +214,7 @@ struct Display{
   }
 
   //turn all dots on
-  void allOn(bool full = true, uint16_t delayTime = 2, bool byCol = true){
+  void allOn(bool full = true, uint16_t delayTime = 2, bool byCol = false){
     if (byCol){
       for(uint8_t i = 0; i<numCols; i++){
         for(uint8_t j = 0; j<numRows; j++){
