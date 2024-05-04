@@ -1,11 +1,13 @@
 #include <string.h>
 
 #define FLASHTIME 200   //in microseconds
+#define NUMROWS 16
+#define NUMCOLS 112
 
 
 struct Display{
-  uint8_t numRows = 16;
-  uint8_t numCols = 112;    // numCols = numBoards * numColsPerBoard
+  uint8_t numRows = NUMROWS;
+  uint8_t numCols = NUMCOLS;    // numCols = numBoards * numColsPerBoard
   uint8_t numBoards = 4;
   uint8_t numColsPerBoard = 28;
   uint16_t shown[112];    // datatype is uint16_t because numRows = 16 
@@ -161,26 +163,50 @@ struct Display{
 */
 
   //write an array to the display
-  void write(uint16_t * array, uint8_t xLim, uint8_t x = 0, uint8_t y = 0, uint8_t yLim = 32){ 
-    for(uint8_t c = x; c < numCols && c-x < xLim; c++){ // For each column
-      for(uint8_t r = y; r < numRows && r-y < yLim; r++){ // do each row 
-        bool newDot = ((array[c-x] >> r-y) & 1);
-        if(newDot != ((shown[c] >> r) & 1)){
-          writeDot(c, r, newDot);
+  void write(uint16_t * array, uint8_t colLimit = NUMROWS, uint8_t rowLimit = NUMCOLS, uint8_t x = 0, uint8_t y = 0, uint8_t delayTime = 1, bool byCol = true){ 
+    if (byCol) {
+      for(uint8_t c = x; c < numCols && c-x < colLimit; c++){ // For each column
+        for(uint8_t r = y; r < numRows && r-y < rowLimit; r++){ // do each row 
+          bool newDot = ((array[c-x] >> r-y) & 1);
+          if(newDot != ((shown[c] >> r) & 1)){
+            writeDot(c, r, newDot);
+            delay(delayTime);
+          }
+        }
+      }
+    } else {
+      for(uint8_t r = y; r < numRows && r-y < rowLimit; r++){ // For each Row
+        for(uint8_t c = x; c < numCols && c-x < colLimit; c++){ // do each column
+          bool newDot = ((array[c-x] >> r-y) & 1);
+          if(newDot != ((shown[c] >> r) & 1)){
+            writeDot(c, r, newDot);
+            delay(delayTime);
+          }
         }
       }
     }
   }
   
   //turn all dots off
-  void allOff(bool full = true, uint16_t delayTime = 5){
-    for(uint8_t j = 0; j<numRows; j++){
+  void allOff(bool full = true, uint16_t delayTime = 2, bool byCol = true){
+    if (byCol){
       for(uint8_t i = 0; i<numCols; i++){
-        if(((shown[j] >> i) & 1) || full){
-          writeDot(i,j,0);
-          delay(delayTime);
-        }
-      } 
+        for(uint8_t j = 0; j<numRows; j++){
+          if(((shown[j] >> i) & 1) || full){
+            writeDot(i, j,0);
+            delay(delayTime);
+          }
+        } 
+      }
+    } else {
+      for(uint8_t j = 0; j<numRows; j++){
+        for(uint8_t i = 0; i<numCols; i++){
+          if(((shown[j] >> i) & 1) || full){
+            writeDot(i, j,0);
+            delay(delayTime);
+          }
+        } 
+      }
     }
     for(uint8_t i = 0; i<numCols; i++){
       shown[i] = 0;
@@ -188,14 +214,25 @@ struct Display{
   }
 
   //turn all dots on
-  void allOn(bool full = true, uint16_t delayTime = 5){
-    for(uint8_t j = 0; j<numRows; j++){
+  void allOn(bool full = true, uint16_t delayTime = 2, bool byCol = true){
+    if (byCol){
       for(uint8_t i = 0; i<numCols; i++){
-        if(((shown[j] >> i) & 0) || full){
-          writeDot(i,j,1);
-          delay(delayTime);
-        }
-      } 
+        for(uint8_t j = 0; j<numRows; j++){
+          if(((shown[j] >> i) & 0) || full){
+            writeDot(i,j,1);
+            delay(delayTime);
+          }
+        } 
+      }
+    } else {
+      for(uint8_t j = 0; j<numRows; j++){
+        for(uint8_t i = 0; i<numCols; i++){
+          if(((shown[j] >> i) & 0) || full){
+            writeDot(i,j,1);
+            delay(delayTime);
+          }
+        } 
+      }
     }
     for(uint8_t i = 0; i<numCols; i++){
       shown[i] = 65535;
@@ -203,10 +240,10 @@ struct Display{
   }
 
   //invert all dots
-  void allInvert(uint16_t delayTime = 5){
+  void allInvert(uint16_t delayTime = 2){
     for(uint8_t j = 0; j<numRows; j++){
       for(uint8_t i = 0; i<numCols; i++){
-        if(((shown[j] >> i) & 1)){
+        if(((shown[i] >> j) & 1)){
           writeDot(i,j,0);
         } else {
           writeDot(i,j,1);
@@ -238,34 +275,64 @@ void serialPrintDisplay(uint16_t * array = display.shown){
 }
 
 //begin serial communication
-void userSerialConnection(){
+void userSerialConnection(bool echo = false){
   while(true){
-    String userInput  = Serial.readStringUntil('\n');
-    if (userInput.length() > 4){
+    String userInput = Serial.readStringUntil('\n');
+    if (userInput.length() >= 4){
       if(userInput.charAt(0) == '{'){
         uint16_t newDisplay[display.numCols] = {0};
         userInput = userInput.substring(userInput.indexOf('{')+1, userInput.indexOf('}'));
         char *ptr = strtok ((char *)userInput.c_str(), ",");         // get first token
         uint16_t loc = 0;
         while (ptr != NULL && loc < display.numCols){
-          Serial.printf("%s,",ptr);
+          if(echo){Serial.printf("%s,",ptr);}
           newDisplay[loc++] = atoi(ptr);
           ptr = strtok(NULL, ",");
         }  
-        Serial.println();
+        if(echo){Serial.println();}
         display.write(newDisplay, loc);
       } else if(userInput.charAt(0) == '('){
-        uint8_t dot[3] = {0};
-        userInput = userInput.substring(userInput.indexOf('(')+1, userInput.indexOf(')'));
-        char *ptr = strtok ((char *)userInput.c_str(), ",");         // get first token
-        uint16_t loc = 0;
-        while (ptr != NULL && loc < 3){
-          Serial.printf("%s,",ptr);
-          dot[loc++] = atoi(ptr);
-          ptr = strtok(NULL, ",");
-        } 
-        Serial.println();
-        if(loc == 3){display.writeDot(dot[0], dot[1], dot[2]);} 
+        if(userInput.charAt(1)== '{'){
+          uint16_t loc = 0;
+          uint8_t params[5] = {0,0,0,0,1};
+          String pString = userInput.substring(userInput.indexOf('}')+1, userInput.indexOf(')'));
+          char *ptr = strtok ((char *)pString.c_str(), ",");
+          //0 rowLimit, 1 colLimit, 2 y, 3 x
+          while (ptr != NULL && loc < 5){
+            if(echo){Serial.printf("%s,",ptr);}
+            params[loc++] = atoi(ptr);
+            ptr = strtok(NULL, ",");
+          } 
+          uint16_t aloc = 0;
+          uint16_t newDisplay[params[0]] = {0};
+          String aString = userInput.substring(userInput.indexOf('{')+1, userInput.indexOf('}'));
+          ptr = strtok ((char *)aString.c_str(), ",");
+          while (ptr != NULL && aloc < params[0]){
+            if(echo){Serial.printf("%s,",ptr);}
+            newDisplay[aloc++] = atoi(ptr);
+            ptr = strtok(NULL, ",");
+          } 
+          if(echo){Serial.println();}
+          if(loc >= 2 && loc <= 5){display.write(newDisplay, params[0], params[1], params[2], params[3], params[4]);} 
+        } else {
+          uint8_t dot[3] = {0};
+          userInput = userInput.substring(userInput.indexOf('(')+1, userInput.indexOf(')'));
+          char *ptr = strtok ((char *)userInput.c_str(), ",");         // get first token
+          uint16_t loc = 0;
+          while (ptr != NULL && loc < 3){
+            if(echo){Serial.printf("%s,",ptr);}
+            dot[loc++] = atoi(ptr);
+            ptr = strtok(NULL, ",");
+          } 
+          if(echo){Serial.println();}
+          if(loc == 3){display.writeDot(dot[0], dot[1], dot[2]);} 
+        }
+      } else if (userInput == "allOff" || userInput == "clear") {
+        display.allOff();
+      } else if (userInput == "allOn") {
+        display.allOn();
+      } else if (userInput == "invert" || userInput == "inverse") {
+        display.allInvert();
       } else if (userInput == "print") {
         serialPrintDisplay();
       } else if (userInput == "exit") {
