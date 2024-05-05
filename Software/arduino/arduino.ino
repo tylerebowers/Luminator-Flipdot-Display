@@ -163,7 +163,7 @@ struct Display{
 */
 
   //write an array to the display
-  void write(uint16_t * array, uint8_t colLimit = NUMROWS, uint8_t rowLimit = NUMCOLS, uint8_t x = 0, uint8_t y = 0, uint8_t delayTime = 1, bool byCol = true){ 
+  void write(uint16_t * array, uint8_t colLimit = NUMCOLS, uint8_t rowLimit = NUMROWS, uint8_t x = 0, uint8_t y = 0, uint8_t delayTime = 1, bool byCol = true){ 
     if (byCol) {
       for(uint8_t c = x; c < numCols && c-x < colLimit; c++){ // For each column
         for(uint8_t r = y; r < numRows && r-y < rowLimit; r++){ // do each row 
@@ -297,7 +297,7 @@ void userSerialConnection(bool echo = false){
           uint8_t params[5] = {0,0,0,0,1};
           String pString = userInput.substring(userInput.indexOf('}')+1, userInput.indexOf(')'));
           char *ptr = strtok ((char *)pString.c_str(), ",");
-          //0 rowLimit, 1 colLimit, 2 y, 3 x
+          //0 colLimit, 1 rowLimit, 2 x, 3 y
           while (ptr != NULL && loc < 5){
             if(echo){Serial.printf("%s,",ptr);}
             params[loc++] = atoi(ptr);
