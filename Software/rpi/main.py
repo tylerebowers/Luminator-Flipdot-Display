@@ -1,9 +1,10 @@
 from datetime import datetime
+from time import sleep
+import threading
 import requests
+import serial
 import json
 from library import *
-import threading
-from time import sleep
 
 numCols = 112
 numRows = 16
@@ -13,13 +14,32 @@ openWeatherMapBaseURL = "https://api.openweathermap.org/data/2.5/weather?"
 openWeatherMapURL = openWeatherMapBaseURL + "appid=" + openWeatherMapAPIKey + "&q=" + city + "&units=metric"
 
 
-class display:
-    mode = 1
+class luminator:
+    serialConnection = None
+    serialPort = "/dev/ttyUSB0"
+    serialBaudRate = 115200
 
     @staticmethod
-    def _sendSerial(string):
-        print(string)
+    def connect():
+        try:
+            luminator.serialConnection = serial.Serial(luminator.serialPort, luminator.serialBaudRate)
+            print("Connected to serial port: " + luminator.serialPort)
+        except:
+            print("Failed to connect to serial port: " + luminator.serialPort)
+            luminator.serialConnection = None
 
+    @staticmethod
+    def send(string):
+        if luminator.serialConnection is not None and luminator.serialConnection.is_open:
+            luminator.serialConnection.write(string.encode('ascii', 'ignore'))
+        else:
+            luminator.connect()
+            print("Not connected to serial port!")
+
+
+
+
+class display:
     shownMinute = -1
     timeDisplayLength = 0
     shownDay = -1
@@ -28,7 +48,7 @@ class display:
     @staticmethod
     def dayTimeTemp():
         now = datetime.now()
-        if now.minute != display.shownMinute: # get time
+        if now.minute != display.shownMinute:  # get time
             timeDisplay = []
             current_time = now.strftime("%#I:%M%p").lower()[0:-1]
             for l in current_time:
@@ -38,20 +58,21 @@ class display:
             timeDisplay.append("0")
             display.shownMinute = now.minute
             timeCommand = f"({'{' + ','.join(timeDisplay) + '}'},{len(timeDisplay)},14,1,1,20)"
-            display._sendSerial(timeCommand)
+            luminator.send(timeCommand)
             display.timeDisplayLength = len(timeDisplay)
             display.shownMinute = now.minute
-        if now.day != display.shownDay: #get date
+        if now.day != display.shownDay:  # get date
             dateDisplay = []
             current_date = now.strftime("%A, %B !!")
-            current_date = current_date.replace('!!', str(now.day) + {1:'st',2:'nd',3:'rd'}.get(now.day%20, 'th'))
+            current_date = current_date.replace('!!',
+                                                str(now.day) + {1: 'st', 2: 'nd', 3: 'rd'}.get(now.day % 20, 'th'))
             for l in current_date:
                 dateDisplay.append("0")
                 for c in ascii7[l]:
                     dateDisplay.append(str(c))
             dateDisplay.append("0")
-            dateCommand = f"({'{' + ','.join(dateDisplay) + '}'},{len(dateDisplay)},7,{display.timeDisplayLength+2},1,50)"
-            display._sendSerial(dateCommand)
+            dateCommand = f"({'{' + ','.join(dateDisplay) + '}'},{len(dateDisplay)},7,{display.timeDisplayLength + 2},1,50)"
+            luminator.send(dateCommand)
             display.shownDay = now.day
         if abs(now.minute - display.weatherUpdatedMinute) > 30:  # get weather
             weatherDisplay = []
@@ -69,7 +90,7 @@ class display:
                     weatherDisplay.append(str(c))
             weatherDisplay.append("0")
             weatherCommand = f"({'{' + ','.join(weatherDisplay) + '}'},{len(weatherDisplay)},7,{display.timeDisplayLength + 2},8,50)"
-            display._sendSerial(weatherCommand)
+            luminator.send(weatherCommand)
             display.weatherUpdatedMinute = now.minute
 
     @staticmethod
@@ -79,6 +100,7 @@ class display:
     @staticmethod
     def news():  # news
         print("news")
+
 
 def displayLoop():
     # day/time/temp
