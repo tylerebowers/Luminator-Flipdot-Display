@@ -190,17 +190,15 @@ struct Display{
   //turn all dots off
   void allOff(bool full = true, uint16_t delayTime = 2, bool byCol = false){
     if(full){
-      uint16_t zeros[NUMCOLS] = {0};
-      write(zeros, NUMCOLS, NUMROWS, 0, 0, delayTime, byCol);
-    } else {
       for(uint8_t j = 0; j<numRows; j++){
         for(uint8_t i = 0; i<numCols; i++){
-          if(((shown[j] >> i) & 1)){
-            writeDot(i, j,0);
-            delay(delayTime);
-          }
+          writeDot(i, j,0);
+          delay(delayTime);
         } 
       }
+    } else {
+      uint16_t zeros[NUMCOLS] = {0};
+      write(zeros, NUMCOLS, NUMROWS, 0, 0, delayTime, byCol);
     }
     for(uint8_t i = 0; i<numCols; i++){
       shown[i] = 0;
@@ -210,17 +208,15 @@ struct Display{
   //turn all dots on
   void allOn(bool full = true, uint16_t delayTime = 2, bool byCol = false){
     if(full){
-    uint16_t zeros[NUMCOLS] = {pow(2,NUMROWS)-1};
-    write(zeros, NUMCOLS, NUMROWS, 0, 0, delayTime, byCol);
-    } else {
       for(uint8_t j = 0; j<numRows; j++){
         for(uint8_t i = 0; i<numCols; i++){
-          if(((shown[j] >> i) & 0) || full){
-            writeDot(i,j,1);
-            delay(delayTime);
-          }
+          writeDot(i,j,1);
+          delay(delayTime);
         } 
       }
+    } else {
+      uint16_t zeros[NUMCOLS] = {pow(2,NUMROWS)-1};
+      write(zeros, NUMCOLS, NUMROWS, 0, 0, delayTime, byCol);
     }
     for(uint8_t i = 0; i<numCols; i++){
       shown[i] = 65535;

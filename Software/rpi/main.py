@@ -3,8 +3,8 @@ from time import sleep
 import threading
 import requests
 import serial
-import json
 from library import *
+
 
 numCols = 112
 numRows = 16
@@ -13,6 +13,12 @@ openWeatherMapAPIKey = "c7ca991b7196262e0be5185bce9e776f"
 openWeatherMapBaseURL = "https://api.openweathermap.org/data/2.5/weather?"
 openWeatherMapURL = openWeatherMapBaseURL + "appid=" + openWeatherMapAPIKey + "&q=" + city + "&units=metric"
 
+"""
+#test
+from simulator import simulator  
+sim = simulator()  
+#test
+"""
 
 class luminator:
     serialConnection = None
@@ -30,6 +36,10 @@ class luminator:
 
     @staticmethod
     def send(string):
+        """
+        sim.readString(string)  #test
+        sim.print()  #test
+        """
         print(string,end='')
         if luminator.serialConnection is not None and luminator.serialConnection.is_open:
             luminator.serialConnection.write(string.encode('ascii', 'ignore'))
@@ -83,8 +93,8 @@ class display:
                 for c in ascii7[l]:
                     dateDisplay.append(str(c))
             dateDisplay.append("0")
-            #dateCommand = f"({'{' + ','.join(dateDisplay) + '}'},{len(dateDisplay)},7,{display.timeDisplayLength + 2},1,50)\n"
-            #luminator.send(dateCommand)
+            dateCommand = f"({'{' + ','.join(dateDisplay) + '}'},{len(dateDisplay)},7,{display.timeDisplayLength + 2},0,50)\n"
+            luminator.send(dateCommand)
             display.shownDay = now.day
         if abs(now.minute - display.weatherUpdatedMinute) > 30:  # get weather
             weatherDisplay = []
@@ -101,8 +111,8 @@ class display:
                 for c in ascii7[l]:
                     weatherDisplay.append(str(c))
             weatherDisplay.append("0")
-            #weatherCommand = f"({'{' + ','.join(weatherDisplay) + '}'},{len(weatherDisplay)},7,{display.timeDisplayLength + 2},9,50)\n"
-            #luminator.send(weatherCommand)
+            weatherCommand = f"({'{' + ','.join(weatherDisplay) + '}'},{len(weatherDisplay)},7,{display.timeDisplayLength + 2},8,50)\n"
+            luminator.send(weatherCommand)
             display.weatherUpdatedMinute = now.minute
 
     @staticmethod
