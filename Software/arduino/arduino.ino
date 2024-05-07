@@ -10,7 +10,7 @@ struct Display{
   uint8_t numCols = NUMCOLS;    // numCols = numBoards * numColsPerBoard
   uint8_t numBoards = 4;
   uint8_t numColsPerBoard = 28;
-  uint16_t shown[112];    // datatype is uint16_t because numRows = 16 
+  uint16_t shown[NUMCOLS];    // datatype is uint16_t because numRows = 16 
 
   //object for rows
   struct Rows{
@@ -189,19 +189,13 @@ struct Display{
   
   //turn all dots off
   void allOff(bool full = true, uint16_t delayTime = 2, bool byCol = false){
-    if (byCol){
-      for(uint8_t i = 0; i<numCols; i++){
-        for(uint8_t j = 0; j<numRows; j++){
-          if(((shown[j] >> i) & 1) || full){
-            writeDot(i, j,0);
-            delay(delayTime);
-          }
-        } 
-      }
+    if(full){
+      uint16_t zeros[NUMCOLS] = {0};
+      write(zeros, NUMCOLS, NUMROWS, 0, 0, delayTime, byCol);
     } else {
       for(uint8_t j = 0; j<numRows; j++){
         for(uint8_t i = 0; i<numCols; i++){
-          if(((shown[j] >> i) & 1) || full){
+          if(((shown[j] >> i) & 1)){
             writeDot(i, j,0);
             delay(delayTime);
           }
@@ -215,15 +209,9 @@ struct Display{
 
   //turn all dots on
   void allOn(bool full = true, uint16_t delayTime = 2, bool byCol = false){
-    if (byCol){
-      for(uint8_t i = 0; i<numCols; i++){
-        for(uint8_t j = 0; j<numRows; j++){
-          if(((shown[j] >> i) & 0) || full){
-            writeDot(i,j,1);
-            delay(delayTime);
-          }
-        } 
-      }
+    if(full){
+    uint16_t zeros[NUMCOLS] = {pow(2,NUMROWS)-1};
+    write(zeros, NUMCOLS, NUMROWS, 0, 0, delayTime, byCol);
     } else {
       for(uint8_t j = 0; j<numRows; j++){
         for(uint8_t i = 0; i<numCols; i++){
@@ -280,6 +268,7 @@ void userSerialConnection(bool echo = false){
     String userInput = Serial.readStringUntil('\n');
     if (userInput.length() >= 4){
       if(userInput.charAt(0) == '{'){
+        //{}
         uint16_t newDisplay[display.numCols] = {0};
         userInput = userInput.substring(userInput.indexOf('{')+1, userInput.indexOf('}'));
         char *ptr = strtok ((char *)userInput.c_str(), ",");         // get first token
@@ -297,7 +286,7 @@ void userSerialConnection(bool echo = false){
           uint8_t params[5] = {0,0,0,0,1};
           String pString = userInput.substring(userInput.indexOf('}')+1, userInput.indexOf(')'));
           char *ptr = strtok ((char *)pString.c_str(), ",");
-          //0 colLimit, 1 rowLimit, 2 x, 3 y
+          //({}, colLimit, rowLimit, x, y, delay)
           while (ptr != NULL && loc < 5){
             if(echo){Serial.printf("%s,",ptr);}
             params[loc++] = atoi(ptr);
@@ -315,6 +304,7 @@ void userSerialConnection(bool echo = false){
           if(echo){Serial.println();}
           if(loc >= 2 && loc <= 5){display.write(newDisplay, params[0], params[1], params[2], params[3], params[4]);} 
         } else {
+          //(x, y, state)
           uint8_t dot[3] = {0};
           userInput = userInput.substring(userInput.indexOf('(')+1, userInput.indexOf(')'));
           char *ptr = strtok ((char *)userInput.c_str(), ",");         // get first token

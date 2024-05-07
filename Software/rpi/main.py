@@ -39,12 +39,15 @@ class luminator:
 
     @staticmethod
     def allOff():
-        if luminator.serialConnection is not None and luminator.serialConnection.is_open:
-            luminator.send("allOff\n")
-        else:
-            luminator.connect()
-            print("Not connected to serial port!")
+        luminator.send("allOff\n")
 
+    @staticmethod
+    def allOn():
+        luminator.send("allOn\n")
+
+    @staticmethod
+    def invert():
+        luminator.send("invert\n")
 
 
 
