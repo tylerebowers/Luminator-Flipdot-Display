@@ -56,7 +56,7 @@ class display:
     interrupt = False
 
     @staticmethod
-    def compileTextArray(string, mode):
+    def compileTextArray(string, mode, min = 0):
         tempArray = []
         if mode == "time14":
             for l in string:
@@ -69,6 +69,8 @@ class display:
                 tempArray.append("0")
                 for c in ascii7[l]:
                     tempArray.append(str(c))
+            tempArray.append("0")
+        while len(tempArray) < min:
             tempArray.append("0")
         return tempArray
 
@@ -83,8 +85,8 @@ class display:
                 break
             if now.minute != shownMinute:  # get time
                 current_time = now.strftime("%-I:%M%p").lower()[0:-1]
-                tempArray = display.compileTextArray(current_time, "time14")
-                timeCommand = f"({'{' + ','.join(tempArray) + '}'},{len(tempArray)},14,1,1,20)\n"
+                tempArray = display.compileTextArray(current_time, "time14", 56)
+                timeCommand = f"({'{' + ','.join(tempArray) + '}'},len(tempArray),14,0,1,20)\n"
                 flipdots.send(timeCommand)
                 # update the current minute that is shown
                 shownMinute = now.minute
@@ -141,11 +143,11 @@ class display:
             separator = "({65535},1,16,56,0,50)\n"
             flipdots.send(separator)
             for h in range(0, 24):
-                for m in range(0, 60):
+                for m in [0,1,23,34,56,57,58,59]:
                     dt = datetime.strptime(f"{h:02d}:{m:02d}:00", "%H:%M:%S")
                     current_time = dt.strftime("%-I:%M%p").lower()[0:-1]
-                    tempArray = display.compileTextArray(current_time, "time14")
-                    timeCommand = f"({'{' + ','.join(tempArray) + '}'},{len(tempArray)},14,1,1,20)\n"
+                    tempArray = display.compileTextArray(current_time, "time14", 56)
+                    timeCommand = f"({'{' + ','.join(tempArray) + '}'},{len(tempArray)},14,0,1,20)\n"
                     flipdots.send(timeCommand)
                     sleep(0.5)
 
