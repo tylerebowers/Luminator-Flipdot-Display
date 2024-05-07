@@ -30,8 +30,17 @@ class luminator:
 
     @staticmethod
     def send(string):
+        print(string,end='')
         if luminator.serialConnection is not None and luminator.serialConnection.is_open:
             luminator.serialConnection.write(string.encode('ascii', 'ignore'))
+        else:
+            luminator.connect()
+            print("Not connected to serial port!")
+
+    @staticmethod
+    def allOff():
+        if luminator.serialConnection is not None and luminator.serialConnection.is_open:
+            luminator.send("allOff\n")
         else:
             luminator.connect()
             print("Not connected to serial port!")
@@ -50,14 +59,14 @@ class display:
         now = datetime.now()
         if now.minute != display.shownMinute:  # get time
             timeDisplay = []
-            current_time = now.strftime("%#I:%M%p").lower()[0:-1]
+            current_time = now.strftime("%-I:%M%p").lower()[0:-1]
             for l in current_time:
                 timeDisplay.append("0")
                 for c in time14[l]:
                     timeDisplay.append(str(c))
             timeDisplay.append("0")
             display.shownMinute = now.minute
-            timeCommand = f"({'{' + ','.join(timeDisplay) + '}'},{len(timeDisplay)},14,1,1,20)"
+            timeCommand = f"({'{' + ','.join(timeDisplay) + '}'},{len(timeDisplay)},14,1,1,20)\n"
             luminator.send(timeCommand)
             display.timeDisplayLength = len(timeDisplay)
             display.shownMinute = now.minute
@@ -71,8 +80,8 @@ class display:
                 for c in ascii7[l]:
                     dateDisplay.append(str(c))
             dateDisplay.append("0")
-            dateCommand = f"({'{' + ','.join(dateDisplay) + '}'},{len(dateDisplay)},7,{display.timeDisplayLength + 2},1,50)"
-            luminator.send(dateCommand)
+            #dateCommand = f"({'{' + ','.join(dateDisplay) + '}'},{len(dateDisplay)},7,{display.timeDisplayLength + 2},1,50)\n"
+            #luminator.send(dateCommand)
             display.shownDay = now.day
         if abs(now.minute - display.weatherUpdatedMinute) > 30:  # get weather
             weatherDisplay = []
@@ -89,8 +98,8 @@ class display:
                 for c in ascii7[l]:
                     weatherDisplay.append(str(c))
             weatherDisplay.append("0")
-            weatherCommand = f"({'{' + ','.join(weatherDisplay) + '}'},{len(weatherDisplay)},7,{display.timeDisplayLength + 2},8,50)"
-            luminator.send(weatherCommand)
+            #weatherCommand = f"({'{' + ','.join(weatherDisplay) + '}'},{len(weatherDisplay)},7,{display.timeDisplayLength + 2},9,50)\n"
+            #luminator.send(weatherCommand)
             display.weatherUpdatedMinute = now.minute
 
     @staticmethod
@@ -113,5 +122,7 @@ def main():
     return
 
 if __name__ == "__main__":
+    luminator.connect()
+    luminator.allOff()
     threading.Thread(target=displayLoop).start()
     main()
