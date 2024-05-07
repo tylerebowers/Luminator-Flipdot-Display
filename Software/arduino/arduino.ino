@@ -325,7 +325,7 @@ void userSerialConnection(bool echo = false){
         break;  
       } 
     }
-    Serial.println("ready")
+    Serial.println("ready");
   }
 }
 
@@ -346,7 +346,7 @@ void setup() {
   display.rows.disable();
   display.rows.clear();
   display.allOff();
-  Serial.println("ready")
+  Serial.println("ready");
 }
 
 
