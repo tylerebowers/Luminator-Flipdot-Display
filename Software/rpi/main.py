@@ -30,7 +30,6 @@ class luminator:
         try:
             luminator.serial = serial.Serial(luminator.serialPort, luminator.baudRate)
             print("Connected to serial port: " + luminator.serialPort)
-            luminator.serial.write("allOff".encode('ascii', 'ignore'))
         except:
             print("Failed to connect to serial port: " + luminator.serialPort)
             luminator.serial = None
@@ -46,9 +45,9 @@ class luminator:
         if luminator.serial is None or not luminator.serial.is_open:
             luminator.connect()
         if luminator.serial is not None and luminator.serial.is_open:
+            luminator.serial.write(string.encode('ascii', 'ignore'))
             while luminator.serial.readline() != b'ready':
                 sleep(0.5)
-            luminator.serial.write(string.encode('ascii', 'ignore'))
         luminator.isReady = False
 
     @staticmethod
