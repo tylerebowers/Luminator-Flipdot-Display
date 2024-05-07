@@ -323,10 +323,9 @@ void userSerialConnection(bool echo = false){
         serialPrintDisplay();
       } else if (userInput == "exit") {
         break;  
-      } else {
-          Serial.println("Recieved incorrectly formatted string.");
-      }
+      } 
     }
+    Serial.println("ready")
   }
 }
 
@@ -347,6 +346,7 @@ void setup() {
   display.rows.disable();
   display.rows.clear();
   display.allOff();
+  Serial.println("ready")
 }
 
 

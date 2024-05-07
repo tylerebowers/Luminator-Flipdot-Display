@@ -21,18 +21,20 @@ sim = simulator()
 """
 
 class luminator:
-    serialConnection = None
+    serial = None
     serialPort = "/dev/ttyUSB0"
-    serialBaudRate = 115200
+    baudRate = 115200
 
     @staticmethod
     def connect():
         try:
-            luminator.serialConnection = serial.Serial(luminator.serialPort, luminator.serialBaudRate)
+            luminator.serial = serial.Serial(luminator.serialPort, luminator.baudRate)
             print("Connected to serial port: " + luminator.serialPort)
+            luminator.serial.write("allOff".encode('ascii', 'ignore'))
         except:
             print("Failed to connect to serial port: " + luminator.serialPort)
-            luminator.serialConnection = None
+            luminator.serial = None
+
 
     @staticmethod
     def send(string):
@@ -40,12 +42,14 @@ class luminator:
         sim.readString(string)  #test
         sim.print()  #test
         """
-        print(string,end='')
-        if luminator.serialConnection is not None and luminator.serialConnection.is_open:
-            luminator.serialConnection.write(string.encode('ascii', 'ignore'))
-        else:
+        print(string, end='')
+        if luminator.serial is None or not luminator.serial.is_open:
             luminator.connect()
-            print("Not connected to serial port!")
+        if luminator.serial is not None and luminator.serial.is_open:
+            while luminator.serial.readline() != b'ready':
+                sleep(0.5)
+            luminator.serial.write(string.encode('ascii', 'ignore'))
+        luminator.isReady = False
 
     @staticmethod
     def allOff():
@@ -136,6 +140,5 @@ def main():
 
 if __name__ == "__main__":
     luminator.connect()
-    luminator.allOff()
     threading.Thread(target=displayLoop).start()
     main()
