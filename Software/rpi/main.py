@@ -46,7 +46,7 @@ class luminator:
             luminator.connect()
         if luminator.serial is not None and luminator.serial.is_open:
             luminator.serial.write(string.encode('ascii', 'ignore'))
-            while luminator.serial.readline() != b'ready':
+            while luminator.serial.readline()[0:5] != b'ready':
                 sleep(0.5)
         luminator.isReady = False
 
@@ -63,60 +63,80 @@ class luminator:
         luminator.send("invert\n")
 
 
-
 class display:
-    shownMinute = -1
-    timeDisplayLength = 0
-    shownDay = -1
-    weatherUpdatedMinute = -30
+    interrupt = False
 
     @staticmethod
-    def dayTimeTemp():
-        now = datetime.now()
-        if now.minute != display.shownMinute:  # get time
-            timeDisplay = []
-            current_time = now.strftime("%-I:%M%p").lower()[0:-1]
-            for l in current_time:
-                timeDisplay.append("0")
+    def compileTextArray(string, mode):
+        tempArray = []
+        if mode == "time14":
+            for l in string:
+                tempArray.append("0")
                 for c in time14[l]:
-                    timeDisplay.append(str(c))
-            timeDisplay.append("0")
-            display.shownMinute = now.minute
-            timeCommand = f"({'{' + ','.join(timeDisplay) + '}'},{len(timeDisplay)},14,1,1,20)\n"
-            luminator.send(timeCommand)
-            display.timeDisplayLength = len(timeDisplay)
-            display.shownMinute = now.minute
-        if now.day != display.shownDay:  # get date
-            dateDisplay = []
-            current_date = now.strftime("%A, %B !!")
-            current_date = current_date.replace('!!',
-                                                str(now.day) + {1: 'st', 2: 'nd', 3: 'rd'}.get(now.day % 20, 'th'))
-            for l in current_date:
-                dateDisplay.append("0")
+                    tempArray.append(str(c))
+            tempArray.append("0")
+        if mode == "ascii7":
+            for l in string:
+                tempArray.append("0")
                 for c in ascii7[l]:
-                    dateDisplay.append(str(c))
-            dateDisplay.append("0")
-            dateCommand = f"({'{' + ','.join(dateDisplay) + '}'},{len(dateDisplay)},7,{display.timeDisplayLength + 2},0,50)\n"
-            luminator.send(dateCommand)
-            display.shownDay = now.day
-        if abs(now.minute - display.weatherUpdatedMinute) > 30:  # get weather
-            weatherDisplay = []
-            response = requests.get(openWeatherMapURL)
-            if response.ok:
-                response = response.json()
-                celcius_temperature = response["main"]["temp"]
-                farenheit_temperature = (celcius_temperature * 1.8) + 32
-                text = f"{celcius_temperature:.0f}C ({farenheit_temperature:.0f}F)"
-            else:
-                text = "API call error"
-            for l in text:
-                weatherDisplay.append("0")
-                for c in ascii7[l]:
-                    weatherDisplay.append(str(c))
-            weatherDisplay.append("0")
-            weatherCommand = f"({'{' + ','.join(weatherDisplay) + '}'},{len(weatherDisplay)},7,{display.timeDisplayLength + 2},8,50)\n"
-            luminator.send(weatherCommand)
-            display.weatherUpdatedMinute = now.minute
+                    tempArray.append(str(c))
+            tempArray.append("0")
+        return tempArray
+
+
+    @staticmethod
+    def timeDay():
+        shownMinute = -1
+        shownDay = -1
+        while True:
+            now = datetime.now()
+            if display.interrupt:
+                break
+            if now.minute != shownMinute:  # get time
+                current_time = now.strftime("%-I:%M%p").lower()[0:-1]
+                tempArray = display.compileTextArray(current_time, "time14")
+                timeCommand = f"({'{' + ','.join(tempArray) + '}'},{len(tempArray)},14,1,1,20)\n"
+                luminator.send(timeCommand)
+                # update the current minute that is shown
+                shownMinute = now.minute
+
+            if now.day != shownDay:
+                # line 1 is the day of the week
+                line1 = now.strftime("%A")
+                tempArray = display.compileTextArray(line1, "ascii7")
+                dateCommand = f"({'{' + ','.join(tempArray) + '}'},{len(tempArray)},7,56,0,50)\n"
+                luminator.send(dateCommand)
+                # line 2 is the month and day
+                line2 = now.strftime("%B !!")
+                line2 = line2.replace('!!', str(now.day) + {1: 'st', 2: 'nd', 3: 'rd'}.get(now.day % 20, 'th'))
+                tempArray = display.compileTextArray(line2, "ascii7")
+                dateCommand = f"({'{' + ','.join(tempArray) + '}'},{len(tempArray)},7,56,8,50)\n"
+                luminator.send(dateCommand)
+                # update the current day that is shown
+                shownDay = now.day
+            sleep(5)
+
+    """
+    weatherUpdatedMinute = -30
+                if abs(now.minute - weatherUpdatedMinute) > 30:  # get weather
+                newDisplay = []
+                response = requests.get(openWeatherMapURL)
+                if response.ok:
+                    response = response.json()
+                    celcius_temperature = response["main"]["temp"]
+                    fahrenheit_temperature = (celcius_temperature * 1.8) + 32
+                    text = f"{celcius_temperature:.0f}C ({fahrenheit_temperature:.0f}F)"
+                else:
+                    text = "API call error"
+                for l in text:
+                    newDisplay.append("0")
+                    for c in ascii7[l]:
+                        newDisplay.append(str(c))
+                newDisplay.append("0")
+                weatherCommand = f"({'{' + ','.join(newDisplay) + '}'},{len(newDisplay)},7,{timeDisplayLength + 2},8,50)\n"
+                luminator.send(weatherCommand)
+                weatherUpdatedMinute = now.minute
+    """
 
     @staticmethod
     def stocks():  # stocks
@@ -129,15 +149,15 @@ class display:
 
 def displayLoop():
     # day/time/temp
-    while True:
-        display.dayTimeTemp()
-        sleep(10)
+    display.timeDay()
 
 
 def main():
+    # start webApp and wait for interrupts
     return
 
 if __name__ == "__main__":
     luminator.connect()
+    luminator.allOff()
     threading.Thread(target=displayLoop).start()
     main()
