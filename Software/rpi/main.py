@@ -181,18 +181,20 @@ class display:
                 while len(temp) > 0:
                     line1 = []
                     line2 = []
-                    while len(line1) < 104 or len(temp) > 0:
-                        for k in list(temp.keys()):
+                    for k in list(temp.keys()):
+                        if len(line1) < 104:
                             for c in temp[k]:
                                 line1.append(str(c))
                             line1.append("0")
                             del temp[k]
-                    while len(line2) < 104 or len(temp) > 0:
-                        for k in list(temp.keys()):
+                        else: break
+                    for k in list(temp.keys()):
+                        if len(line2) < 104:
                             for c in temp[k]:
                                 line2.append(str(c))
                             line2.append("0")
                             del temp[k]
+                        else: break
                     c1 = f"({'{' + ','.join(line1) + '}'},112,7,0,0,20)\n"
                     flipdots.send(c1)
                     c2 = f"({'{' + ','.join(line2) + '}'},112,7,0,8,20)\n"
