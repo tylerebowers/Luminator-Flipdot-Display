@@ -177,7 +177,7 @@ class display:
         @staticmethod
         def alphabet():
             for i in range(0, 3):
-                temp = ascii7
+                temp = ascii7.copy()
                 while len(temp) > 0:
                     line1 = []
                     line2 = []
@@ -200,7 +200,6 @@ class display:
                     c2 = f"({'{' + ','.join(line2) + '}'},112,7,0,8,20)\n"
                     flipdots.send(c2)
                     sleep(10)
-                sleep(10)
 
 
 def displayLoop():
