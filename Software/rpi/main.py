@@ -176,7 +176,7 @@ class display:
 
         @staticmethod
         def purdue():
-            flipdots.send(f"{'{' + ','.join(purdue) + '}'}")
+            flipdots.send(f"{'{' + ','.join([str(c) for c in purdue]) + '}'}")
             sleep(10)
 
         @staticmethod
@@ -209,6 +209,7 @@ class display:
 
 def displayLoop():
     display.tests.purdue()
+    flipdots.allOff()
     display.timeDayWeather()
     #display.tests.alphabet()
     #display.tests.time()
