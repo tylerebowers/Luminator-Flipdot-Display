@@ -76,7 +76,7 @@ class display:
 
 
     @staticmethod
-    def timeDay():
+    def timeDayWeather():
         shownMinute = -1
         shownDay = -1
         weatherUpdatedMinute = -30
@@ -122,7 +122,7 @@ class display:
             sleep(5)
 
     @staticmethod
-    def weather():  # weather
+    def weatherBig():  # weather
         weatherUpdatedMinute = -30
         while True:
             now = datetime.now()
@@ -153,6 +153,10 @@ class display:
         print("stocks")
 
     @staticmethod
+    def stockBig(ticker):  # stock
+        print("stockBig")
+
+    @staticmethod
     def news():  # news
         print("news")
 
@@ -170,9 +174,36 @@ class display:
                     flipdots.send(timeCommand)
                     sleep(0.5)
 
+        @staticmethod
+        def alphabet():
+            for i in range(0, 3):
+                temp = ascii7
+                while len(temp) > 0:
+                    line1 = []
+                    line2 = []
+                    while len(line1) < 104 and len(temp) > 0:
+                        for k in list(temp.keys()):
+                            for c in temp[k]:
+                                line1.append(str(c))
+                            line1.append("0")
+                            del temp[k]
+                    while len(line2) < 104 and len(temp) > 0:
+                        for k in list(temp.keys()):
+                            for c in temp[k]:
+                                line2.append(str(c))
+                            line2.append("0")
+                            del temp[k]
+                    c1 = f"({'{' + ','.join(line1) + '}'},112,7,0,0,20)\n"
+                    flipdots.send(c1)
+                    c2 = f"({'{' + ','.join(line2) + '}'},112,7,0,8,20)\n"
+                    flipdots.send(c2)
+                    sleep(10)
+                sleep(10)
+
 
 def displayLoop():
-    display.timeDay()
+    #display.timeDayWeather()
+    display.tests.alphabet()
     #display.tests.time()
 
 
