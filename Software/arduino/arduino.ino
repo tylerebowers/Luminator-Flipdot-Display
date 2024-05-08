@@ -324,8 +324,8 @@ void userSerialConnection(bool echo = false){
       } else if (userInput == "exit") {
         break;  
       } 
+      Serial.println("ready");
     }
-    Serial.println("ready");
   }
 }
 
