@@ -96,7 +96,7 @@ class display:
 
             # get date and show in small font top right
             if now.day != shownDay:
-                line1 = now.strftime("%A, %b !!")
+                line1 = now.strftime("%B !!")
                 line1 = line1.replace('!!', str(now.day) + {1:'st',2:'nd',3:'rd'}.get(now.day%20, 'th'))
                 tempArray = display.compileTextArray(line1, "ascii7", 57)
                 dateCommand = f"({'{' + ','.join(tempArray) + '}'},{len(tempArray)},7,55,0,50)\n"
@@ -105,7 +105,7 @@ class display:
                 shownDay = now.day
 
             # get weather and show in small font bottom right
-            if shownMinute != weatherUpdatedMinute and shownMinute in [0, 15, 30, 45]:
+            if abs(now.minute - weatherUpdatedMinute) > 15:
                 response = requests.get(openWeatherMapURL)
                 if response.ok:
                     response = response.json()
