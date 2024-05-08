@@ -181,13 +181,13 @@ class display:
                 while len(temp) > 0:
                     line1 = []
                     line2 = []
-                    while len(line1) < 104 and len(temp) > 0:
+                    while len(line1) < 104 or len(temp) > 0:
                         for k in list(temp.keys()):
                             for c in temp[k]:
                                 line1.append(str(c))
                             line1.append("0")
                             del temp[k]
-                    while len(line2) < 104 and len(temp) > 0:
+                    while len(line2) < 104 or len(temp) > 0:
                         for k in list(temp.keys()):
                             for c in temp[k]:
                                 line2.append(str(c))
