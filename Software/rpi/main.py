@@ -79,37 +79,56 @@ class display:
     def timeDay():
         shownMinute = -1
         shownDay = -1
+        weatherUpdatedMinute = -30
         while True:
             now = datetime.now()
             if display.interrupt:
                 break
-            if now.minute != shownMinute:  # get time
+
+            # get time and show in large font
+            if now.minute != shownMinute:
                 current_time = now.strftime("%-I:%M%p").lower()[0:-1]
-                tempArray = display.compileTextArray(current_time, "time14", 56)
-                timeCommand = f"({'{' + ','.join(tempArray) + '}'},len(tempArray),14,0,1,20)\n"
+                tempArray = display.compileTextArray(current_time, "time14", 54)
+                timeCommand = f"({'{' + ','.join(tempArray) + '}'},{len(tempArray)},14,0,1,20)\n"
                 flipdots.send(timeCommand)
                 # update the current minute that is shown
                 shownMinute = now.minute
 
+            # get date and show in small font top right
             if now.day != shownDay:
-                # line 1 is the day of the week
-                line1 = now.strftime("%A")
-                tempArray = display.compileTextArray(line1, "ascii7")
-                dateCommand = f"({'{' + ','.join(tempArray) + '}'},{len(tempArray)},7,56,0,50)\n"
-                flipdots.send(dateCommand)
-                # line 2 is the month and day
-                line2 = now.strftime("%B !!")
-                line2 = line2.replace('!!', str(now.day) + {1: 'st', 2: 'nd', 3: 'rd'}.get(now.day % 20, 'th'))
-                tempArray = display.compileTextArray(line2, "ascii7")
-                dateCommand = f"({'{' + ','.join(tempArray) + '}'},{len(tempArray)},7,56,8,50)\n"
+                line1 = now.strftime("%A, %b !!")
+                line1 = line1.replace('!!', str(now.day) + {1:'st',2:'nd',3:'rd'}.get(now.day%20, 'th'))
+                tempArray = display.compileTextArray(line1, "ascii7", 57)
+                dateCommand = f"({'{' + ','.join(tempArray) + '}'},{len(tempArray)},7,55,0,50)\n"
                 flipdots.send(dateCommand)
                 # update the current day that is shown
                 shownDay = now.day
+
+            # get weather and show in small font bottom right
+            if shownMinute != weatherUpdatedMinute and shownMinute in [0, 15, 30, 45]:
+                response = requests.get(openWeatherMapURL)
+                if response.ok:
+                    response = response.json()
+                    fahrenheit_temperature = (response["main"]["temp"] * 1.8) + 32
+                    condition = response["weather"][0]["main"]
+                    text = f"{condition} - {fahrenheit_temperature:.1f}F"
+                else:
+                    text = "API call error"
+                tempArray = display.compileTextArray(text, "ascii7", 57)
+                dateCommand = f"({'{' + ','.join(tempArray) + '}'},{len(tempArray)},7,55,8,50)\n"
+                flipdots.send(dateCommand)
+                weatherUpdatedMinute = shownMinute
+
             sleep(5)
 
-    """
-    weatherUpdatedMinute = -30
-                if abs(now.minute - weatherUpdatedMinute) > 30:  # get weather
+    @staticmethod
+    def weather():  # weather
+        weatherUpdatedMinute = -30
+        while True:
+            now = datetime.now()
+            if display.interrupt:
+                break
+            if abs(now.minute - weatherUpdatedMinute) > 30:  # get weather
                 newDisplay = []
                 response = requests.get(openWeatherMapURL)
                 if response.ok:
@@ -124,10 +143,10 @@ class display:
                     for c in ascii7[l]:
                         newDisplay.append(str(c))
                 newDisplay.append("0")
-                weatherCommand = f"({'{' + ','.join(newDisplay) + '}'},{len(newDisplay)},7,{timeDisplayLength + 2},8,50)\n"
+                weatherCommand = f"({'{' + ','.join(newDisplay) + '}'},{len(newDisplay)},7,0,8,50)\n"
                 flipdots.send(weatherCommand)
                 weatherUpdatedMinute = now.minute
-    """
+
 
     @staticmethod
     def stocks():  # stocks
