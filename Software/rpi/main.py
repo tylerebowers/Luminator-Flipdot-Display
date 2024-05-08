@@ -13,14 +13,8 @@ openWeatherMapAPIKey = "c7ca991b7196262e0be5185bce9e776f"
 openWeatherMapBaseURL = "https://api.openweathermap.org/data/2.5/weather?"
 openWeatherMapURL = openWeatherMapBaseURL + "appid=" + openWeatherMapAPIKey + "&q=" + city + "&units=metric"
 
-"""
-#test
-from simulator import simulator  
-sim = simulator()  
-#test
-"""
 
-class luminator:
+class flipdots:
     serial = None
     serialPort = "/dev/ttyUSB0"
     baudRate = 115200
@@ -28,46 +22,41 @@ class luminator:
     @staticmethod
     def connect():
         try:
-            luminator.serial = serial.Serial(luminator.serialPort, luminator.baudRate)
-            print("Connected to serial port: " + luminator.serialPort)
+            flipdots.serial = serial.Serial(flipdots.serialPort, flipdots.baudRate)
+            print("Connected to serial port: " + flipdots.serialPort)
         except:
-            print("Failed to connect to serial port: " + luminator.serialPort)
-            luminator.serial = None
+            print("Failed to connect to serial port: " + flipdots.serialPort)
+            flipdots.serial = None
 
 
     @staticmethod
     def send(string):
-        """
-        sim.readString(string)  #test
-        sim.print()  #test
-        """
         print(string, end='')
-        if luminator.serial is None or not luminator.serial.is_open:
-            luminator.connect()
-        if luminator.serial is not None and luminator.serial.is_open:
-            luminator.serial.write(string.encode('ascii', 'ignore'))
-            while luminator.serial.readline()[0:5] != b'ready':
+        if flipdots.serial is None or not flipdots.serial.is_open:
+            flipdots.connect()
+        if flipdots.serial is not None and flipdots.serial.is_open:
+            flipdots.serial.write(string.encode('ascii', 'ignore'))
+            while flipdots.serial.readline()[0:5] != b'ready':
                 sleep(0.5)
-        luminator.isReady = False
 
     @staticmethod
     def allOff():
-        luminator.send("allOff\n")
+        flipdots.send("allOff\n")
 
     @staticmethod
     def allOn():
-        luminator.send("allOn\n")
+        flipdots.send("allOn\n")
 
     @staticmethod
     def invert():
-        luminator.send("invert\n")
+        flipdots.send("invert\n")
 
 
 class display:
     interrupt = False
 
     @staticmethod
-    def compileTextArray(string, mode):
+    def compileTextArray(string, mode, min = 0):
         tempArray = []
         if mode == "time14":
             for l in string:
@@ -81,44 +70,65 @@ class display:
                 for c in ascii7[l]:
                     tempArray.append(str(c))
             tempArray.append("0")
+        while len(tempArray) < min:
+            tempArray.append("0")
         return tempArray
 
 
     @staticmethod
-    def timeDay():
+    def timeDayWeather():
         shownMinute = -1
         shownDay = -1
+        weatherUpdatedMinute = -30
         while True:
             now = datetime.now()
             if display.interrupt:
                 break
-            if now.minute != shownMinute:  # get time
+
+            # get time and show in large font
+            if now.minute != shownMinute:
                 current_time = now.strftime("%-I:%M%p").lower()[0:-1]
-                tempArray = display.compileTextArray(current_time, "time14")
-                timeCommand = f"({'{' + ','.join(tempArray) + '}'},{len(tempArray)},14,1,1,20)\n"
-                luminator.send(timeCommand)
+                tempArray = display.compileTextArray(current_time, "time14", 54)
+                timeCommand = f"({'{' + ','.join(tempArray) + '}'},{len(tempArray)},14,0,1,20)\n"
+                flipdots.send(timeCommand)
                 # update the current minute that is shown
                 shownMinute = now.minute
 
+            # get date and show in small font top right
             if now.day != shownDay:
-                # line 1 is the day of the week
-                line1 = now.strftime("%A")
-                tempArray = display.compileTextArray(line1, "ascii7")
-                dateCommand = f"({'{' + ','.join(tempArray) + '}'},{len(tempArray)},7,56,0,50)\n"
-                luminator.send(dateCommand)
-                # line 2 is the month and day
-                line2 = now.strftime("%B !!")
-                line2 = line2.replace('!!', str(now.day) + {1: 'st', 2: 'nd', 3: 'rd'}.get(now.day % 20, 'th'))
-                tempArray = display.compileTextArray(line2, "ascii7")
-                dateCommand = f"({'{' + ','.join(tempArray) + '}'},{len(tempArray)},7,56,8,50)\n"
-                luminator.send(dateCommand)
+                line1 = now.strftime("%B !!")
+                line1 = line1.replace('!!', str(now.day) + {1:'st',2:'nd',3:'rd'}.get(now.day%20, 'th'))
+                tempArray = display.compileTextArray(line1, "ascii7", 57)
+                dateCommand = f"({'{' + ','.join(tempArray) + '}'},{len(tempArray)},7,55,0,50)\n"
+                flipdots.send(dateCommand)
                 # update the current day that is shown
                 shownDay = now.day
+
+            # get weather and show in small font bottom right
+            if abs(now.minute - weatherUpdatedMinute) > 15:
+                response = requests.get(openWeatherMapURL)
+                if response.ok:
+                    response = response.json()
+                    fahrenheit_temperature = (response["main"]["temp"] * 1.8) + 32
+                    condition = response["weather"][0]["main"]
+                    text = f"{fahrenheit_temperature:.0f}F {condition}"
+                else:
+                    text = "API call error"
+                tempArray = display.compileTextArray(text, "ascii7", 57)
+                dateCommand = f"({'{' + ','.join(tempArray) + '}'},{len(tempArray)},7,55,8,50)\n"
+                flipdots.send(dateCommand)
+                weatherUpdatedMinute = shownMinute
+
             sleep(5)
 
-    """
-    weatherUpdatedMinute = -30
-                if abs(now.minute - weatherUpdatedMinute) > 30:  # get weather
+    @staticmethod
+    def weatherBig():  # weather
+        weatherUpdatedMinute = -30
+        while True:
+            now = datetime.now()
+            if display.interrupt:
+                break
+            if abs(now.minute - weatherUpdatedMinute) > 30:  # get weather
                 newDisplay = []
                 response = requests.get(openWeatherMapURL)
                 if response.ok:
@@ -133,23 +143,75 @@ class display:
                     for c in ascii7[l]:
                         newDisplay.append(str(c))
                 newDisplay.append("0")
-                weatherCommand = f"({'{' + ','.join(newDisplay) + '}'},{len(newDisplay)},7,{timeDisplayLength + 2},8,50)\n"
-                luminator.send(weatherCommand)
+                weatherCommand = f"({'{' + ','.join(newDisplay) + '}'},{len(newDisplay)},7,0,8,50)\n"
+                flipdots.send(weatherCommand)
                 weatherUpdatedMinute = now.minute
-    """
+
 
     @staticmethod
     def stocks():  # stocks
         print("stocks")
 
     @staticmethod
+    def stockBig(ticker):  # stock
+        print("stockBig")
+
+    @staticmethod
     def news():  # news
         print("news")
 
+    class tests:
+        @staticmethod
+        def time():  # test
+            separator = "({65535},1,16,56,0,50)\n"
+            flipdots.send(separator)
+            for h in range(0, 24):
+                for m in [0,1,23,34,56,57,58,59]:
+                    dt = datetime.strptime(f"{h:02d}:{m:02d}:00", "%H:%M:%S")
+                    current_time = dt.strftime("%-I:%M%p").lower()[0:-1]
+                    tempArray = display.compileTextArray(current_time, "time14", 56)
+                    timeCommand = f"({'{' + ','.join(tempArray) + '}'},{len(tempArray)},14,0,1,20)\n"
+                    flipdots.send(timeCommand)
+                    sleep(0.5)
+
+        @staticmethod
+        def purdue():
+            flipdots.send(f"{'{' + ','.join(purdue) + '}'}")
+            sleep(10)
+
+        @staticmethod
+        def alphabet():
+            for i in range(0, 3):
+                temp = ascii7.copy()
+                while len(temp) > 0:
+                    line1 = []
+                    line2 = []
+                    for k in list(temp.keys()):
+                        if len(line1) < 104:
+                            for c in temp[k]:
+                                line1.append(str(c))
+                            line1.append("0")
+                            del temp[k]
+                        else: break
+                    for k in list(temp.keys()):
+                        if len(line2) < 104:
+                            for c in temp[k]:
+                                line2.append(str(c))
+                            line2.append("0")
+                            del temp[k]
+                        else: break
+                    c1 = f"({'{' + ','.join(line1) + '}'},112,7,0,0,20)\n"
+                    flipdots.send(c1)
+                    c2 = f"({'{' + ','.join(line2) + '}'},112,7,0,8,20)\n"
+                    flipdots.send(c2)
+                    sleep(10)
+
 
 def displayLoop():
-    # day/time/temp
-    display.timeDay()
+    display.tests.purdue()
+    display.timeDayWeather()
+    #display.tests.alphabet()
+    #display.tests.time()
 
 
 def main():
@@ -157,7 +219,7 @@ def main():
     return
 
 if __name__ == "__main__":
-    luminator.connect()
-    luminator.allOff()
+    flipdots.connect()
+    flipdots.allOff()
     threading.Thread(target=displayLoop).start()
     main()

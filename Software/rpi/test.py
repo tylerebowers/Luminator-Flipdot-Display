@@ -121,7 +121,7 @@ current_date = now.strftime("%A, %B !!")
 current_date = current_date.replace('!!', str(now.day) + {1:'st',2:'nd',3:'rd'}.get(now.day%20, 'th'))
 print(current_date)
 """
-"""
+
 import requests
 city = "West Lafayette"
 openWeatherMapAPIKey = "c7ca991b7196262e0be5185bce9e776f"
@@ -133,6 +133,7 @@ if response.ok:
     response = response.json()
     current_temperature = response["main"]["temp"]
     print(current_temperature)
+
 """
 #print(datetime.now().strftime("%#I:%M%p").lower()[0:-1])
 from simulator import simulator
@@ -147,3 +148,4 @@ sim.allOff()
 sim.readString("(7,3,1)\n")
 sim.print()
 sim.allOff()
+"""
