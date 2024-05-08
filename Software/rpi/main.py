@@ -111,7 +111,7 @@ class display:
                     response = response.json()
                     fahrenheit_temperature = (response["main"]["temp"] * 1.8) + 32
                     condition = response["weather"][0]["main"]
-                    text = f"{condition} - {fahrenheit_temperature:.1f}F"
+                    text = f"{fahrenheit_temperature:.0f}F {condition}"
                 else:
                     text = "API call error"
                 tempArray = display.compileTextArray(text, "ascii7", 57)
