@@ -175,6 +175,11 @@ class display:
                     sleep(0.5)
 
         @staticmethod
+        def purdue():
+            flipdots.send(f"{'{' + ','.join(purdue) + '}'}")
+            sleep(10)
+
+        @staticmethod
         def alphabet():
             for i in range(0, 3):
                 temp = ascii7.copy()
@@ -203,8 +208,9 @@ class display:
 
 
 def displayLoop():
-    #display.timeDayWeather()
-    display.tests.alphabet()
+    display.tests.purdue()
+    display.timeDayWeather()
+    #display.tests.alphabet()
     #display.tests.time()
 
 
