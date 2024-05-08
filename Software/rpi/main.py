@@ -172,8 +172,8 @@ class display:
 
 
 def displayLoop():
-    #display.timeDay()
-    display.tests.time()
+    display.timeDay()
+    #display.tests.time()
 
 
 def main():
