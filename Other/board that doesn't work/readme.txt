@@ -1,0 +1,1 @@
+This didn't work because the row high and low rows should not have been tied together. Silly mistake - when testing I should have also tested scaling.

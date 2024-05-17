@@ -124,7 +124,7 @@ print(current_date)
 
 import requests
 city = "West Lafayette"
-openWeatherMapAPIKey = "c7ca991b7196262e0be5185bce9e776f"
+openWeatherMapAPIKey = "your api key"
 openWeatherMapBaseURL = "https://api.openweathermap.org/data/2.5/weather?"
 openWeatherMapURL = openWeatherMapBaseURL + "appid=" + openWeatherMapAPIKey + "&q=" + city + "&units=imperial"
 response = requests.get(openWeatherMapURL)
