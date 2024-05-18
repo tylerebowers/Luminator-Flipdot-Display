@@ -1,0 +1,2 @@
+The esp32 is on the driver board and it controls the registers and outputs it was originally intended to do the job that the pi now does.
+The rpi (zero 2 W) connects over serial (micro-b to micro-b) and runs the software that controls the esp32/driver board. The rpi is better for storing graphics libraries, running webservers, and python is easier to work with so no reflashing everytime a change is made.
